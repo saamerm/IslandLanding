@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:IslandLanding.Controls"
+             x:Class="IslandLanding.Views.GamerTagPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+   
+      <Grid RowDefinitions="auto,auto,auto">
+        <Image Source="background" Grid.RowSpan="3"
+                  Aspect="Fill"/>
+        <Label Grid.Row="0"
+             Margin="30,230,30,0"
+             TextColor="{StaticResource LabelColor}"
+             FontSize="24"
+             VerticalTextAlignment="Center"
+         Text="Please enter your gamer tag"/>
+        <StackLayout Grid.Row="1" Margin="0,26,0,0"
+                     HorizontalOptions="Center"
+                   VerticalOptions="Center">
+          <controls:NoBorderEntry VerticalOptions="Center"
+                                  HorizontalOptions="Center"
+                                  WidthRequest="175"
+                                  HeightRequest="30"
+                                  TextColor="White"
+                                  VerticalTextAlignment="Center"/>
+        <BoxView WidthRequest="175"
+                 HeightRequest="3"
+                 HorizontalOptions="Center"
+              BackgroundColor="{StaticResource DarkOrange}"/>
+        <Button 
+              WidthRequest="300"
+              Text="Save" Margin="40,120,40,0"
+              TextColor="White"
+              BorderColor="{StaticResource bordercolor}"
+              BorderWidth="4" 
+              HeightRequest="60"
+              CornerRadius="30"
+              VerticalOptions="EndAndExpand"
+              BackgroundColor="{StaticResource orange}"
+              />
+      </StackLayout>
+    
+    </Grid>
+   
+    </ContentPage.Content>
+</ContentPage>
