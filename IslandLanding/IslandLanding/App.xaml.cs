@@ -1,5 +1,6 @@
 ﻿using IslandLanding.Views;
 using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,8 +11,15 @@ namespace IslandLanding
     public App()
     {
       InitializeComponent();
-
-      MainPage = new GamerTagPage();
+      if(string.IsNullOrEmpty(Preferences.Get("userTag", "")))
+      {
+        MainPage = new GamerTagPage();
+      }
+      else
+      {
+        MainPage = new HomePage();
+      }
+     
     }
 
     protected override void OnStart()

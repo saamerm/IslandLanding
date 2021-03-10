@@ -22,7 +22,7 @@
           <controls:NoBorderEntry VerticalOptions="Center"
                                   HorizontalOptions="Center"
                                   WidthRequest="175"
-                                 
+                                 Text="{Binding UserTag}"
                                   TextColor="White"
                                   VerticalTextAlignment="Center"/>
         <BoxView WidthRequest="175"  Margin="{OnPlatform Android='0,-8,0,0', iOS='0,0,0,0'}"
@@ -39,6 +39,7 @@
               CornerRadius="30"
               VerticalOptions="EndAndExpand"
               BackgroundColor="{StaticResource orange}"
+             Command="{Binding SaveCommand}"
               />
       </StackLayout>
     
