@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IslandLanding.Views;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
@@ -24,6 +25,7 @@ namespace IslandLanding.ViewModel
     private void SaveCommandExcute(object obj)
     {
       Preferences.Set("userTag", UserTag);
+      App.Current.MainPage.Navigation.PushModalAsync(new TutorialPage());
     }
   }
 }
