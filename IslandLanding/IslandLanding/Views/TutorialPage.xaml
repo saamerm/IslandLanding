@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IslandLanding.Views.TutorialPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+    <Grid >
+      <Image Source="background" 
+                  Aspect="Fill"/>
+
+      <CarouselView     Margin="0,180,0,30"
+                        x:Name="carousel"
+                         Position="{Binding CurrentPosition}"
+                   PositionChangedCommand="{Binding PositionChangedCommand}"
+              PositionChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=Position}"
+                        ItemsSource="{Binding TutorialList}">
+        <CarouselView.ItemTemplate>
+          <DataTemplate>
+            <StackLayout>
+              <Label Text="{Binding .}"
+                   Margin="20,0"
+                     FontSize="22"
+                     VerticalTextAlignment="Center"
+                     TextColor="White"
+                     />
+            
+            </StackLayout>
+          </DataTemplate>
+        </CarouselView.ItemTemplate>
+        
+      </CarouselView>
+      <Button VerticalOptions="End"
+              WidthRequest="300"
+              Text="{Binding ButtonText}"
+              Margin="40,0,40,220"
+              TextColor="White"
+              BorderColor="{StaticResource bordercolor}"
+              BorderWidth="4" 
+              HeightRequest="60"
+              CornerRadius="30"
+                Command="{Binding NextCommand}"
+            CommandParameter="{Binding Source={x:Reference carousel},Path=Position}"
+              BackgroundColor="{StaticResource orange}"
+           
+              />
+    </Grid>
+  </ContentPage.Content>
+</ContentPage>

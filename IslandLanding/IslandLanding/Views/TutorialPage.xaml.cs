@@ -11,12 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace IslandLanding.Views
 {
   [XamlCompilation(XamlCompilationOptions.Compile)]
-  public partial class GamerTagPage : ContentPage
+  public partial class TutorialPage : ContentPage
   {
-    public GamerTagPage()
+    public TutorialPage()
     {
       InitializeComponent();
-      BindingContext = new GamerTagViewModel();
+      BindingContext = new TutorialViewModel();
     }
   }
 }
