@@ -13,6 +13,7 @@
              Margin="30,230,30,0"
              TextColor="{StaticResource LabelColor}"
              FontSize="24"
+              FontFamily="PatrickFont"
              VerticalTextAlignment="Center"
          Text="{Binding TitleText,Source={x:Reference Root}}"/>
         <StackLayout Grid.Row="1"
@@ -40,6 +41,8 @@
               HeightRequest="60"
               CornerRadius="30"
               VerticalOptions="EndAndExpand"
+              FontSize="20"
+              FontFamily="PatrickFont"
               BackgroundColor="{StaticResource orange}"
              Command="{Binding SubmitCommand,Source={x:Reference Root}}"
               />

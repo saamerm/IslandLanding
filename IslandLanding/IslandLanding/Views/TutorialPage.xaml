@@ -20,6 +20,7 @@
               <Label Text="{Binding .}"
                    Margin="20,0"
                      FontSize="22"
+                      FontFamily="PatrickFont"
                      VerticalTextAlignment="Center"
                      TextColor="White"
                      />
