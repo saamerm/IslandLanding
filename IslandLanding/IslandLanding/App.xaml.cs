@@ -13,11 +13,11 @@ namespace IslandLanding
       InitializeComponent();
       if(string.IsNullOrEmpty(Preferences.Get("userTag", "")))
       {
-        MainPage = new GamerTagPage();
+        MainPage = new NavigationPage(new GamerTagPage());
       }
       else
       {
-        MainPage = new HomePage();
+        MainPage = new NavigationPage(new HomePage());
       }
      
     }

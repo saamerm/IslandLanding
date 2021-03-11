@@ -25,7 +25,7 @@ namespace IslandLanding.ViewModel
     private void SaveCommandExcute(object obj)
     {
       Preferences.Set("userTag", UserTag);
-      App.Current.MainPage.Navigation.PushModalAsync(new TutorialPage());
+      App.Current.MainPage.Navigation.PushAsync(new TutorialPage());
     }
   }
 }
