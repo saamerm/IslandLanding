@@ -19,7 +19,7 @@ namespace IslandLanding.Controls
     public static readonly BindableProperty GamerTagProperty = BindableProperty.Create(nameof(GamerTag),
     typeof(string),
     typeof(GamerTagTemplate),
-    default(string));
+    string.Empty, BindingMode.TwoWay);
     public static readonly BindableProperty SubmitCommandProperty = BindableProperty.Create(nameof(SubmitCommand),
     typeof(ICommand),
     typeof(GamerTagTemplate),

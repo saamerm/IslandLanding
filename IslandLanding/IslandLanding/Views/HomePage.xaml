@@ -63,7 +63,7 @@
         <Button 
               WidthRequest="300"
               Text="Start"
-              Margin="40,70,40,0"
+              Margin="40,65,40,0"
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"
               BorderWidth="4" 

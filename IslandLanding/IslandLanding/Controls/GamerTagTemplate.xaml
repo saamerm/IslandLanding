@@ -6,33 +6,32 @@
               x:Name="Root">
   <ContentView.ControlTemplate>
     <ControlTemplate>
-      <Grid RowDefinitions="auto,auto,auto">
-        <Image Source="background" Grid.RowSpan="3"
-                  Aspect="Fill"/>
-        <Label Grid.Row="0"
-             Margin="30,230,30,0"
+      <Grid >
+        <StackLayout
+             Margin="30,160,30,0">
+          <Label 
              TextColor="{StaticResource LabelColor}"
              FontSize="24"
               FontFamily="PatrickFont"
              VerticalTextAlignment="Center"
          Text="{Binding TitleText,Source={x:Reference Root}}"/>
-        <StackLayout Grid.Row="1"
+          <StackLayout Grid.Row="2"
                      Margin="{OnPlatform Android='0,5,0,0', iOS='0,15,0,0'}"
                      HorizontalOptions="Center"
                      VerticalOptions="Center">
 
-          <controls:NoBorderEntry VerticalOptions="Center"
+            <controls:NoBorderEntry VerticalOptions="Center"
                                   HorizontalOptions="Center"
                                   WidthRequest="175"
-                                 Text="{Binding GamerTag}"
+                                 Text="{Binding GamerTag,Source={x:Reference Root}}"
                                   TextColor="White"
                                   VerticalTextAlignment="Center"/>
-          <BoxView WidthRequest="175"
+            <BoxView WidthRequest="175"
                    Margin="{OnPlatform Android='0,-8,0,0', iOS='0,0,0,0'}"
                    HeightRequest="3"
                    HorizontalOptions="Center"
                   BackgroundColor="{StaticResource DarkOrange}"/>
-          <Button 
+            <Button 
               WidthRequest="300"
               Text="Save" Margin="40,120,40,0"
               TextColor="White"
@@ -46,8 +45,10 @@
               BackgroundColor="{StaticResource orange}"
              Command="{Binding SubmitCommand,Source={x:Reference Root}}"
               />
-        </StackLayout>
+          </StackLayout>
 
+        </StackLayout>
+       
       </Grid>
     </ControlTemplate>
   </ContentView.ControlTemplate>

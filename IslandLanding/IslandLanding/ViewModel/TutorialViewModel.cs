@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace IslandLanding.ViewModel
@@ -69,7 +70,7 @@ namespace IslandLanding.ViewModel
       if (CurrentPosition == TutorialList.Count - 1)
       {
         ButtonText = "Let’s Play!";
-        App.Current.MainPage = new HomePage();
+        App.Current.MainPage = new NavigationPage(new HomePage());
       }
     }
     private void LoadData()
