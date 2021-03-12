@@ -16,7 +16,6 @@ namespace IslandLanding.Views
     public HomePage()
     {
       InitializeComponent();
-      //Preferences.Set("userTag", tag);
       BindingContext = new HomeViewModel();
     }
   }
