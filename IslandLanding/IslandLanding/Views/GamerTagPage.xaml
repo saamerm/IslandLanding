@@ -6,10 +6,17 @@
              NavigationPage.HasNavigationBar="False"
              >
     <ContentPage.Content>
-
-    <controls:GamerTagTemplate TitleText="Please enter your gamer tag"
+    <Grid>
+      <Image Source="background" 
+                  Aspect="Fill"/>
+      <controls:GamerTagTemplate TitleText="Please enter your gamer tag"
                                SubmitCommand="{Binding SaveCommand}"
-                               GamerTag="{Binding UserTag}"/>
+                               GamerTag="{Binding UserTag,Mode=TwoWay}"
+                                Margin="{OnPlatform Android='0,70,0,0', iOS='0,20,0,0'}"
+                                 ButtonText="Save"
+                              />
+    </Grid>
+    
 
   </ContentPage.Content>
 </ContentPage>

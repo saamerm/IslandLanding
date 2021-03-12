@@ -19,7 +19,7 @@
                                          Glyph="&#xf007;"/>
         </Image.Source>
         <Image.GestureRecognizers>
-          <TapGestureRecognizer Command="{Binding ProfileCommand}"/>
+          <TapGestureRecognizer Command="{Binding ProfileCommand}" NumberOfTapsRequired="1"/>
         </Image.GestureRecognizers>
       </Image>
       <Image Grid.Row="0" Margin="0,30,24,30"
@@ -33,7 +33,7 @@
                                              Glyph="&#xf05a;"/>
         </Image.Source>
         <Image.GestureRecognizers>
-          <TapGestureRecognizer Command="{Binding ProfileCommand}"/>
+          <TapGestureRecognizer Command="{Binding InfoCommand}" NumberOfTapsRequired="1"/>
         </Image.GestureRecognizers>
       </Image>
       <StackLayout  Grid.Row="1"
@@ -63,7 +63,7 @@
         <Button 
               WidthRequest="300"
               Text="Start"
-              Margin="40,70,40,0"
+              Margin="40,65,40,0"
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"
               BorderWidth="4" 
@@ -72,6 +72,7 @@
               BackgroundColor="{StaticResource orange}"
              FontFamily="PatrickFont"
              FontSize="20"
+             Command="{Binding StartCommand}"
               />
         <Button 
               WidthRequest="300"
@@ -85,7 +86,7 @@
               FontSize="20"
               FontFamily="PatrickFont"
               BackgroundColor="{StaticResource orange}"
-            
+             Command="{Binding LeaderBoardCommand}"
               />
 
 

@@ -4,19 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace IslandLanding.Views
 {
   [XamlCompilation(XamlCompilationOptions.Compile)]
-  public partial class HomePage : ContentPage
+  public partial class SwitchUserAccountPage : ContentPage
   {
-    public HomePage()
+    public SwitchUserAccountPage()
     {
       InitializeComponent();
-      BindingContext = new HomeViewModel();
+      BindingContext = new SwitchTagViewModel();
     }
   }
 }

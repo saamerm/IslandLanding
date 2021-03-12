@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:IslandLanding.Controls"
+             x:Class="IslandLanding.Views.SwitchUserAccountPage"
+              NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
+             >
+  <ContentPage.Content>
+    <Grid RowDefinitions="auto,auto">
+      <Image Source="background" Grid.RowSpan="2"
+                  Aspect="Fill"/>
+      <Image Margin="24,38,0,0" Grid.Row="0"
+             HorizontalOptions="Start"
+             HeightRequest="24"
+             WidthRequest="24"
+           
+             VerticalOptions="Center"
+           >
+        <Image.Source>
+          <FontImageSource Color="White"
+                                         FontFamily="FontAwesome5Solid"
+                                         Glyph="&#xf053;"/>
+        </Image.Source>
+        <Image.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding BackCommand}"  NumberOfTapsRequired="1"/>
+        </Image.GestureRecognizers>
+      </Image>
+      <controls:GamerTagTemplate TitleText="Switch your gamer tag" Grid.Row="1"
+                               SubmitCommand="{Binding SaveCommand}"
+                               GamerTag="{Binding UserTag}"
+                                 ButtonText="Switch"
+                              />
+
+    </Grid>
+
+  </ContentPage.Content>
+</ContentPage>
