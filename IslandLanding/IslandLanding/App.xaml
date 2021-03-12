@@ -8,6 +8,7 @@
       <Color x:Key="DarkOrange">#D1603D</Color>
       <Color x:Key="bordercolor">#4F3824</Color>
       <Color x:Key="orange">#E8A24F</Color>
+      <Color x:Key="orangeLabel">#DDB967</Color>
     </ResourceDictionary>
     </Application.Resources>
 </Application>
