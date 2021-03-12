@@ -33,7 +33,7 @@
                                              Glyph="&#xf05a;"/>
         </Image.Source>
         <Image.GestureRecognizers>
-          <TapGestureRecognizer Command="{Binding ProfileCommand}"/>
+          <TapGestureRecognizer Command="{Binding InfoCommand}" NumberOfTapsRequired="1"/>
         </Image.GestureRecognizers>
       </Image>
       <StackLayout  Grid.Row="1"
@@ -72,6 +72,7 @@
               BackgroundColor="{StaticResource orange}"
              FontFamily="PatrickFont"
              FontSize="20"
+             Command="{Binding StartCommand}"
               />
         <Button 
               WidthRequest="300"
@@ -85,7 +86,7 @@
               FontSize="20"
               FontFamily="PatrickFont"
               BackgroundColor="{StaticResource orange}"
-            
+             Command="{Binding LeaderBoardCommand}"
               />
 
 
