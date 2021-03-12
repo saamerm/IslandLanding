@@ -23,13 +23,13 @@
                                          Glyph="&#xf053;"/>
         </Image.Source>
         <Image.GestureRecognizers>
-          <TapGestureRecognizer Command="{Binding BackCommand}"/>
+          <TapGestureRecognizer Command="{Binding BackCommand}"  NumberOfTapsRequired="1"/>
         </Image.GestureRecognizers>
       </Image>
       <controls:GamerTagTemplate TitleText="Switch your gamer tag" Grid.Row="1"
                                SubmitCommand="{Binding SaveCommand}"
                                GamerTag="{Binding UserTag}"
-                              
+                                 ButtonText="Switch"
                               />
 
     </Grid>

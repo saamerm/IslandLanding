@@ -33,7 +33,8 @@
                   BackgroundColor="{StaticResource DarkOrange}"/>
             <Button 
               WidthRequest="300"
-              Text="Save" Margin="40,120,40,0"
+              Text="{Binding ButtonText,Source={x:Reference Root}}"
+              Margin="40,120,40,0"
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"
               BorderWidth="4" 

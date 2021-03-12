@@ -13,6 +13,7 @@
                                SubmitCommand="{Binding SaveCommand}"
                                GamerTag="{Binding UserTag,Mode=TwoWay}"
                                 Margin="{OnPlatform Android='0,70,0,0', iOS='0,20,0,0'}"
+                                 ButtonText="Save"
                               />
     </Grid>
     

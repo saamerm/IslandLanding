@@ -16,6 +16,10 @@ namespace IslandLanding.Controls
     typeof(string),
     typeof(GamerTagTemplate),
     default(string));
+    public static readonly BindableProperty ButtonTextProperty = BindableProperty.Create(nameof(ButtonText),
+    typeof(string),
+    typeof(GamerTagTemplate),
+    default(string));
     public static readonly BindableProperty GamerTagProperty = BindableProperty.Create(nameof(GamerTag),
     typeof(string),
     typeof(GamerTagTemplate),
@@ -33,6 +37,11 @@ namespace IslandLanding.Controls
     {
       get => (string)GetValue(TitleTextProperty);
       set => SetValue(TitleTextProperty, value);
+    }
+    public string ButtonText
+    {
+      get => (string)GetValue(ButtonTextProperty);
+      set => SetValue(ButtonTextProperty, value);
     }
     public string GamerTag
     {

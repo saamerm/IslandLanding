@@ -19,7 +19,7 @@
                                          Glyph="&#xf007;"/>
         </Image.Source>
         <Image.GestureRecognizers>
-          <TapGestureRecognizer Command="{Binding ProfileCommand}"/>
+          <TapGestureRecognizer Command="{Binding ProfileCommand}" NumberOfTapsRequired="1"/>
         </Image.GestureRecognizers>
       </Image>
       <Image Grid.Row="0" Margin="0,30,24,30"
