@@ -70,6 +70,7 @@ namespace IslandLanding.ViewModel
       if (CurrentPosition == TutorialList.Count - 1)
       {
         ButtonText = "Let’s Play!";
+        Preferences.Set("firstTime", true);
         App.Current.MainPage = new NavigationPage(new HomePage());
       }
     }

@@ -1,8 +1,12 @@
 ﻿using IslandLanding.Views;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace IslandLanding.ViewModel
@@ -19,8 +23,23 @@ namespace IslandLanding.ViewModel
       LeaderBoardCommand = new Command(LeaderBoardCommandExcute);
       StartCommand = new Command(StartCommandExcute);
       InfoCommand = new Command(InfoCommandExcute);
+      Notify();
     }
-
+    private void Notify()
+    {
+      if (!Preferences.Get("firstTime", false))
+      {
+        PopupNavigation.Instance.PushAsync(new WelcomePopupPage());
+        Device.StartTimer(new TimeSpan(0, 0, 4), () =>
+        {
+          if (Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopupStack.Any())
+          {
+            PopupNavigation.Instance.PopAsync();
+          }
+          return false;
+        });
+      }
+    }
     private void InfoCommandExcute(object obj)
     {
       App.Current.MainPage.Navigation.PushAsync(new InfoPage());
