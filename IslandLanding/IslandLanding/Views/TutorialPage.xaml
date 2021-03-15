@@ -6,7 +6,8 @@
     <ContentPage.Content>
     <Grid >
       <Image Source="background" 
-                  Aspect="Fill"/>
+             Aspect="Fill"
+             Opacity="0.3"/>
 
       <CarouselView     Margin="0,180,0,30"
                         x:Name="carousel"

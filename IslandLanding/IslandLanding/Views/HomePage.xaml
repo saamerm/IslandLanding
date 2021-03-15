@@ -5,7 +5,9 @@
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
     <Grid RowDefinitions="auto,auto,auto">
-      <Image Source="background" Grid.RowSpan="3"
+      <Image Source="background"
+             Opacity="0.3"
+              Grid.RowSpan="3"
                   Aspect="Fill"/>
       <Image Grid.Row="0" Margin="24,30,0,30"
              HorizontalOptions="Start"
