@@ -30,7 +30,7 @@ namespace IslandLanding.ViewModel
       if (!Preferences.Get("firstTime", false))
       {
         PopupNavigation.Instance.PushAsync(new WelcomePopupPage());
-        Device.StartTimer(new TimeSpan(0, 0, 4), () =>
+        Device.StartTimer(new TimeSpan(0, 0, 5), () =>
         {
           if (Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopupStack.Any())
           {
