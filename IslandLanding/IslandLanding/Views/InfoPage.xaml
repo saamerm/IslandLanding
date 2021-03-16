@@ -4,8 +4,8 @@
               x:Class="IslandLanding.Views.InfoPage"
               NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-    <Grid RowDefinitions="auto,auto,auto">
-      <Image Source="background" Grid.RowSpan="3" Opacity="0.3"
+    <Grid RowDefinitions="auto,auto,auto,auto">
+      <Image Source="background" Grid.RowSpan="4" Opacity="0.3"
                   Aspect="Fill"/>
       <Image Margin="30,45,0,0" Grid.Row="0"
              HorizontalOptions="Start"
@@ -31,12 +31,23 @@
              FontSize="60"
              FontFamily="PatrickFont"/>
       <Label Grid.Row="2"
-             Margin="30,0"
+             Margin="30,-10,30,0"
              Text="{Binding Rules}"
-             MaxLines="30"
              TextColor="White"
              FontSize="20"
              FontFamily="PatrickFont"/>
+      <Label Grid.Row="3"
+             Margin="30,0"
+             Text="Check us out here!"
+             TextDecorations="Underline"
+             TextColor="White"
+             FontSize="20"
+             FontFamily="PatrickFont">
+        <Label.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding CheckusCommand}"/>
+        </Label.GestureRecognizers>
+      </Label>
+
     </Grid>
   </ContentPage.Content>
 </ContentPage>
