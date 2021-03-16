@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IslandLanding.Views.GamePage"
+            NavigationPage.HasNavigationBar="False">
+  <ContentPage.Content>
+    <Grid RowDefinitions="auto,auto,auto,auto,auto">
+      <Image Source="background" Grid.RowSpan="5" Opacity="0.3"
+                  Aspect="Fill"/>
+      <Image Margin="30,27,0,0" Grid.Row="0"
+             HorizontalOptions="Start"
+             HeightRequest="24"
+             WidthRequest="24"
+           
+             VerticalOptions="Center"
+           >
+        <Image.Source>
+          <FontImageSource Color="{StaticResource orange}"
+                                         FontFamily="FontAwesome5Solid"
+                                         Glyph="&#xf053;"/>
+        </Image.Source>
+        <Image.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding BackCommand}"  NumberOfTapsRequired="1"/>
+        </Image.GestureRecognizers>
+      </Image>
+      <Image Grid.Row="0"
+             Margin="0,27,24,0"
+             HorizontalOptions="End"
+             VerticalOptions="Center"
+             HeightRequest="20"
+             WidthRequest="20"
+            >
+        <Image.Source>
+          <FontImageSource Color="{StaticResource orange}"
+                                             FontFamily="FontAwesome5Solid"
+                                             Glyph="&#xf01e;"/>
+        </Image.Source>
+        <Image.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding InfoCommand}" NumberOfTapsRequired="1"/>
+        </Image.GestureRecognizers>
+      </Image>
+      <Label Text="LEVEL 1"
+             Grid.Row="1"
+             HorizontalOptions="Center"
+             VerticalOptions="Center"
+             TextColor="White"
+             FontSize="30"
+             Margin="0,60,0,0"
+             FontFamily="PatrickFont"/>
+      <Label Text="5 seconds"
+             Grid.Row="2"
+             HorizontalOptions="Center"
+             VerticalOptions="Center"
+             TextColor="White"
+             FontSize="30"
+             FontFamily="PatrickFont"
+             Margin="0,140,0,0"/>
+      <Button Grid.Row="3"
+              BackgroundColor="{StaticResource orange}"
+              HeightRequest="178"
+              WidthRequest="178"
+              HorizontalOptions="Center"
+              VerticalOptions="Center"
+              BorderWidth="4"
+              BorderColor="{StaticResource bordercolor}"
+              CornerRadius="89"
+              Text="Ready"
+              FontSize="40"
+              TextColor="White"
+              FontFamily="PatrickFont"
+              Margin="0,70,0,0"/>
+    </Grid>
+  </ContentPage.Content>
+</ContentPage>
