@@ -43,7 +43,7 @@
                                              Glyph="&#xf01e;"/>
         </Image.Source>
         <Image.GestureRecognizers>
-          <!--<TapGestureRecognizer Command="{Binding InfoCommand}" NumberOfTapsRequired="1"/>-->
+          <TapGestureRecognizer Command="{Binding RestartCommand}" NumberOfTapsRequired="1"/>
         </Image.GestureRecognizers>
       </Image>
       <Label Text="LEVEL 1"

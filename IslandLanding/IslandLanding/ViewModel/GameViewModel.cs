@@ -1,4 +1,6 @@
 ﻿using IslandLanding.Models;
+using IslandLanding.Views;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,6 +15,7 @@ namespace IslandLanding.ViewModel
     public string Seconds { get; set; }
     public ICommand ReadyCommand { get; set; }
     public ICommand BackCommand { get; set; }
+    public ICommand RestartCommand { get; set; }
     public ObservableCollection<LevelsModel> DotsList { get; set; }
     public bool IsStarting{ get; set;}
     public GameViewModel()
@@ -20,12 +23,19 @@ namespace IslandLanding.ViewModel
       ReadyCommand = new Command(ReadyCommandExcute);
       BackCommand = new Command(BackCommandExcute);
       DotsList = new ObservableCollection<LevelsModel>();
+      RestartCommand = new Command(RestartCommandExcute);
       DrawLevels();
+    }
+
+    private void RestartCommandExcute(object obj)
+    {
+      PopupNavigation.Instance.PushAsync(new RestartPopupPage());
     }
 
     private void BackCommandExcute(object obj)
     {
-      App.Current.MainPage.Navigation.PopAsync();
+      PopupNavigation.Instance.PushAsync(new ExitPopupPage());
+
     }
 
     private void ReadyCommandExcute(object obj)
@@ -54,6 +64,8 @@ namespace IslandLanding.ViewModel
           return false;
         }
       });
+
+
     }
     private void DrawLevels()
     {

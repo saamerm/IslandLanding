@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+  xmlns:pages="http://rotorgames.com" 
+            xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IslandLanding.Views.ExitPopupPage"
+            xmlns:control="clr-namespace:IslandLanding.Controls">
+    <ContentPage.Content>
+    <control:PopupTemplate TitleText="Would you like to exit?"
+                           NoCommand="{Binding NoCommand}"
+                           YesCommand="{Binding YesCommand}"/>
+  </ContentPage.Content>
+</pages:PopupPage>
