@@ -36,7 +36,8 @@
               BackgroundColor="{StaticResource orange}"
              FontFamily="PatrickFont"
              FontSize="20"
-             Command="{Binding EasyCommand}"
+             Command="{Binding DiffcultyCommand}"
+           CommandParameter="0"
               />
         <Button 
               WidthRequest="300"
@@ -50,7 +51,8 @@
               BackgroundColor="{StaticResource orange}"
              FontFamily="PatrickFont"
              FontSize="20"
-             Command="{Binding EasyCommand}"
+             Command="{Binding DiffcultyCommand}"
+           CommandParameter="1"
               />
         <Button 
               WidthRequest="300"
@@ -64,7 +66,8 @@
               BackgroundColor="{StaticResource orange}"
              FontFamily="PatrickFont"
              FontSize="20"
-             Command="{Binding EasyCommand}"
+             Command="{Binding DiffcultyCommand}"
+            CommandParameter="2"
               />
       </StackLayout>
       

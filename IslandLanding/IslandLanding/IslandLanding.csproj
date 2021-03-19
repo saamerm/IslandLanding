@@ -14,15 +14,18 @@
     <None Remove="Fonts\FontAwesome5Regular.otf" />
     <None Remove="Fonts\FontAwesome5Solid.otf" />
     <None Remove="Fonts\PatrickHand-Regular.ttf" />
+    <None Remove="Resources\parachut.json" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Fonts\FontAwesome5Regular.otf" />
     <EmbeddedResource Include="Fonts\FontAwesome5Solid.otf" />
     <EmbeddedResource Include="Fonts\PatrickHand-Regular.ttf" />
+    <EmbeddedResource Include="Resources\parachut.json" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.0.8" />
     <PackageReference Include="PropertyChanged.Fody" Version="3.3.2" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.10" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
@@ -31,17 +34,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Update="Controls\GamerTagTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\PopupTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ExitPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\GamerTagPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\HomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\RestartPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SwitchUserAccountPage.xaml">
