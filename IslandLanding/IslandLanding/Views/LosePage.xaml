@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:conv="clr-namespace:IslandLanding.Converters"
+             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms" 
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="IslandLanding.Views.LosePage"
+             NavigationPage.HasNavigationBar="False">
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <conv:InverseBoolConverter x:Key="InverseBool"/>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.Content>
+    <Grid RowDefinitions="0.45*,0.45*,0.1*,320">
+      <Image Source="background" Grid.RowSpan="4" Opacity="0.3"
+                  Aspect="Fill"/>
+      <Label 
+             Grid.Row="0" 
+             IsVisible="{Binding IsLosing}"
+             HorizontalOptions="Center"
+             VerticalOptions="Center"
+             TextColor="White"
+             FontSize="30"
+             VerticalTextAlignment="Center"
+             HorizontalTextAlignment="Center"
+             Margin="40,80,40,0" 
+             WidthRequest="313"
+             FontFamily="PatrickFont">
+        <Label.FormattedText>
+          <FormattedString>
+            <Span Text="Sorry, "/>
+            <Span Text="{Binding UserTag}"/>
+            <Span Text=" You have landed on the lake."/>
+          </FormattedString>
+        </Label.FormattedText>
+      </Label>
+      <pancake:PancakeView Grid.Row="1"
+                         Margin="0,50,0,0"
+                           IsVisible="{Binding IsLosing}" Grid.RowSpan="2"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" >
+        <forms:AnimationView
+          Animation="Resources.parachut.json"
+          AnimationSource="EmbeddedResource"
+          AutoPlay="True"
+          HeightRequest="257"
+          WidthRequest="257" 
+          RepeatMode="Infinite"
+          />
+      </pancake:PancakeView>
+      <!--the other view for lose page -->
+      <forms:AnimationView 
+          Animation="Resources.lake.json" 
+          AnimationSource="EmbeddedResource" 
+          AutoPlay="True"  
+            Grid.Row="3"       
+          IsVisible="{Binding IsLosing,Converter={StaticResource InverseBool}}"
+          VerticalOptions="FillAndExpand"
+          HorizontalOptions="FillAndExpand"
+          RepeatMode="Infinite"
+         />
+      <Label   Margin="40,60,40,0"
+        Grid.Row="0" 
+           IsVisible="{Binding IsLosing,Converter={StaticResource InverseBool}}"
+        Text="You lost the game"
+             TextColor="White"
+             FontSize="40"
+             VerticalTextAlignment="Center"
+             HorizontalTextAlignment="Center"
+             FontFamily="PatrickFont"/>
+      <StackLayout  Grid.Row="1" 
+             IsVisible="{Binding IsLosing,Converter={StaticResource InverseBool}}"
+              Margin="{OnPlatform iOS='40,-100,40,0',Android='40,-160,40,0'}"
+             HorizontalOptions="Center"
+             VerticalOptions="Center">
+        <Label 
+             TextColor="White"
+             FontSize="30"
+             Margin="0,3,0,0"
+             VerticalTextAlignment="Center"
+             HorizontalTextAlignment="Center"
+             FontFamily="PatrickFont">
+          <Label.FormattedText>
+            <FormattedString>
+              <Span Text="It took you "/>
+              <Span  Text="{Binding GameModel.MainTime}"/>
+              <Span Text=" seconds,which is "/>
+              <Span  Text="{Binding GameModel.TakenTime}"/>
+              <Span Text=" seconds too late"/>
+            </FormattedString>
+          </Label.FormattedText>
+        </Label>
+      </StackLayout>
+      <StackLayout Grid.Row="3"  IsVisible="{Binding IsLosing,Converter={StaticResource InverseBool}}">
+        <Button 
+              WidthRequest="300"
+              Text="Main" Margin="{OnPlatform iOS='40,0,40,0', Android='40,-45,40,0'}"
+              TextColor="White"
+              BorderColor="{StaticResource bordercolor}"
+              BorderWidth="4" 
+              HeightRequest="60"
+              CornerRadius="30"
+              BackgroundColor="{StaticResource orange}"
+             FontFamily="PatrickFont"
+             FontSize="20"
+            Command="{Binding MainCommand}"
+              />
+        <Button 
+              WidthRequest="300"
+              Text="Try Again"
+              Margin="40,10,40,0"
+              TextColor="White"
+              BorderColor="{StaticResource bordercolor}"
+              BorderWidth="4" 
+              HeightRequest="60"
+              CornerRadius="30"
+              FontSize="20"
+              FontFamily="PatrickFont"
+              BackgroundColor="{StaticResource orange}"
+              Command="{Binding TryAginCommand}"
+              />
+      </StackLayout>
+    </Grid>
+  </ContentPage.Content>
+</ContentPage>

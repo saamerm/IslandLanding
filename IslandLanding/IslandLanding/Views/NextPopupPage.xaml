@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+  xmlns:pages="http://rotorgames.com" 
+   xmlns="http://xamarin.com/schemas/2014/forms"
+   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms" 
+  xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+  x:Class="IslandLanding.Views.NextPopupPage"
+  CloseWhenBackgroundIsClicked="True">
+  <AbsoluteLayout >
+    <pancake:PancakeView BackgroundColor="#898989"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional,SizeProportional"
+                                     AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                     VerticalOptions="FillAndExpand"
+                                     Opacity="0.3"/>
+    <AbsoluteLayout  AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional,HeightProportional"
+                                     AbsoluteLayout.LayoutBounds="0.5,0.75,0.8,0.5" Margin="30,0"
+                                                x:Name="item"   >
+      <pancake:PancakeView AbsoluteLayout.LayoutBounds="0,0,1,0.47"
+                                         BackgroundColor="White"
+                                         AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional,HeightProportional"
+                                         CornerRadius="10">
+        <StackLayout   Margin="0,50,0,0">
+          <Label 
+                   TextColor="Black"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                    FontFamily="PatrickFont"
+                   FontSize="28">
+            <Label.FormattedText>
+              <FormattedString>
+                <Span Text="{Binding Seconds}"/>
+                <Span Text=" seconds"/>
+              </FormattedString>
+            </Label.FormattedText>
+          </Label>
+          <Button Text="{Binding ButtonText}"
+                 WidthRequest="204"
+                 HeightRequest="40"
+                 CornerRadius="10"
+                 TextColor="White"
+                 HorizontalOptions="Center"
+                 Margin="0,10,0,0"
+                 Command="{Binding NextCommand}"
+                 BackgroundColor="{StaticResource orange}"/>
+        </StackLayout>
+      </pancake:PancakeView>
+      <pancake:PancakeView AbsoluteLayout.LayoutBounds="0.5,-0.20,100,100"
+                           AbsoluteLayout.LayoutFlags="XProportional,YProportional"
+                            HeightRequest="200"
+                            WidthRequest="200"
+                           BackgroundColor="{StaticResource orange}"
+                           CornerRadius="50">
+        <forms:AnimationView   
+          Animation="Resources.win.json"
+          AnimationSource="EmbeddedResource"
+          AutoPlay="True"
+          HeightRequest="257"
+          WidthRequest="257"
+          RepeatMode="Infinite"
+          VerticalOptions="Center"
+          HorizontalOptions="Center" />
+      </pancake:PancakeView>
+    </AbsoluteLayout>
+  </AbsoluteLayout>
+</pages:PopupPage>

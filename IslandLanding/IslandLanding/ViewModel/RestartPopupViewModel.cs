@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Services;
+﻿using IslandLanding.Views;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -24,7 +25,7 @@ namespace IslandLanding.ViewModel
 
     private void YesCommandExcute(object obj)
     {
-      App.Current.MainPage.Navigation.PopAsync();
+      App.Current.MainPage.Navigation.PushAsync(new GamePage());
       PopupNavigation.Instance.PopAsync();
     }
   }

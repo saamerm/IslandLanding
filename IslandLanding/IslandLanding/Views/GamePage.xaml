@@ -4,21 +4,22 @@
              x:Class="IslandLanding.Views.GamePage"
             NavigationPage.HasNavigationBar="False"
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms" xmlns:conv="clr-namespace:IslandLanding.Converters">
+             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms" 
+             xmlns:conv="clr-namespace:IslandLanding.Converters">
   <ContentPage.Resources>
     <ResourceDictionary>
       <conv:InverseBoolConverter x:Key="InverseBool"/>
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.Content>
-    <Grid RowDefinitions="auto,auto,auto,auto,auto,auto,50">
-      <Image Source="background" Grid.RowSpan="7" Opacity="0.3"
-                  Aspect="Fill"/>
-      <Image Margin="30,27,0,0" Grid.Row="0"
+    <Grid RowDefinitions="auto,auto,auto,auto,auto,auto">
+      <Image Source="background" Grid.RowSpan="7" Grid.Row="0" Opacity="0.3"
+            Aspect="AspectFill" />
+      <Image Margin="30,27,0,0"
+             Grid.Row="0"
              HorizontalOptions="Start"
              HeightRequest="24"
              WidthRequest="24"
-           
              VerticalOptions="Center"
            >
         <Image.Source>
@@ -46,24 +47,31 @@
           <TapGestureRecognizer Command="{Binding RestartCommand}" NumberOfTapsRequired="1"/>
         </Image.GestureRecognizers>
       </Image>
-      <Label Text="LEVEL 1"
+      <Label 
              Grid.Row="1"
              HorizontalOptions="Center"
              VerticalOptions="Center"
              TextColor="White"
              FontSize="30"
-             Margin="0,60,0,0"
-             FontFamily="PatrickFont"/>
+             Margin="0,30,0,0"
+             FontFamily="PatrickFont">
+        <Label.FormattedText>
+          <FormattedString>
+            <Span Text="LEVEL "/>
+            <Span Text="{Binding LevelNumber}" />
+          </FormattedString>
+        </Label.FormattedText>
+      </Label>
       <Label IsVisible="{Binding IsStarting,Converter={StaticResource InverseBool}}"
              Grid.Row="2"
              HorizontalOptions="Center"
              VerticalOptions="Center"
              TextColor="White"
              FontFamily="PatrickFont"
-             Margin="0,140,0,0">
+             Margin="0,30,0,0">
         <Label.FormattedText>
           <FormattedString>
-            <Span Text="5" FontSize="64"/>
+            <Span Text="{Binding LevelTime}" FontSize="64"/>
             <Span Text=" seconds"  FontSize="30"/>
           </FormattedString>
         </Label.FormattedText>
@@ -83,7 +91,7 @@
               FontFamily="PatrickFont"
               Margin="0,70,0,0"
               Command="{Binding ReadyCommand}"/>
-   <!-- Game Start-->
+      <!-- Game Start-->
       <Label Text="Focus on the time"
              IsVisible="{Binding IsStarting}"
              Grid.Row="2"
@@ -124,13 +132,13 @@
               BackgroundColor="{StaticResource orange}"
              FontFamily="PatrickFont"
              FontSize="20"
-           
+           Command="{Binding LaunchCommand}"
               />
       <!--dots for levels-->
       <StackLayout Orientation="Horizontal"
             VerticalOptions="Center" 
               Grid.Row="5"
-                   Margin="0,60,0,0"
+                 Margin="0,60,0,0"
             HorizontalOptions="Center"
             BindableLayout.ItemsSource="{Binding DotsList}">
         <BindableLayout.ItemTemplate>
@@ -145,7 +153,6 @@
                 <pancake:Border Color="White" Thickness="3"/>
               </pancake:PancakeView.Border>
             </pancake:PancakeView>
-
           </DataTemplate>
         </BindableLayout.ItemTemplate>
       </StackLayout>
