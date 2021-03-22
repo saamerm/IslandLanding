@@ -30,9 +30,9 @@
              FontFamily="PatrickFont">
         <Label.FormattedText>
           <FormattedString>
-            <Span Text="Sorry , "/>
+            <Span Text="Sorry, "/>
             <Span Text="{Binding UserTag}"/>
-            <Span Text="You have landed on the lake."/>
+            <Span Text=" You have landed on the lake."/>
           </FormattedString>
         </Label.FormattedText>
       </Label>
@@ -40,8 +40,7 @@
                          Margin="0,50,0,0"
                            IsVisible="{Binding IsLosing}" Grid.RowSpan="2"
                            HorizontalOptions="Center"
-                           VerticalOptions="Center"                   
-       >
+                           VerticalOptions="Center" >
         <forms:AnimationView
           Animation="Resources.parachut.json"
           AnimationSource="EmbeddedResource"
@@ -62,7 +61,6 @@
           HorizontalOptions="FillAndExpand"
           RepeatMode="Infinite"
          />
-
       <Label   Margin="40,60,40,0"
         Grid.Row="0" 
            IsVisible="{Binding IsLosing,Converter={StaticResource InverseBool}}"
@@ -77,7 +75,6 @@
               Margin="{OnPlatform iOS='40,-100,40,0',Android='40,-160,40,0'}"
              HorizontalOptions="Center"
              VerticalOptions="Center">
-        
         <Label 
              TextColor="White"
              FontSize="30"
@@ -88,24 +85,18 @@
           <Label.FormattedText>
             <FormattedString>
               <Span Text="It took you "/>
-              <Span  Text="{Binding gameModel.MainTime}"/>
-              <Span Text=" seconds, "/>
-              <Span Text="which is "/>
-              <Span  Text="{Binding gameModel.TakenTime}"/>
+              <Span  Text="{Binding GameModel.MainTime}"/>
+              <Span Text=" seconds,which is "/>
+              <Span  Text="{Binding GameModel.TakenTime}"/>
               <Span Text=" seconds too late"/>
             </FormattedString>
           </Label.FormattedText>
         </Label>
-
-        
-      
-
       </StackLayout>
       <StackLayout Grid.Row="3"  IsVisible="{Binding IsLosing,Converter={StaticResource InverseBool}}">
         <Button 
               WidthRequest="300"
               Text="Main" Margin="{OnPlatform iOS='40,0,40,0', Android='40,-45,40,0'}"
-              
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"
               BorderWidth="4" 
@@ -130,9 +121,7 @@
               BackgroundColor="{StaticResource orange}"
               Command="{Binding TryAginCommand}"
               />
-
       </StackLayout>
-
     </Grid>
   </ContentPage.Content>
 </ContentPage>

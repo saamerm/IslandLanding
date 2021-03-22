@@ -13,23 +13,23 @@ namespace IslandLanding.ViewModel
     public string Seconds { get; set; }
     public string ButtonText { get; set; }
     public ICommand NextCommand { get; set; }
-    public NextPopupViewModel( string difftime)
+    public NextPopupViewModel( string diffTime)
     {
-      Seconds = difftime;
+      Seconds = diffTime;
       NextCommand = new Command(NextCommandExcute);
-      ButtonText = (Preferences.Get("levelnumber", 1) == 10) ? "Complet" : "Next";
+      ButtonText = (Preferences.Get("levelNumber", 1) == 10) ? "Complete" : "Next";
 
     }
 
     private void NextCommandExcute(object obj)
     {
-      if (Preferences.Get("levelnumber", 1) > 10)
+      if (Preferences.Get("levelNumber", 1) > 10)
       {
         // will navigate to win page 
       }
       else
       {
-        MessagingCenter.Send<NextPopupViewModel>(this, "nextlevel");
+        MessagingCenter.Send<NextPopupViewModel>(this, "nextLevel");
       }
       PopupNavigation.Instance.PopAsync();
     }

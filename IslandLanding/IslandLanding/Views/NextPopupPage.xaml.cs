@@ -14,10 +14,10 @@ namespace IslandLanding.Views
   [XamlCompilation(XamlCompilationOptions.Compile)]
   public partial class NextPopupPage : PopupPage
   {
-    public NextPopupPage( string difftime)
+    public NextPopupPage( string diffTime)
     {
       InitializeComponent();
-      BindingContext = new NextPopupViewModel(difftime);
+      BindingContext = new NextPopupViewModel(diffTime);
     }
   }
 }

@@ -10,9 +10,9 @@ using Xamarin.Forms;
 namespace IslandLanding.ViewModel
 {
  public class LoseViewModel:BaseViewModel
-  { 
+  {
     public bool IsLosing { get; set; }
-    public GameModel gameModel { get; set; }
+    public GameModel GameModel { get; set; }
     public ICommand MainCommand { get; set; }
     public ICommand TryAginCommand { get; set; }
     public string UserTag { get; set; }
@@ -21,7 +21,7 @@ namespace IslandLanding.ViewModel
       IsLosing = true;
       MainCommand = new Command(MainCommandExcute);
       TryAginCommand = new Command(TryAginCommandExcute);
-      gameModel = game;
+      GameModel = game;
       UserTag = Preferences.Get("userTag", "");
       Device.StartTimer(new TimeSpan(0, 0, 3), () =>
       {
@@ -32,12 +32,13 @@ namespace IslandLanding.ViewModel
 
     private void TryAginCommandExcute(object obj)
     {
-      Preferences.Set("levelnumber", 1);
+      Preferences.Set("levelNumber", 1);
       App.Current.MainPage.Navigation.PushAsync(new GamePage());
     }
 
     private void MainCommandExcute(object obj)
     {
+      Preferences.Set("levelNumber", 1);
       App.Current.MainPage.Navigation.PopToRootAsync();
     }
   }

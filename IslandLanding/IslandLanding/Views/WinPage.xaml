@@ -30,24 +30,21 @@
         <Label.FormattedText>
           <FormattedString>
             <Span Text="{Binding UserTag}"/>
-            <Span Text=", You have successfully landed on the island!"/>
+            <Span Text=",  You have successfully landed on the island!"/>
           </FormattedString>
         </Label.FormattedText>
       </Label>
       <pancake:PancakeView Grid.Row="1"
-                          
                            IsVisible="{Binding IsWinning}"
                            HorizontalOptions="Center"
-                           VerticalOptions="Center"                   
-       >
+                           VerticalOptions="Center">
         <forms:AnimationView
           Animation="Resources.parachut.json"
           AnimationSource="EmbeddedResource"
           AutoPlay="{Binding IsWinning}"
           HeightRequest="257"
           WidthRequest="257"
-          RepeatMode="Infinite"
-          />
+          RepeatMode="Infinite"/>
       </pancake:PancakeView>
       <StackLayout  Grid.Row="0"
            IsVisible="{Binding IsWinning,Converter={StaticResource InverseBool}}"
@@ -63,18 +60,16 @@
         <Label 
              TextColor="White"
              FontSize="30"
-            
              VerticalTextAlignment="Center"
              HorizontalTextAlignment="Center"
              FontFamily="PatrickFont">
           <Label.FormattedText>
             <FormattedString>
-              <Span Text="average is"/>
+              <Span Text="average is "/>
               <Span  Text="{Binding AverageTime}"/>
             </FormattedString>
           </Label.FormattedText>
         </Label>
-
         <Button 
               WidthRequest="300"
               Text="Main"
@@ -103,11 +98,7 @@
               BackgroundColor="{StaticResource orange}"
               Command="{Binding TryAginCommand}"
               />
-
-
-
       </StackLayout>
-
       <!--dots for levels-->
       <StackLayout Orientation="Horizontal"
             VerticalOptions="Center" 
@@ -128,7 +119,6 @@
                 <pancake:Border Color="White" Thickness="3"/>
               </pancake:PancakeView.Border>
             </pancake:PancakeView>
-
           </DataTemplate>
         </BindableLayout.ItemTemplate>
       </StackLayout>

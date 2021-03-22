@@ -25,21 +25,20 @@ namespace IslandLanding.ViewModel
     public ICommand LaunchCommand { get; set; }
     public ObservableCollection<LevelsModel> DotsList { get; set; }
     public bool IsStarting { get; set; }
-    public GameModel gameModel { get; set; }
+    public GameModel GameModel { get; set; }
     public List<double> TimeDifferencesList { get; set; }
     public GameViewModel()
     {
       ReadyCommand = new Command(ReadyCommandExcute);
       BackCommand = new Command(BackCommandExcute);
-   
       RestartCommand = new Command(RestartCommandExcute);
       LaunchCommand = new Command(LaunchCommandExcute);
       TimeDifferencesList = new List<double>();
       DrawLevels();
-      MessagingCenter.Subscribe<NextPopupViewModel>(this,"nextlevel", (sender) =>
+      MessagingCenter.Subscribe<NextPopupViewModel>(this,"nextLevel", (sender) =>
       {
         IsStarting = false;
-        LevelNumber = Preferences.Get("levelnumber", 1) + 1;
+        LevelNumber = Preferences.Get("levelNumber", 1) + 1;
         LevelTime += 1;
         foreach (var item in DotsList)
         {
@@ -49,11 +48,10 @@ namespace IslandLanding.ViewModel
             item.IsCompleted = true;
             item.BackgroundColor = Color.FromHex("#C5C5C5");
           }
-          
         }
       });
       //this part for check level and add level time according to choosen difficulity
-      if ((Preferences.Get("levelnumber", 1) == 1))
+      if ((Preferences.Get("levelNumber", 1) == 1))
       {
         var difficulitylevel = Preferences.Get("difficulty", (int)Difficulty.Easy);
         if (difficulitylevel== (int)Difficulty.Easy)
@@ -68,9 +66,7 @@ namespace IslandLanding.ViewModel
         {
           LevelTime = 45;
         }
-       
         LevelNumber = 1;
-
       }
     }
 
@@ -79,29 +75,25 @@ namespace IslandLanding.ViewModel
       var time = DateTime.Now;
       var diffTime = DateTime.Now - StartedTime;
       var scoretime = LevelTime - diffTime.TotalSeconds;
-      gameModel = new GameModel
+      GameModel = new GameModel
       {
-        MainTime = diffTime.TotalSeconds.ToString(),
-        TakenTime = scoretime.ToString()
+        MainTime = diffTime.TotalSeconds.ToString("0.00"),
+        TakenTime = scoretime.ToString("0.00")
       };
       TimeDifferencesList.Add(scoretime);
       var listOfTimeAsJson = JsonConvert.SerializeObject(TimeDifferencesList);
       Preferences.Set(listOfTimeAsJson, "");
       if (scoretime > -1 && scoretime <= 1)
       {
-        PopupNavigation.Instance.PushAsync(new NextPopupPage(scoretime.ToString()));
-
+        IsStarting = false;
+        PopupNavigation.Instance.PushAsync(new NextPopupPage(scoretime.ToString("0.00")));
       }
       else
       {
         // will go to lose page
-
-        App.Current.MainPage.Navigation.PushAsync(new LosePage(gameModel));
-       
+        App.Current.MainPage.Navigation.PushAsync(new LosePage(GameModel));
       }
-
     }
-
     private void RestartCommandExcute(object obj)
     {
       PopupNavigation.Instance.PushAsync(new RestartPopupPage());
@@ -110,24 +102,19 @@ namespace IslandLanding.ViewModel
     private void BackCommandExcute(object obj)
     {
       PopupNavigation.Instance.PushAsync(new ExitPopupPage());
-
     }
 
     private void ReadyCommandExcute(object obj)
     {
       IsStarting = true;
-      // store time .now in varaible 
-      // when press launch compare time.now with varaible 
-      // then sub the 2 times 
-      //CalculateTimeRemaining();
-      Preferences.Set("levelnumber", LevelNumber);
+      Preferences.Set("levelNumber", LevelNumber);
       StartedTime = DateTime.Now;
     }
-
+    /// <summary>
+    /// TODO we will use function in future
+    /// </summary>
     public void CalculateTimeRemaining()
     {
-
-
       //DateTime timeExpired = DateTime.Now.AddSeconds(8);
       //Xamarin.Forms.Device.StartTimer(new TimeSpan(0, 0, 1), () =>
       //{
@@ -145,8 +132,6 @@ namespace IslandLanding.ViewModel
       //    return false;
       //  }
       //});
-
-
     }
     private void DrawLevels()
     {

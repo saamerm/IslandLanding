@@ -14,12 +14,12 @@
   <ContentPage.Content>
     <Grid RowDefinitions="auto,auto,auto,auto,auto,auto">
       <Image Source="background" Grid.RowSpan="7" Grid.Row="0" Opacity="0.3"
-            Aspect="AspectFill"      />
-      <Image Margin="30,27,0,0" Grid.Row="0"
+            Aspect="AspectFill" />
+      <Image Margin="30,27,0,0"
+             Grid.Row="0"
              HorizontalOptions="Start"
              HeightRequest="24"
              WidthRequest="24"
-           
              VerticalOptions="Center"
            >
         <Image.Source>
@@ -153,7 +153,6 @@
                 <pancake:Border Color="White" Thickness="3"/>
               </pancake:PancakeView.Border>
             </pancake:PancakeView>
-
           </DataTemplate>
         </BindableLayout.ItemTemplate>
       </StackLayout>
