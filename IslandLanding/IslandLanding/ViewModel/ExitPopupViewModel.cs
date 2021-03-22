@@ -26,7 +26,7 @@ namespace IslandLanding.ViewModel
     private void YesCommandExcute(object obj)
     {
       //throw new NotImplementedException();
-      App.Current.MainPage.Navigation.PopAsync();
+      App.Current.MainPage.Navigation.PopToRootAsync();
       PopupNavigation.Instance.PopAsync();
     }
   }

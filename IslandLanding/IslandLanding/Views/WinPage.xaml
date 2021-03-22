@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:conv="clr-namespace:IslandLanding.Converters" 
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="IslandLanding.Views.WinPage">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <conv:InverseBoolConverter x:Key="InverseBool"/>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.Content>
+    <Grid RowDefinitions="auto,auto,auto">
+      <Image Source="background" Grid.RowSpan="3" Opacity="0.3"
+                  Aspect="Fill"/>
+      <Label
+             Grid.Row="0"
+             IsVisible="{Binding IsWinning}"
+             HorizontalOptions="Center"
+             VerticalOptions="Center"
+             TextColor="White"
+             FontSize="30"
+             VerticalTextAlignment="Center"
+             HorizontalTextAlignment="Center"
+             Margin="40,140,40,0"
+             WidthRequest="313"
+             FontFamily="PatrickFont">
+        <Label.FormattedText>
+          <FormattedString>
+            <Span Text="{Binding UserTag}"/>
+            <Span Text=", You have successfully landed on the island!"/>
+          </FormattedString>
+        </Label.FormattedText>
+      </Label>
+      <pancake:PancakeView Grid.Row="1"
+                          
+                           IsVisible="{Binding IsWinning}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"                   
+       >
+        <forms:AnimationView
+          Animation="Resources.parachut.json"
+          AnimationSource="EmbeddedResource"
+          AutoPlay="{Binding IsWinning}"
+          HeightRequest="257"
+          WidthRequest="257"
+          RepeatMode="Infinite"
+          />
+      </pancake:PancakeView>
+      <StackLayout  Grid.Row="0"
+           IsVisible="{Binding IsWinning,Converter={StaticResource InverseBool}}"
+              Margin="40,220,40,0"
+             HorizontalOptions="Center"
+             VerticalOptions="Center">
+        <Label Text="Your "
+             TextColor="White"
+             FontSize="40"
+             VerticalTextAlignment="Center"
+             HorizontalTextAlignment="Center"
+             FontFamily="PatrickFont"/>
+        <Label 
+             TextColor="White"
+             FontSize="30"
+            
+             VerticalTextAlignment="Center"
+             HorizontalTextAlignment="Center"
+             FontFamily="PatrickFont">
+          <Label.FormattedText>
+            <FormattedString>
+              <Span Text="average is"/>
+              <Span  Text="{Binding AverageTime}"/>
+            </FormattedString>
+          </Label.FormattedText>
+        </Label>
+
+        <Button 
+              WidthRequest="300"
+              Text="Main"
+              Margin="40,120,40,0"
+              TextColor="White"
+              BorderColor="{StaticResource bordercolor}"
+              BorderWidth="4" 
+              HeightRequest="60"
+              CornerRadius="30"
+              BackgroundColor="{StaticResource orange}"
+             FontFamily="PatrickFont"
+             FontSize="20"
+            Command="{Binding MainCommand}"
+              />
+        <Button 
+              WidthRequest="300"
+              Text="Try Again"
+              Margin="40,10,40,0"
+              TextColor="White"
+              BorderColor="{StaticResource bordercolor}"
+              BorderWidth="4" 
+              HeightRequest="60"
+              CornerRadius="30"
+              FontSize="20"
+              FontFamily="PatrickFont"
+              BackgroundColor="{StaticResource orange}"
+              Command="{Binding TryAginCommand}"
+              />
+
+
+
+      </StackLayout>
+
+      <!--dots for levels-->
+      <StackLayout Orientation="Horizontal"
+            VerticalOptions="Center" 
+            IsVisible="{Binding IsWinning}"
+              Grid.Row="2"
+                 Margin="0,60,0,0"
+            HorizontalOptions="Center"
+            BindableLayout.ItemsSource="{Binding DotsList}">
+        <BindableLayout.ItemTemplate>
+          <DataTemplate>
+            <pancake:PancakeView  
+                     CornerRadius="7"
+                      WidthRequest="15"
+                      HeightRequest="15"
+                      BackgroundColor="{Binding BackgroundColor}"
+                      HorizontalOptions="Start">
+              <pancake:PancakeView.Border>
+                <pancake:Border Color="White" Thickness="3"/>
+              </pancake:PancakeView.Border>
+            </pancake:PancakeView>
+
+          </DataTemplate>
+        </BindableLayout.ItemTemplate>
+      </StackLayout>
+    </Grid>
+  </ContentPage.Content>
+</ContentPage>
