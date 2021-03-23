@@ -40,11 +40,11 @@
              VerticalOptions="Center"/>
       </StackLayout>
       <StackLayout Grid.Row="2">
-        <tabs:TabHostView
+        <tabs:TabHostView HorizontalOptions="Center" 
                         x:Name="TabHost"
-                        Margin="30,0"
+                       WidthRequest="210"
                         BackgroundColor="{StaticResource orange}"
-                        HeightRequest="45"
+                        HeightRequest="25"
                         IsSegmented="True"
                         SegmentedHasSeparator="True"
                         SegmentedOutlineColor="Black"
