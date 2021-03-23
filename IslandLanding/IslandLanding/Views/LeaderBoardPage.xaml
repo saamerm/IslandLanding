@@ -1,12 +1,359 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="IslandLanding.Views.LeaderBoardPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="IslandLanding.Views.LeaderBoardPage"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:tabs="clr-namespace:Sharpnado.Tabs;assembly=Sharpnado.Tabs">
+  <ContentPage.Content>
+    <Grid RowDefinitions="auto,auto,auto">
+      <Image Source="background" Grid.RowSpan="3"  Opacity="0.3"
+            Aspect="Fill" />
+      <Image Margin="30,42,0,0"
+             Grid.Row="0"
+             HorizontalOptions="Start"
+             HeightRequest="24"
+             WidthRequest="24"
+             VerticalOptions="Center"
+           >
+        <Image.Source>
+          <FontImageSource Color="{StaticResource orange}"
+                                         FontFamily="FontAwesome5Solid"
+                                         Glyph="&#xf053;"/>
+        </Image.Source>
+        <Image.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding BackCommand}"  NumberOfTapsRequired="1"/>
+        </Image.GestureRecognizers>
+      </Image>
+      <StackLayout Grid.Row="1">
+        <Label 
+             FontSize="50"
+             Text="Leaderboard"
+              FontFamily="PatrickFont"
+             HorizontalOptions="Center"
+             VerticalOptions="Center"/>
+        <Label 
+             FontSize="22"
+             Margin="0,-15,0,0"
+             Text="Your best time is 0.32s"
+              FontFamily="PatrickFont"
+             HorizontalOptions="Center"
+             VerticalOptions="Center"/>
+      </StackLayout>
+      <StackLayout Grid.Row="2">
+        <tabs:TabHostView
+                        x:Name="TabHost"
+                        Margin="30,0"
+                        BackgroundColor="{StaticResource orange}"
+                        HeightRequest="45"
+                        IsSegmented="True"
+                        SegmentedHasSeparator="True"
+                        SegmentedOutlineColor="Black"
+                       SelectedIndex="{Binding SelectedViewModelIndex, Mode=TwoWay}"
+                        TabType="Fixed"
+                        VerticalOptions="Center">
+          <tabs:TabHostView.Tabs>
+            <tabs:SegmentedTabItem
+                                Label="Easy"
+                                SelectedLabelColor="Black"
+                                SelectedTabColor="#FFF6E1"
+                               FontFamily="PatrickFont"
+                                UnselectedLabelColor="Black" />
+            <tabs:SegmentedTabItem
+                                Label="Medium"
+                              SelectedLabelColor="Black"
+                                SelectedTabColor="#FFF6E1"
+                               FontFamily="PatrickFont"
+                                UnselectedLabelColor="Black" />
+            <tabs:SegmentedTabItem
+                                Label="Hard"
+                              SelectedLabelColor="Black"
+                                SelectedTabColor="#FFF6E1"
+                               FontFamily="PatrickFont"
+                                UnselectedLabelColor="Black" />
+          </tabs:TabHostView.Tabs>
+        </tabs:TabHostView>
+        <tabs:ViewSwitcher
+                x:Name="Switcher"
+                Margin="30,6,30,0"
+                Animate="False"
+                HorizontalOptions="FillAndExpand"
+                SelectedIndex="{Binding SelectedViewModelIndex, Mode=TwoWay}"
+                VerticalOptions="FillAndExpand">
+          <CollectionView ItemsSource="{Binding BoardList}"
+                      >
+            <CollectionView.ItemsLayout>
+              <LinearItemsLayout Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.Header>
+
+              <Grid BackgroundColor="{StaticResource orange}" 
+                    HeightRequest="60"
+                    ColumnDefinitions="0.2*,2,0.4*,2,0.2*">
+                <Label Text="Rank" 
+                       Padding="10"
+                       FontSize="20"
+                       Grid.Column="0"
+                       TextColor="Black"
+                        FontFamily="PatrickFont"
+                       VerticalTextAlignment="Center"/>
+                <Line WidthRequest="1"
+                      HeightRequest="20"
+                      Grid.Column="1"
+                      BackgroundColor="Black"
+                      />
+                <Label Text="Name"
+                       Grid.Column="2"
+                        FontSize="20"
+                       Padding="10"
+                        TextColor="Black"
+                        FontFamily="PatrickFont"
+                        VerticalTextAlignment="Center"/>
+                <Line WidthRequest="1"
+                      HeightRequest="20"
+                      Grid.Column="3"
+                      BackgroundColor="Black"
+                      />
+                <Label Text="Time"
+                       Grid.Column="4"
+                       FontSize="20"
+                       Padding="10"
+                       TextColor="Black"
+                       FontFamily="PatrickFont"
+                       VerticalTextAlignment="Center"/>
+                <Line Grid.ColumnSpan="5"
+                      BackgroundColor="Black"
+                      Margin="-5,0,0,0"
+                      VerticalOptions="EndAndExpand"
+                      HeightRequest="10"/>
+              </Grid>
+
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+              <DataTemplate>
+                <Grid>
+                  <Grid   BackgroundColor="{Binding BackgroundColor}"
+                       
+                        HeightRequest="51"
+                        ColumnDefinitions="0.2*,2,0.4*,2,0.2*">
+                    <Label Text="{Binding Rank}" 
+                       Padding="10"
+                       FontSize="20"
+                       Grid.Column="0"
+                       TextColor="Black"
+                        FontFamily="PatrickFont"
+                       VerticalTextAlignment="Center"/>
+                    <Line WidthRequest="1"
+                      HeightRequest="20"
+                      Grid.Column="1"
+                      BackgroundColor="Black"
+                      />
+                    <Label Text="{Binding Name}"
+                       Grid.Column="2"
+                        FontSize="20"
+                       Padding="10"
+                        TextColor="Black"
+                        FontFamily="PatrickFont"
+                        VerticalTextAlignment="Center"/>
+                    <Line WidthRequest="1"
+                      HeightRequest="20"
+                      Grid.Column="3"
+                      BackgroundColor="Black"
+                      />
+                    <Label Text="{Binding Time}"
+                       Grid.Column="4"
+                       FontSize="20"
+                       Padding="10"
+                       TextColor="Black"
+                       FontFamily="PatrickFont"
+                       VerticalTextAlignment="Center"/>
+                  </Grid>
+
+                </Grid>
+              </DataTemplate>
+            </CollectionView.ItemTemplate>
+          </CollectionView>
+          <!--medium-->
+          <CollectionView ItemsSource="{Binding BoardList}"
+                      >
+            <CollectionView.ItemsLayout>
+              <LinearItemsLayout Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.Header>
+              <Grid BackgroundColor="{StaticResource orange}" 
+                    HeightRequest="60"
+                    ColumnDefinitions="0.2*,2,0.4*,2,0.2*">
+                <Label Text="Rank" 
+                       Padding="10"
+                       FontSize="20"
+                       Grid.Column="0"
+                       TextColor="Black"
+                        FontFamily="PatrickFont"
+                       VerticalTextAlignment="Center"/>
+                <Line WidthRequest="1"
+                      HeightRequest="20"
+                      Grid.Column="1"
+                      BackgroundColor="Black"
+                      />
+                <Label Text="Name"
+                       Grid.Column="2"
+                        FontSize="20"
+                       Padding="10"
+                        TextColor="Black"
+                        FontFamily="PatrickFont"
+                        VerticalTextAlignment="Center"/>
+                <Line WidthRequest="1"
+                      HeightRequest="20"
+                      Grid.Column="3"
+                      BackgroundColor="Black"
+                      />
+                <Label Text="Time"
+                       Grid.Column="4"
+                       FontSize="20"
+                       Padding="10"
+                       TextColor="Black"
+                       FontFamily="PatrickFont"
+                       VerticalTextAlignment="Center"/>
+                <Line Grid.ColumnSpan="5"
+                      BackgroundColor="Black"
+                      Margin="-5,0,0,0"
+                      VerticalOptions="EndAndExpand"
+                      HeightRequest="10"/>
+              </Grid>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+              <DataTemplate>
+                <Grid>
+                  <Grid   BackgroundColor="{Binding BackgroundColor}"
+                        HeightRequest="51"
+                        ColumnDefinitions="0.2*,2,0.4*,2,0.2*">
+                    <Label Text="{Binding Rank}" 
+                       Padding="10"
+                       FontSize="20"
+                       Grid.Column="0"
+                       TextColor="Black"
+                        FontFamily="PatrickFont"
+                       VerticalTextAlignment="Center"/>
+                    <Line WidthRequest="1"
+                      HeightRequest="20"
+                      Grid.Column="1"
+                      BackgroundColor="Black"
+                      />
+                    <Label Text="{Binding Name}"
+                       Grid.Column="2"
+                        FontSize="20"
+                       Padding="10"
+                        TextColor="Black"
+                        FontFamily="PatrickFont"
+                        VerticalTextAlignment="Center"/>
+                    <Line WidthRequest="1"
+                      HeightRequest="20"
+                      Grid.Column="3"
+                      BackgroundColor="Black"
+                      />
+                    <Label Text="{Binding Time}"
+                       Grid.Column="4"
+                       FontSize="20"
+                       Padding="10"
+                       TextColor="Black"
+                       FontFamily="PatrickFont"
+                       VerticalTextAlignment="Center"/>
+                  </Grid>
+                </Grid>
+              </DataTemplate>
+            </CollectionView.ItemTemplate>
+          </CollectionView>
+          <!--hard-->
+          <CollectionView ItemsSource="{Binding BoardList}"
+                      >
+            <CollectionView.ItemsLayout>
+              <LinearItemsLayout Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.Header>
+              <Grid BackgroundColor="{StaticResource orange}" 
+                    HeightRequest="60"
+                    ColumnDefinitions="0.2*,2,0.4*,2,0.2*">
+                <Label Text="Rank" 
+                       Padding="10"
+                       FontSize="20"
+                       Grid.Column="0"
+                       TextColor="Black"
+                        FontFamily="PatrickFont"
+                       VerticalTextAlignment="Center"/>
+                <Line WidthRequest="1"
+                      HeightRequest="20"
+                      Grid.Column="1"
+                      BackgroundColor="Black"
+                      />
+                <Label Text="Name"
+                       Grid.Column="2"
+                        FontSize="20"
+                       Padding="10"
+                        TextColor="Black"
+                        FontFamily="PatrickFont"
+                        VerticalTextAlignment="Center"/>
+                <Line WidthRequest="1"
+                      HeightRequest="20"
+                      Grid.Column="3"
+                      BackgroundColor="Black"
+                      />
+                <Label Text="Time"
+                       Grid.Column="4"
+                       FontSize="20"
+                       Padding="10"
+                       TextColor="Black"
+                       FontFamily="PatrickFont"
+                       VerticalTextAlignment="Center"/>
+                <Line Grid.ColumnSpan="5"
+                      BackgroundColor="Black"
+                      Margin="-5,0,0,0"
+                      VerticalOptions="EndAndExpand"
+                      HeightRequest="10"/>
+              </Grid>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+              <DataTemplate>
+                <Grid>
+                  <Grid   BackgroundColor="{Binding BackgroundColor}"
+                        HeightRequest="51"
+                        ColumnDefinitions="0.2*,2,0.4*,2,0.2*">
+                    <Label Text="{Binding Rank}" 
+                       Padding="10"
+                       FontSize="20"
+                       Grid.Column="0"
+                       TextColor="Black"
+                        FontFamily="PatrickFont"
+                       VerticalTextAlignment="Center"/>
+                    <Line WidthRequest="1"
+                      HeightRequest="20"
+                      Grid.Column="1"
+                      BackgroundColor="Black"
+                      />
+                    <Label Text="{Binding Name}"
+                       Grid.Column="2"
+                        FontSize="20"
+                       Padding="10"
+                        TextColor="Black"
+                        FontFamily="PatrickFont"
+                        VerticalTextAlignment="Center"/>
+                    <Line WidthRequest="1"
+                      HeightRequest="20"
+                      Grid.Column="3"
+                      BackgroundColor="Black"
+                      />
+                    <Label Text="{Binding Time}"
+                       Grid.Column="4"
+                       FontSize="20"
+                       Padding="10"
+                       TextColor="Black"
+                       FontFamily="PatrickFont"
+                       VerticalTextAlignment="Center"/>
+                  </Grid>
+                </Grid>
+              </DataTemplate>
+            </CollectionView.ItemTemplate>
+          </CollectionView>
+        </tabs:ViewSwitcher>
+      </StackLayout>
+    </Grid>
+  </ContentPage.Content>
 </ContentPage>
