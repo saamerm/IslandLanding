@@ -8,9 +8,9 @@ namespace IslandLanding.Models
 {
  public class LeaderBoardModel:BaseViewModel
   {
-    public string Rank { get; set; }
+    public int Rank { get; set; }
     public string Name { get; set; }
-    public string Time { get; set; }
+    public double Score { get; set; }
     public Color BackgroundColor { get; set; }
   }
 }

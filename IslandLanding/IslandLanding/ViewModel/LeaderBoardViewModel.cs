@@ -1,4 +1,5 @@
-﻿using IslandLanding.Models;
+﻿using IslandLanding.Communication.Services;
+using IslandLanding.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,6 +19,7 @@ namespace IslandLanding.ViewModel
       get => _selectedViewModelIndex;
       set => SetProperty(ref _selectedViewModelIndex, value);
     }
+    public bool IsBusy { get; set; }
     public LeaderBoardViewModel()
     {
       BackCommand = new Command(BackCommandExcute);
@@ -28,12 +30,49 @@ namespace IslandLanding.ViewModel
     {
       App.Current.MainPage.Navigation.PopToRootAsync();
     }
-    private void GetBoardData()
+    private async void GetBoardData()
     {
-      BoardList.Add(new LeaderBoardModel { Name = "amira", Rank = "1", Time = "0.01",BackgroundColor=Color.FromHex("#E4E4E4") });
-      BoardList.Add(new LeaderBoardModel { Name = "mero", Rank = "2", Time = "0.1", BackgroundColor = Color.FromHex("#C4C4C4") });
-      BoardList.Add(new LeaderBoardModel { Name = "sam", Rank = "3", Time = "0.2", BackgroundColor = Color.FromHex("#E4E4E4") });
-      BoardList.Add(new LeaderBoardModel { Name = "mero", Rank = "4", Time = "0.3", BackgroundColor = Color.FromHex("#C4C4C4") });
+      var getLeaderBoardService = new GetLeaderBoardService();
+      try
+      {
+        if (!IsBusy)
+        {
+          IsBusy = true;
+          var ListData = await getLeaderBoardService.GetBoard();
+          BoardList = new ObservableCollection<LeaderBoardModel>(ListData);
+          if (BoardList.Count > 0)
+          {
+            for (int i = 0; i < BoardList.Count; i++)
+            {
+              if (i % 2 != 0)
+              {
+                BoardList[i].BackgroundColor = Color.FromHex("#C4C4C4");
+              }
+
+            }
+          }
+          IsBusy = false;
+        }
+      }
+      catch (Exception)
+      {
+        IsBusy = false;
+        
+      }
+      finally
+      {
+        IsBusy = false;
+      }
+      
+     
+
     }
+    //private void GetBoardData()
+    //{
+    //  BoardList.Add(new LeaderBoardModel { Name = "amira", Rank = "1", Time = "0.01",BackgroundColor=Color.FromHex("#E4E4E4") });
+    //  BoardList.Add(new LeaderBoardModel { Name = "mero", Rank = "2", Time = "0.1", BackgroundColor = Color.FromHex("#C4C4C4") });
+    //  BoardList.Add(new LeaderBoardModel { Name = "sam", Rank = "3", Time = "0.2", BackgroundColor = Color.FromHex("#E4E4E4") });
+    //  BoardList.Add(new LeaderBoardModel { Name = "mero", Rank = "4", Time = "0.3", BackgroundColor = Color.FromHex("#C4C4C4") });
+    //}
   }
 }
