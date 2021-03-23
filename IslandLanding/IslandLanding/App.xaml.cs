@@ -11,7 +11,9 @@ namespace IslandLanding
     public App()
     {
       InitializeComponent();
-      if(string.IsNullOrEmpty(Preferences.Get("userTag", "")))
+      Sharpnado.Shades.Initializer.Initialize(false);
+      Sharpnado.Tabs.Initializer.Initialize(false, false);
+      if (string.IsNullOrEmpty(Preferences.Get("userTag", "")))
       {
         MainPage = new NavigationPage(new GamerTagPage());
       }
