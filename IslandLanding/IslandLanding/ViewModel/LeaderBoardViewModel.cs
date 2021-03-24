@@ -48,7 +48,6 @@ namespace IslandLanding.ViewModel
               {
                 BoardList[i].BackgroundColor = Color.FromHex("#C4C4C4");
               }
-
             }
           }
           IsBusy = false;
@@ -63,16 +62,6 @@ namespace IslandLanding.ViewModel
       {
         IsBusy = false;
       }
-      
-     
-
     }
-    //private void GetBoardData()
-    //{
-    //  BoardList.Add(new LeaderBoardModel { Name = "amira", Rank = "1", Time = "0.01",BackgroundColor=Color.FromHex("#E4E4E4") });
-    //  BoardList.Add(new LeaderBoardModel { Name = "mero", Rank = "2", Time = "0.1", BackgroundColor = Color.FromHex("#C4C4C4") });
-    //  BoardList.Add(new LeaderBoardModel { Name = "sam", Rank = "3", Time = "0.2", BackgroundColor = Color.FromHex("#E4E4E4") });
-    //  BoardList.Add(new LeaderBoardModel { Name = "mero", Rank = "4", Time = "0.3", BackgroundColor = Color.FromHex("#C4C4C4") });
-    //}
   }
 }

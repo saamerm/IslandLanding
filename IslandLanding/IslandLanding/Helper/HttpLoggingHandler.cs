@@ -48,29 +48,20 @@ namespace IslandLanding.Helper
           }
           Debug.WriteLine($"{msg} Content:");
           Debug.WriteLine($"{msg} {string.Join("", result.Cast<char>().Take(255))}...");
-
         }
       }
 
       var start = DateTime.Now;
-
       var response = await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
-
       var end = DateTime.Now;
-
       Debug.WriteLine($"{msg} Duration: {end - start}");
       Debug.WriteLine($"{msg}==========End==========");
-
       msg = $"[{id} - Response]";
       Debug.WriteLine($"{msg}=========Start=========");
-
       var resp = response;
-
       Debug.WriteLine($"{msg} {req.RequestUri.Scheme.ToUpper()}/{resp.Version} {(int)resp.StatusCode} {resp.ReasonPhrase} {req.RequestUri.PathAndQuery}");
-
       foreach (var header in resp.Headers)
         Debug.WriteLine($"{msg} {header.Key}: {string.Join(", ", header.Value)}");
-
       if (resp == null && resp.Content != null)
       {
         foreach (var header in resp.Content.Headers)
@@ -81,26 +72,22 @@ namespace IslandLanding.Helper
           start = DateTime.Now;
           var result = await resp.Content.ReadAsStringAsync();
           end = DateTime.Now;
-
           Debug.WriteLine($"{msg} Content:");
           Debug.WriteLine($"{msg} {string.Join("", result.Cast<char>().Take(255))}...");
           Debug.WriteLine($"{msg} Duration: {end - start}");
         }
       }
-
       Debug.WriteLine($"{msg}==========End==========");
       return response;
     }
 
     readonly string[] types = new[] { "html", "text", "xml", "json", "txt", "x-www-form-urlencoded" };
-
     bool IsTextBasedContentType(HttpHeaders headers)
     {
       IEnumerable<string> values;
       if (!headers.TryGetValues("Content-Type", out values))
         return false;
       var header = string.Join(" ", values).ToLowerInvariant();
-
       return types.Any(t => header.Contains(t));
     }
   }
