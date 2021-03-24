@@ -5,10 +5,10 @@
              NavigationPage.HasNavigationBar="False"
              xmlns:tabs="clr-namespace:Sharpnado.Tabs;assembly=Sharpnado.Tabs">
   <ContentPage.Content>
-    <Grid RowDefinitions="auto,auto,auto">
+    <Grid RowDefinitions="0.1*,0.1*,0.8*">
       <Image Source="background" Grid.RowSpan="3"  Opacity="0.3"
             Aspect="Fill" />
-      <Image Margin="30,42,0,0"
+      <Image Margin="30,25,0,0"
              Grid.Row="0"
              HorizontalOptions="Start"
              HeightRequest="24"
@@ -24,7 +24,7 @@
           <TapGestureRecognizer Command="{Binding BackCommand}"  NumberOfTapsRequired="1"/>
         </Image.GestureRecognizers>
       </Image>
-      <StackLayout Grid.Row="1">
+      <StackLayout Grid.Row="1" Margin="0,-15,0,0">
         <Label 
              FontSize="50"
              Text="Leaderboard"
@@ -39,12 +39,12 @@
              HorizontalOptions="Center"
              VerticalOptions="Center"/>
       </StackLayout>
-      <StackLayout Grid.Row="2">
+      <StackLayout Grid.Row="2" Margin="0,7,0,20"  >
         <tabs:TabHostView HorizontalOptions="Center" 
                         x:Name="TabHost"
                        WidthRequest="210"
                         BackgroundColor="{StaticResource orange}"
-                        HeightRequest="25"
+                        HeightRequest="47"
                         IsSegmented="True"
                         SegmentedHasSeparator="True"
                         SegmentedOutlineColor="Black"
@@ -75,284 +75,309 @@
         <tabs:ViewSwitcher
                 x:Name="Switcher"
                 Margin="30,6,30,0"
+          
                 Animate="False"
                 HorizontalOptions="FillAndExpand"
                 SelectedIndex="{Binding SelectedViewModelIndex, Mode=TwoWay}"
                 VerticalOptions="FillAndExpand">
-          <CollectionView ItemsSource="{Binding BoardList}"
-                      >
-            <CollectionView.ItemsLayout>
-              <LinearItemsLayout Orientation="Vertical" />
-            </CollectionView.ItemsLayout>
-            <CollectionView.Header>
-
-              <Grid BackgroundColor="{StaticResource orange}" 
-                    HeightRequest="60"
+          <StackLayout >
+            <Grid BackgroundColor="{StaticResource orange}" 
+                   HeightRequest="70"
                     ColumnDefinitions="0.2*,2,0.4*,2,0.2*">
-                <Label Text="Rank" 
+              <Label Text="Rank" 
                        Padding="10"
                        FontSize="20"
                        Grid.Column="0"
                        TextColor="Black"
                         FontFamily="PatrickFont"
                        VerticalTextAlignment="Center"/>
-                <Line WidthRequest="1"
+              <Line WidthRequest="1"
                       HeightRequest="20"
                       Grid.Column="1"
                       BackgroundColor="Black"
                       />
-                <Label Text="Name"
+              <Label Text="Name"
                        Grid.Column="2"
                         FontSize="20"
                        Padding="10"
                         TextColor="Black"
                         FontFamily="PatrickFont"
                         VerticalTextAlignment="Center"/>
-                <Line WidthRequest="1"
+              <Line WidthRequest="1"
                       HeightRequest="20"
                       Grid.Column="3"
                       BackgroundColor="Black"
                       />
-                <Label Text="Time"
+              <Label Text="Time"
                        Grid.Column="4"
                        FontSize="20"
                        Padding="10"
                        TextColor="Black"
                        FontFamily="PatrickFont"
                        VerticalTextAlignment="Center"/>
-                <Line Grid.ColumnSpan="5"
-                      BackgroundColor="Black"
-                      Margin="-5,0,0,0"
-                      VerticalOptions="EndAndExpand"
-                      HeightRequest="10"/>
-              </Grid>
+             
+            </Grid>
+           
+            <CollectionView ItemsSource="{Binding BoardList}"
+                        
+                            BackgroundColor="#E4E4E4"
+                      >
+              <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" />
+              </CollectionView.ItemsLayout>
+              <!--<CollectionView.Header>
 
-            </CollectionView.Header>
-            <CollectionView.ItemTemplate>
-              <DataTemplate>
-                <Grid>
-                  <Grid   BackgroundColor="{Binding BackgroundColor}"
+             
+
+            </CollectionView.Header>-->
+              <CollectionView.ItemTemplate>
+                <DataTemplate>
+                  <Grid >
+                    <Grid   BackgroundColor="{Binding BackgroundColor}"
                        
                         HeightRequest="51"
                         ColumnDefinitions="0.2*,2,0.4*,2,0.2*">
-                    <Label Text="{Binding Rank}" 
+                      <Label Text="{Binding Rank}" 
                        Padding="10"
                        FontSize="20"
                        Grid.Column="0"
                        TextColor="Black"
                         FontFamily="PatrickFont"
                        VerticalTextAlignment="Center"/>
-                    <Line WidthRequest="1"
+                      <Line WidthRequest="1"
                       HeightRequest="20"
                       Grid.Column="1"
                       BackgroundColor="Black"
                       />
-                    <Label Text="{Binding Name}"
+                      <Label Text="{Binding Name}"
                        Grid.Column="2"
                         FontSize="20"
                        Padding="10"
                         TextColor="Black"
                         FontFamily="PatrickFont"
                         VerticalTextAlignment="Center"/>
-                    <Line WidthRequest="1"
+                      <Line WidthRequest="1"
                       HeightRequest="20"
                       Grid.Column="3"
                       BackgroundColor="Black"
                       />
-                    <Label Text="{Binding Time}"
+                      <Label Text="{Binding Score}"
                        Grid.Column="4"
                        FontSize="20"
                        Padding="10"
                        TextColor="Black"
                        FontFamily="PatrickFont"
                        VerticalTextAlignment="Center"/>
-                  </Grid>
+                    </Grid>
 
-                </Grid>
-              </DataTemplate>
-            </CollectionView.ItemTemplate>
-          </CollectionView>
+                  </Grid>
+                </DataTemplate>
+              </CollectionView.ItemTemplate>
+            </CollectionView>
+          </StackLayout>
+         
           <!--medium-->
-          <CollectionView ItemsSource="{Binding BoardList}"
-                      >
-            <CollectionView.ItemsLayout>
-              <LinearItemsLayout Orientation="Vertical" />
-            </CollectionView.ItemsLayout>
-            <CollectionView.Header>
-              <Grid BackgroundColor="{StaticResource orange}" 
-                    HeightRequest="60"
+          <StackLayout >
+            <Grid BackgroundColor="{StaticResource orange}" 
+                   HeightRequest="70"
                     ColumnDefinitions="0.2*,2,0.4*,2,0.2*">
-                <Label Text="Rank" 
+              <Label Text="Rank" 
                        Padding="10"
                        FontSize="20"
                        Grid.Column="0"
                        TextColor="Black"
                         FontFamily="PatrickFont"
                        VerticalTextAlignment="Center"/>
-                <Line WidthRequest="1"
+              <Line WidthRequest="1"
                       HeightRequest="20"
                       Grid.Column="1"
                       BackgroundColor="Black"
                       />
-                <Label Text="Name"
+              <Label Text="Name"
                        Grid.Column="2"
                         FontSize="20"
                        Padding="10"
                         TextColor="Black"
                         FontFamily="PatrickFont"
                         VerticalTextAlignment="Center"/>
-                <Line WidthRequest="1"
+              <Line WidthRequest="1"
                       HeightRequest="20"
                       Grid.Column="3"
                       BackgroundColor="Black"
                       />
-                <Label Text="Time"
+              <Label Text="Time"
                        Grid.Column="4"
                        FontSize="20"
                        Padding="10"
                        TextColor="Black"
                        FontFamily="PatrickFont"
                        VerticalTextAlignment="Center"/>
-                <Line Grid.ColumnSpan="5"
-                      BackgroundColor="Black"
-                      Margin="-5,0,0,0"
-                      VerticalOptions="EndAndExpand"
-                      HeightRequest="10"/>
-              </Grid>
-            </CollectionView.Header>
-            <CollectionView.ItemTemplate>
-              <DataTemplate>
-                <Grid>
-                  <Grid   BackgroundColor="{Binding BackgroundColor}"
+
+            </Grid>
+
+            <CollectionView ItemsSource="{Binding BoardList}"
+                        
+                            BackgroundColor="#E4E4E4"
+                      >
+              <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" />
+              </CollectionView.ItemsLayout>
+              <!--<CollectionView.Header>
+
+             
+
+            </CollectionView.Header>-->
+              <CollectionView.ItemTemplate>
+                <DataTemplate>
+                  <Grid >
+                    <Grid   BackgroundColor="{Binding BackgroundColor}"
+                       
                         HeightRequest="51"
                         ColumnDefinitions="0.2*,2,0.4*,2,0.2*">
-                    <Label Text="{Binding Rank}" 
+                      <Label Text="{Binding Rank}" 
                        Padding="10"
                        FontSize="20"
                        Grid.Column="0"
                        TextColor="Black"
                         FontFamily="PatrickFont"
                        VerticalTextAlignment="Center"/>
-                    <Line WidthRequest="1"
+                      <Line WidthRequest="1"
                       HeightRequest="20"
                       Grid.Column="1"
                       BackgroundColor="Black"
                       />
-                    <Label Text="{Binding Name}"
+                      <Label Text="{Binding Name}"
                        Grid.Column="2"
                         FontSize="20"
                        Padding="10"
                         TextColor="Black"
                         FontFamily="PatrickFont"
                         VerticalTextAlignment="Center"/>
-                    <Line WidthRequest="1"
+                      <Line WidthRequest="1"
                       HeightRequest="20"
                       Grid.Column="3"
                       BackgroundColor="Black"
                       />
-                    <Label Text="{Binding Time}"
+                      <Label Text="{Binding Score}"
                        Grid.Column="4"
                        FontSize="20"
                        Padding="10"
                        TextColor="Black"
                        FontFamily="PatrickFont"
                        VerticalTextAlignment="Center"/>
+                    </Grid>
+
                   </Grid>
-                </Grid>
-              </DataTemplate>
-            </CollectionView.ItemTemplate>
-          </CollectionView>
+                </DataTemplate>
+              </CollectionView.ItemTemplate>
+            </CollectionView>
+          </StackLayout>
           <!--hard-->
-          <CollectionView ItemsSource="{Binding BoardList}"
-                      >
-            <CollectionView.ItemsLayout>
-              <LinearItemsLayout Orientation="Vertical" />
-            </CollectionView.ItemsLayout>
-            <CollectionView.Header>
-              <Grid BackgroundColor="{StaticResource orange}" 
-                    HeightRequest="60"
+          <StackLayout >
+            <Grid BackgroundColor="{StaticResource orange}" 
+                   HeightRequest="70"
                     ColumnDefinitions="0.2*,2,0.4*,2,0.2*">
-                <Label Text="Rank" 
+              <Label Text="Rank" 
                        Padding="10"
                        FontSize="20"
                        Grid.Column="0"
                        TextColor="Black"
                         FontFamily="PatrickFont"
                        VerticalTextAlignment="Center"/>
-                <Line WidthRequest="1"
+              <Line WidthRequest="1"
                       HeightRequest="20"
                       Grid.Column="1"
                       BackgroundColor="Black"
                       />
-                <Label Text="Name"
+              <Label Text="Name"
                        Grid.Column="2"
                         FontSize="20"
                        Padding="10"
                         TextColor="Black"
                         FontFamily="PatrickFont"
                         VerticalTextAlignment="Center"/>
-                <Line WidthRequest="1"
+              <Line WidthRequest="1"
                       HeightRequest="20"
                       Grid.Column="3"
                       BackgroundColor="Black"
                       />
-                <Label Text="Time"
+              <Label Text="Time"
                        Grid.Column="4"
                        FontSize="20"
                        Padding="10"
                        TextColor="Black"
                        FontFamily="PatrickFont"
                        VerticalTextAlignment="Center"/>
-                <Line Grid.ColumnSpan="5"
-                      BackgroundColor="Black"
-                      Margin="-5,0,0,0"
-                      VerticalOptions="EndAndExpand"
-                      HeightRequest="10"/>
-              </Grid>
-            </CollectionView.Header>
-            <CollectionView.ItemTemplate>
-              <DataTemplate>
-                <Grid>
-                  <Grid   BackgroundColor="{Binding BackgroundColor}"
+
+            </Grid>
+
+            <CollectionView ItemsSource="{Binding BoardList}"
+                        
+                            BackgroundColor="#E4E4E4"
+                      >
+              <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" />
+              </CollectionView.ItemsLayout>
+              <!--<CollectionView.Header>
+
+             
+
+            </CollectionView.Header>-->
+              <CollectionView.ItemTemplate>
+                <DataTemplate>
+                  <Grid >
+                    <Grid   BackgroundColor="{Binding BackgroundColor}"
+                       
                         HeightRequest="51"
                         ColumnDefinitions="0.2*,2,0.4*,2,0.2*">
-                    <Label Text="{Binding Rank}" 
+                      <Label Text="{Binding Rank}" 
                        Padding="10"
                        FontSize="20"
                        Grid.Column="0"
                        TextColor="Black"
                         FontFamily="PatrickFont"
                        VerticalTextAlignment="Center"/>
-                    <Line WidthRequest="1"
+                      <Line WidthRequest="1"
                       HeightRequest="20"
                       Grid.Column="1"
                       BackgroundColor="Black"
                       />
-                    <Label Text="{Binding Name}"
+                      <Label Text="{Binding Name}"
                        Grid.Column="2"
                         FontSize="20"
                        Padding="10"
                         TextColor="Black"
                         FontFamily="PatrickFont"
                         VerticalTextAlignment="Center"/>
-                    <Line WidthRequest="1"
+                      <Line WidthRequest="1"
                       HeightRequest="20"
                       Grid.Column="3"
                       BackgroundColor="Black"
                       />
-                    <Label Text="{Binding Time}"
+                      <Label Text="{Binding Score}"
                        Grid.Column="4"
                        FontSize="20"
                        Padding="10"
                        TextColor="Black"
                        FontFamily="PatrickFont"
                        VerticalTextAlignment="Center"/>
+                    </Grid>
+
                   </Grid>
-                </Grid>
-              </DataTemplate>
-            </CollectionView.ItemTemplate>
-          </CollectionView>
+                </DataTemplate>
+              </CollectionView.ItemTemplate>
+            </CollectionView>
+          </StackLayout>
         </tabs:ViewSwitcher>
+      </StackLayout>
+      <StackLayout Grid.RowSpan="3" IsVisible="{Binding IsBusy}"
+                    HorizontalOptions="Center"
+                           VerticalOptions="Center">
+        <ActivityIndicator Color="{StaticResource orange}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           IsRunning="{Binding IsBusy}"
+                           />
       </StackLayout>
     </Grid>
   </ContentPage.Content>
