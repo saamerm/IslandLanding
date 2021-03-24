@@ -80,13 +80,14 @@ namespace IslandLanding.ViewModel
         MainTime = diffTime.TotalSeconds.ToString("0.00"),
         TakenTime = scoretime.ToString("0.00")
       };
-      TimeDifferencesList.Add(scoretime);
+      TimeDifferencesList.Add(Math.Round(scoretime, 2));
       var listOfTimeAsJson = JsonConvert.SerializeObject(TimeDifferencesList);
-      Preferences.Set(listOfTimeAsJson, "");
+      Preferences.Set("listOfTimeAsJson", listOfTimeAsJson);
       if (scoretime > -1 && scoretime <= 1)
       {
         IsStarting = false;
-        PopupNavigation.Instance.PushAsync(new NextPopupPage(scoretime.ToString("0.00")));
+        App.Current.MainPage.Navigation.PushAsync(new WinPage());
+        // PopupNavigation.Instance.PushAsync(new NextPopupPage(scoretime.ToString("0.00")));
       }
       else
       {

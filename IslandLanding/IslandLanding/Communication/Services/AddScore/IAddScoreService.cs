@@ -1,19 +1,15 @@
 ﻿using IslandLanding.Communication.RequestModel;
 using IslandLanding.Communication.ResponseModel;
 using IslandLanding.Models;
-using Refit;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IslandLanding.Communication
+namespace IslandLanding.Communication.Services.AddScore
 {
-  public interface IIslandingApi
+  public interface IAddScoreService
   {
-    [Get("")]
-    Task<List<LeaderBoardModel>> GetBoard();
-    [Post("")]
-    Task<string> PostScore([Body] AddScoreRequestModel requestModel);
+    Task<AddScoreResponseModel> AddScore(AddScoreRequestModel requestModel);
   }
 }
