@@ -3,8 +3,8 @@
             xmlns:pages="http://rotorgames.com"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="IslandLanding.Views.WelcomePopupPage"
-            BackgroundColor="Transparent">
+             x:Class="IslandLanding.Views.WinPopupPage"
+             BackgroundColor="Transparent">
   <pages:PopupPage.Animation>
     <pages:ScaleAnimation
       PositionIn="Top"
@@ -14,23 +14,15 @@
       DurationIn="100"
       EasingIn="BounceOut"/>
   </pages:PopupPage.Animation>
-
   <Grid VerticalOptions="Start" Margin="0,-20,0,0">
-      <BoxView HeightRequest="69" HorizontalOptions="FillAndExpand"
+    <BoxView HeightRequest="69" HorizontalOptions="FillAndExpand"
                BackgroundColor="{StaticResource orange}"/>
     <Label 
              HorizontalOptions="Center"
              VerticalOptions="Center"
              TextColor="White"
              FontSize="24"
-             FontFamily="PatrickFont">
-      <Label.FormattedText>
-        <FormattedString>
-          <Span Text="Welcome back " />
-          <Span Text="{Binding GamerTag}" />
-        </FormattedString>
-      </Label.FormattedText>
-    </Label>
-    </Grid>
-   
+             Text="This is your personal best"
+             FontFamily="PatrickFont"/>
+  </Grid>
 </pages:PopupPage>

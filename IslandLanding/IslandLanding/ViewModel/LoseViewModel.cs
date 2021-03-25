@@ -23,7 +23,7 @@ namespace IslandLanding.ViewModel
       TryAginCommand = new Command(TryAginCommandExcute);
       GameModel = game;
       UserTag = Preferences.Get("userTag", "");
-      Device.StartTimer(new TimeSpan(0, 0, 3), () =>
+      Device.StartTimer(new TimeSpan(0, 0, 4), () =>
       {
         IsLosing = false;
         return false;

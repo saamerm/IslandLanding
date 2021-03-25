@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace IslandLanding.ViewModel
@@ -20,10 +21,12 @@ namespace IslandLanding.ViewModel
       set => SetProperty(ref _selectedViewModelIndex, value);
     }
     public bool IsBusy { get; set; }
+    public string BestScore { get; set; }
     public LeaderBoardViewModel()
     {
       BackCommand = new Command(BackCommandExcute);
       BoardList = new ObservableCollection<LeaderBoardModel>();
+      BestScore = "Your best time is "+ Preferences.Get("playerScore", "")+"s";
       GetBoardData();
     }
     private void BackCommandExcute(object obj)

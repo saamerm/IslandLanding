@@ -34,7 +34,7 @@
         <Label 
              FontSize="22"
              Margin="0,-15,0,0"
-             Text="Your best time is 0.32s"
+             Text="{Binding BestScore}"
               FontFamily="PatrickFont"
              HorizontalOptions="Center"
              VerticalOptions="Center"/>
