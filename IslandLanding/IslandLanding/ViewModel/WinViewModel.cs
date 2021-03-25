@@ -75,39 +75,42 @@ namespace IslandLanding.ViewModel
     private async void PostScore()
     {
       var addScoreService = new AddScoreService();
-      var response = await addScoreService.AddScore(new AddScoreRequestModel { Name = UserTag, Score = AverageTime});
+      var requestModel = new AddScoreRequestModel { Name = UserTag, Score = AverageTime.ToString() };
+      var response = await addScoreService.AddScore(requestModel);
       if(response.Status!=null)
       {
         Device.StartTimer(new TimeSpan(0, 0, 4), () =>
         {
-          GetRank();
+          ShowText = "You are now ranked ";
+          ShowAverageTime = "NO." + response.Rank;
           return false;
         });
       }
       // TODO will see what i will do with status 
     }
-    private async void GetRank()
-    {
-      var getLeaderBoardService = new GetLeaderBoardService();
-      var ListData = await getLeaderBoardService.GetBoard();
-      if(ListData.Count>0)
-      {
-        try
-        {
-          var rank = ListData.Where(x => x.Name == UserTag).ToList();
-          if (rank.Count>0)
-          {
+    //TODO in the futur will use it if we want to get ranks 
+    //private async void GetRank()
+    //{
+    //  var getLeaderBoardService = new GetLeaderBoardService();
+    //  var ListData = await getLeaderBoardService.GetBoard();
+    //  if(ListData.Count>0)
+    //  {
+    //    try
+    //    {
+    //      var rank = ListData.Where(x => x.Name == UserTag).ToList();
+    //      if (rank.Count>0)
+    //      {
 
-            ShowText = "You are now ranked ";
-            ShowAverageTime = "NO." + rank.FirstOrDefault().Rank;
-          }
-        }
-        catch (Exception e)
-        {
-          //TODO Handle exception
-        }
-      }
-    }
+    //        ShowText = "You are now ranked ";
+    //        ShowAverageTime = "NO." + rank.FirstOrDefault().Rank;
+    //      }
+    //    }
+    //    catch (Exception e)
+    //    {
+    //      //TODO Handle exception
+    //    }
+    //  }
+    //}
     private void TryAginCommandExcute(object obj)
     {
       Preferences.Set("levelNumber", 1);

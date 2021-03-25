@@ -6,6 +6,6 @@ namespace IslandLanding.Helper
 {
   public static class Constants
   {
-    public static string Api_Key= "https://script.google.com/macros/s/AKfycbydFo8kKHmE0bAK6iyowZ52dbLYCNrqTdEgVyzmExFT-UaM5xn8ApZ43awGm0xk0MuS/exec";
+    public static string Api_Key= "https://script.google.com/macros/s/AKfycbz6qvTH8tCAdKl72Uv4pRmPuAsc7wzpzk6cBEoH57wYXBv2myEq_0_KeNxLWuY8MOb3/exec";
   }
 }
