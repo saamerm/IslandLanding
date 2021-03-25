@@ -33,7 +33,7 @@ namespace IslandLanding.ViewModel
       TryAginCommand = new Command(TryAginCommandExcute);
       IsWinning = true;
       UserTag = Preferences.Get("userTag", "");
-      Device.StartTimer(new TimeSpan(0, 0, 4), () =>
+      Device.StartTimer(new TimeSpan(0, 0, 3), () =>
       {
         IsWinning = false;
         CheckHighScore();
@@ -43,21 +43,20 @@ namespace IslandLanding.ViewModel
     }
     private void CheckHighScore()
     {
+      ShowText = "Your average is ";
       var diffTimeListJson = Preferences.Get("listOfTimeAsJson", "");
       var DiffList = JsonConvert.DeserializeObject<List<double>>(diffTimeListJson);
       AverageTime = Math.Abs(DiffList.Sum() / DiffList.Count);
-      ShowText = "Your average is ";
       ShowAverageTime = AverageTime + " seconds";
-      PostScore();
       if (Preferences.ContainsKey("playerScore"))
       {
         var prevousScore=Preferences.Get("playerScore", 0.0);
-        if(AverageTime>prevousScore)
+        if(AverageTime<prevousScore)
         {
           Preferences.Set("playerScore", AverageTime);
           IsTop = true;
           PopupNavigation.Instance.PushAsync(new WinPopupPage());
-          Device.StartTimer(new TimeSpan(0, 0, 5), () =>
+          Device.StartTimer(new TimeSpan(0, 0, 9), () =>
           {
             if (Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopupStack.Any())
             {
@@ -71,6 +70,7 @@ namespace IslandLanding.ViewModel
       {
         Preferences.Set("playerScore", AverageTime);
       }
+      PostScore();
     }
     private async void PostScore()
     {
@@ -79,14 +79,13 @@ namespace IslandLanding.ViewModel
       var response = await addScoreService.AddScore(requestModel);
       if(response.Status!=null)
       {
-        Device.StartTimer(new TimeSpan(0, 0, 4), () =>
+        Device.StartTimer(new TimeSpan(0, 0, 6), () =>
         {
           ShowText = "You are now ranked ";
           ShowAverageTime = "NO." + response.Rank;
           return false;
         });
       }
-      // TODO will see what i will do with status 
     }
     //TODO in the futur will use it if we want to get ranks 
     //private async void GetRank()

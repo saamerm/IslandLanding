@@ -112,7 +112,6 @@
         </BindableLayout.ItemTemplate>
       </StackLayout>
       <form:ParticleView   x:Name="MyParticleCanvas"
-                            IsVisible="True"
                             IsActive="True"
                             IsRunning="True" 
                             HasFallingParticles="True"
