@@ -37,7 +37,7 @@
              FontFamily="PatrickFont"
              FontSize="20"
              Command="{Binding DiffcultyCommand}"
-           CommandParameter="0"
+           CommandParameter="Easy"
               />
         <Button 
               WidthRequest="300"
@@ -52,7 +52,7 @@
              FontFamily="PatrickFont"
              FontSize="20"
              Command="{Binding DiffcultyCommand}"
-           CommandParameter="1"
+           CommandParameter="Medium"
               />
         <Button 
               WidthRequest="300"
@@ -67,7 +67,7 @@
              FontFamily="PatrickFont"
              FontSize="20"
              Command="{Binding DiffcultyCommand}"
-            CommandParameter="2"
+            CommandParameter="Hard"
               />
       </StackLayout>
       

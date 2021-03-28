@@ -14,11 +14,11 @@ namespace IslandLanding.Communication.Services
     public GetLeaderBoardService()
     {
     }
-    public async Task<List<LeaderBoardModel>> GetBoard()
+    public async Task<List<LeaderBoardModel>> GetBoard(string difficulity)
     {
       var httpClient = new HttpClient(new HttpLoggingHandler()) { BaseAddress = new System.Uri(Helper.Constants.Api_Key) };
       var api = RestService.For<IIslandingApi>(httpClient);
-      var result = await api.GetBoard();
+      var result = await api.GetBoard(difficulity);
       return result;
     }
   }

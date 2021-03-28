@@ -12,7 +12,7 @@ namespace IslandLanding.Communication
   public interface IIslandingApi
   {
     [Get("")]
-    Task<List<LeaderBoardModel>> GetBoard();
+    Task<List<LeaderBoardModel>> GetBoard(string difficulity);
     [Post("")]
     Task<string> PostScore([Body] AddScoreRequestModel requestModel);
   }

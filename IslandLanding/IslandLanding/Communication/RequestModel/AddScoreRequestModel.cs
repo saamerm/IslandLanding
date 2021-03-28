@@ -11,7 +11,10 @@ namespace IslandLanding.Communication.RequestModel
     public string Name { get; set; }
     [JsonProperty(PropertyName = "Score")]
     public string Score { get; set; }
-   
-    
+    [JsonProperty(PropertyName = "Difficuilty")]
+    public string Difficuilty { get; set; }
+
+
+
   }
 }
