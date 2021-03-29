@@ -21,17 +21,17 @@ namespace IslandLanding.ViewModel
 
     private void EasyCommandExcute(string selectedDiffculty)
     {
-      if (int.Parse(selectedDiffculty) == (int)Difficulty.Easy)
+      if (selectedDiffculty == Difficulty.Easy.ToString())
       {
-        Preferences.Set("difficulty", (int)Difficulty.Easy);
+        Preferences.Set("difficulty", Difficulty.Easy.ToString());
       }
-      else if (int.Parse(selectedDiffculty) == (int)Difficulty.Medium)
+      else if (selectedDiffculty == Difficulty.Medium.ToString())
       {
-        Preferences.Set("difficulty", (int)Difficulty.Medium);
+        Preferences.Set("difficulty", Difficulty.Medium.ToString());
       }
       else
       {
-        Preferences.Set("difficulty", (int)Difficulty.Hard);
+        Preferences.Set("difficulty", Difficulty.Hard.ToString());
       }
       App.Current.MainPage.Navigation.PushAsync(new GamePage());
     }

@@ -1,5 +1,6 @@
 ﻿using IslandLanding.Communication.Services;
 using IslandLanding.Models;
+using Sharpnado.Tabs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,10 +11,12 @@ using Xamarin.Forms;
 
 namespace IslandLanding.ViewModel
 {
- public class LeaderBoardViewModel:BaseViewModel
+  public class LeaderBoardViewModel : BaseViewModel
   {
     public ICommand BackCommand { get; set; }
+    public string Difficulity { get; set; }
     public ObservableCollection<LeaderBoardModel> BoardList { get; set; }
+    public ICommand TabSelectedCommand { get; set; }
     private int _selectedViewModelIndex = 0;
     public int SelectedViewModelIndex
     {
@@ -26,14 +29,34 @@ namespace IslandLanding.ViewModel
     {
       BackCommand = new Command(BackCommandExcute);
       BoardList = new ObservableCollection<LeaderBoardModel>();
-      BestScore = "Your best time is "+ Preferences.Get("playerScore", "")+"s";
-      GetBoardData();
+      TabSelectedCommand = new Command(TabSelectedCommandExcute);
+      BestScore = "Your best time is " + Preferences.Get("playerScore", "") + "s";
+     GetBoardData("Easy");
+    }
+    private void TabSelectedCommandExcute(object obj)
+    {
+      var index = obj as TabHostView;
+      SelectedViewModelIndex = index.SelectedIndex;
+      if (SelectedViewModelIndex == 0)
+      {
+        Difficulity = "Easy";
+      }
+      else if(SelectedViewModelIndex == 1)
+      {
+        Difficulity = "Medium";
+      }
+      else
+      {
+        Difficulity = "Hard";
+      }
+      BoardList.Clear();
+      GetBoardData(Difficulity);
     }
     private void BackCommandExcute(object obj)
     {
       App.Current.MainPage.Navigation.PopToRootAsync();
     }
-    private async void GetBoardData()
+    private async void GetBoardData(string difficulity)
     {
       var getLeaderBoardService = new GetLeaderBoardService();
       try
@@ -41,7 +64,7 @@ namespace IslandLanding.ViewModel
         if (!IsBusy)
         {
           IsBusy = true;
-          var ListData = await getLeaderBoardService.GetBoard();
+          var ListData = await getLeaderBoardService.GetBoard(difficulity);
           BoardList = new ObservableCollection<LeaderBoardModel>(ListData);
           if (BoardList.Count > 0)
           {
@@ -56,10 +79,9 @@ namespace IslandLanding.ViewModel
           IsBusy = false;
         }
       }
-      catch (Exception)
+      catch (Exception e)
       {
         IsBusy = false;
-        
       }
       finally
       {

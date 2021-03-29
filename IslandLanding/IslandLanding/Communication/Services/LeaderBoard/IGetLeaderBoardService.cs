@@ -8,6 +8,6 @@ namespace IslandLanding.Communication.Services
 {
   public interface IGetLeaderBoardService
   {
-    Task <List<LeaderBoardModel>> GetBoard();
+    Task <List<LeaderBoardModel>> GetBoard(string difficulity);
   }
 }

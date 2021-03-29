@@ -11,6 +11,7 @@ namespace IslandLanding.Models
     public int Rank { get; set; }
     public string Name { get; set; }
     public double Score { get; set; }
+    public string Difficuilty { get; set; }
     public Color BackgroundColor { get; set; }
   }
 }

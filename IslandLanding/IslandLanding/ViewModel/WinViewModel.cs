@@ -70,12 +70,13 @@ namespace IslandLanding.ViewModel
       {
         Preferences.Set("playerScore", AverageTime);
       }
-      PostScore();
+        PostScore();
+    
     }
     private async void PostScore()
     {
       var addScoreService = new AddScoreService();
-      var requestModel = new AddScoreRequestModel { Name = UserTag, Score = AverageTime.ToString() };
+      var requestModel = new AddScoreRequestModel { Name = UserTag, Score = AverageTime.ToString(), Difficuilty= Preferences.Get("difficulty", "") };
       var response = await addScoreService.AddScore(requestModel);
       if(response.Status!=null)
       {
