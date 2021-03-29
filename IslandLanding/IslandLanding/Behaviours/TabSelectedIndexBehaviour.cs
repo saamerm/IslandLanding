@@ -53,6 +53,5 @@ namespace IslandLanding.Behaviours
       OnBindingContextChanged();
       BindingContext = Bindable.BindingContext;
     }
-
   }
 }
