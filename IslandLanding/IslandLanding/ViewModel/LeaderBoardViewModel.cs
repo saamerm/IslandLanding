@@ -31,7 +31,7 @@ namespace IslandLanding.ViewModel
       BoardList = new ObservableCollection<LeaderBoardModel>();
       TabSelectedCommand = new Command(TabSelectedCommandExcute);
       BestScore = "Your best time is " + Preferences.Get("playerScore", "") + "s";
-      GetBoardData("Easy");
+     GetBoardData("Easy");
     }
     private void TabSelectedCommandExcute(object obj)
     {
@@ -49,6 +49,7 @@ namespace IslandLanding.ViewModel
       {
         Difficulity = "Hard";
       }
+      BoardList.Clear();
       GetBoardData(Difficulity);
     }
     private void BackCommandExcute(object obj)
@@ -78,10 +79,9 @@ namespace IslandLanding.ViewModel
           IsBusy = false;
         }
       }
-      catch (Exception)
+      catch (Exception e)
       {
         IsBusy = false;
-
       }
       finally
       {
