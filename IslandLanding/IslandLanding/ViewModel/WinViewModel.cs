@@ -5,6 +5,7 @@ using IslandLanding.Enums;
 using IslandLanding.Models;
 using IslandLanding.Views;
 using Newtonsoft.Json;
+using Plugin.StoreReview;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -27,21 +28,62 @@ namespace IslandLanding.ViewModel
     public string ShowText { get; set; }
     public ICommand MainCommand { get; set; }
     public ICommand TryAginCommand { get; set; }
+    public ICommand YesCommand { get; set; }
+    public ICommand NoCommand { get; set; }
     public ObservableCollection<LevelsModel> DotsList { get; set; }
+    public int NumberOfVisit { get; set; }
     public WinViewModel()
     {
       MainCommand = new Command(MainCommandExcute);
       TryAginCommand = new Command(TryAginCommandExcute);
+      YesCommand = new Command(YesCommandExcute);
+      NoCommand = new Command(NoCommandExcute);
       IsWinning = true;
       UserTag = Preferences.Get("userTag", "");
+    
       Device.StartTimer(new TimeSpan(0, 0, 3), () =>
       {
         IsWinning = false;
         CheckHighScore();
         return false;
       });
+
+      if (Preferences.ContainsKey("numberOfVisit"))
+      {
+        NumberOfVisit = Preferences.Get("numberOfVisit", NumberOfVisit);
+      }
+      else
+      {
+        NumberOfVisit = 1;
+      }
       DrawLevels();
+      CheckNumberOfVisit();
     }
+    private void OpenAppReviewPopup()
+    {
+      var dialog = new AppReviewPopupPage();
+      dialog.BindingContext = this;
+      PopupNavigation.Instance.PushAsync(dialog);
+    }
+    private void CheckNumberOfVisit()
+    {
+      if (NumberOfVisit == 1||NumberOfVisit==3 || NumberOfVisit == 10)
+        {
+          OpenAppReviewPopup();
+        }
+      NumberOfVisit++;
+      Preferences.Set("numberOfVisit", NumberOfVisit);
+    }
+    private void NoCommandExcute(object obj)
+    {
+      App.Current.MainPage.Navigation.PushAsync(new FeedBackPage());
+    }
+
+    private async void YesCommandExcute(object obj)
+    {
+      await CrossStoreReview.Current.RequestReview(false);
+    }
+
     private void CheckHighScore()
     {
       ShowText = "Your average is ";
@@ -57,7 +99,7 @@ namespace IslandLanding.ViewModel
           Preferences.Set("playerScore", AverageTime);
           IsTop = true;
           PopupNavigation.Instance.PushAsync(new WinPopupPage());
-          Device.StartTimer(new TimeSpan(0, 0, 9), () =>
+          Device.StartTimer(new TimeSpan(0, 0, 10), () =>
           {
             if (Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopupStack.Any())
             {
@@ -65,6 +107,7 @@ namespace IslandLanding.ViewModel
             }
             return false;
           });
+         
         }
       }
       else
@@ -76,17 +119,31 @@ namespace IslandLanding.ViewModel
     }
     private async void PostScore()
     {
-      var addScoreService = new AddScoreService();
-      var requestModel = new AddScoreRequestModel { Name = UserTag, Score = AverageTime.ToString(), Difficuilty= Preferences.Get("difficulty", Difficulty.Easy.ToString()) };
-      var response = await addScoreService.AddScore(requestModel);
-      if(response.Status!=null)
+      try
       {
-        Device.StartTimer(new TimeSpan(0, 0, 6), () =>
+        if (!IsBusy)
         {
-          ShowText = "You are now ranked ";
-          ShowAverageTime = "NO." + response.Rank;
-          return false;
-        });
+          var addScoreService = new AddScoreService();
+          var requestModel = new AddScoreRequestModel { Name = UserTag, Score = AverageTime.ToString(), Difficuilty = Preferences.Get("difficulty", Difficulty.Easy.ToString()) };
+          var response = await addScoreService.AddScore(requestModel);
+          if (response.Status != null)
+          {
+            Device.StartTimer(new TimeSpan(0, 0, 6), () =>
+            {
+              ShowText = "You are now ranked ";
+              ShowAverageTime = "NO." + response.Rank;
+              return false;
+            });
+          }
+        }
+      }
+      catch(Exception ex)
+      {
+        IsBusy = false;
+      }
+      finally
+      {
+        IsBusy = false;
       }
     }
     //TODO in the futur will use it if we want to get ranks 

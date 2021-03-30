@@ -23,7 +23,6 @@ namespace IslandLanding.ViewModel
       get => _selectedViewModelIndex;
       set => SetProperty(ref _selectedViewModelIndex, value);
     }
-    public bool IsBusy { get; set; }
     public string BestScore { get; set; }
     public LeaderBoardViewModel()
     {

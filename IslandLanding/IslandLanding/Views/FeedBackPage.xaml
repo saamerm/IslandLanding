@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IslandLanding.Views.FeedBackPage"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:controls="clr-namespace:IslandLanding.Controls">
+    <ContentPage.Content>
+        <Grid RowDefinitions="auto,auto">
+      <Image Source="background" Grid.RowSpan="2" Opacity="0.3"
+                  Aspect="Fill"/>
+      <Image Margin="30,27,0,0"
+             Grid.Row="0"
+             HorizontalOptions="Start"
+             HeightRequest="24"
+             WidthRequest="24"
+             VerticalOptions="Center"
+           >
+        <Image.Source>
+          <FontImageSource Color="{StaticResource orange}"
+                                         FontFamily="FontAwesome5Solid"
+                                         Glyph="&#xf053;"/>
+        </Image.Source>
+        <Image.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding BackCommand}"  NumberOfTapsRequired="1"/>
+        </Image.GestureRecognizers>
+      </Image>
+      <Label Grid.Row="0"
+              HorizontalOptions="Center"
+              VerticalOptions="Center"
+              VerticalTextAlignment="Center"
+              Text="Feedback"
+              TextColor="White"
+              FontFamily="PatrickFont"
+             Margin="0,27,0,0"
+             FontSize="30"/>
+      <StackLayout Grid.Row="1" Margin="30,60,30,0">
+        <Label Text="How can we improve the game?"
+               TextColor="White"
+               VerticalTextAlignment="Center"
+               FontSize="20"
+               FontFamily="PatrickFont"
+               FontAttributes="Bold"/>
+        <Label Text="Name"
+               TextColor="White"
+               VerticalTextAlignment="Center"
+               FontSize="16"
+               FontFamily="PatrickFont"/>
+        <pancake:PancakeView HeightRequest="40"
+                             CornerRadius="6">
+          <controls:NoBorderEntry VerticalTextAlignment="Center"
+                                 Text="{Binding AddFeedback.Name}"
+                                  HeightRequest="40"
+                                  FontSize="14"
+                                  Margin="10,0,0,0"
+                                  Placeholder="Enter your name"
+                                  PlaceholderColor="#DADADA"
+                                  TextColor="White"/>
+
+          <pancake:PancakeView.Border>
+            <pancake:Border Color="{StaticResource orange}" Thickness="1"/>
+          </pancake:PancakeView.Border>
+          
+        </pancake:PancakeView>
+        <Label Text="Email Address"
+               TextColor="White"
+               VerticalTextAlignment="Center"
+               FontSize="16"
+               FontFamily="PatrickFont"
+               Margin="0,15,0,0"/>
+        <pancake:PancakeView HeightRequest="40"
+                             CornerRadius="6">
+          <controls:NoBorderEntry VerticalTextAlignment="Center"
+                                 Text="{Binding AddFeedback.Email}"
+                                  HeightRequest="40"
+                                  FontSize="14"
+                                  Placeholder="email@something.com"
+                                  PlaceholderColor="#DADADA"
+                                  TextColor="White"
+                                  Keyboard="Email"
+                                   Margin="10,0,0,0"/>
+
+          <pancake:PancakeView.Border>
+            <pancake:Border Color="{StaticResource orange}" Thickness="1"/>
+          </pancake:PancakeView.Border>
+
+        </pancake:PancakeView>
+        <Label Text="Concerns and Feedback"
+               TextColor="White"
+               VerticalTextAlignment="Center"
+               FontSize="16"
+               FontFamily="PatrickFont"
+               Margin="0,15,0,0"/>
+        <pancake:PancakeView HeightRequest="200"
+                             CornerRadius="6">
+          <controls:CustomEditorControl
+            x:Name="FeedbackMessage"
+            HeightRequest="150"
+            FontSize="18"
+            TextColor="White"
+            FontFamily="PatrickFont"
+            Text="{Binding AddFeedback.Feedback}"
+            Margin="10,0,0,0"
+						/>
+          <pancake:PancakeView.Border>
+            <pancake:Border Color="{StaticResource orange}" Thickness="1"/>
+          </pancake:PancakeView.Border>
+        </pancake:PancakeView>
+        <Button HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Text="Submit"
+                FontFamily="PatrickFont"
+                TextColor="White"
+                BackgroundColor="{StaticResource orange}"
+                CornerRadius="10"
+                HeightRequest="40"
+                FontSize="18"
+                Margin="0,40,0,0"
+                Command="{Binding SubmitCommand}"/>
+
+      </StackLayout>
+      <StackLayout Grid.RowSpan="2" IsVisible="{Binding IsBusy}"
+                    HorizontalOptions="Center"
+                           VerticalOptions="Center">
+        <ActivityIndicator Color="{StaticResource orange}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           IsRunning="{Binding IsBusy}"
+                           />
+      </StackLayout>
+    </Grid>
+    </ContentPage.Content>
+</ContentPage>

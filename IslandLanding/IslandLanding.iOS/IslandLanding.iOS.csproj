@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renderer\CustomEditorRendererIOS.cs" />
     <Compile Include="Renderer\NoBorderEntryRenderer.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
@@ -129,6 +130,9 @@
     </PackageReference>
     <PackageReference Include="particle.forms">
       <Version>1.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Plugin.StoreReview">
+      <Version>3.1.0</Version>
     </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup">
       <Version>2.0.0.10</Version>

@@ -1,4 +1,5 @@
-﻿using IslandLanding.Views;
+﻿using IslandLanding.Communication.Services;
+using IslandLanding.Views;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,12 @@ namespace IslandLanding.ViewModel
       LeaderBoardCommand = new Command(LeaderBoardCommandExcute);
       StartCommand = new Command(StartCommandExcute);
       InfoCommand = new Command(InfoCommandExcute);
+      GetApiUrl();
       Notify();
+      if (Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopupStack.Any())
+      {
+        PopupNavigation.Instance.PopAsync();
+      }
     }
     private void Notify()
     {
@@ -58,6 +64,27 @@ namespace IslandLanding.ViewModel
     private void ProfileCommandExcute(object obj)
     {
       App.Current.MainPage.Navigation.PushAsync(new SwitchUserAccountPage());
+    }
+    private async void GetApiUrl()
+    {
+      try
+      {
+        if (!IsBusy)
+        {
+          IsBusy = true;
+          var getApiUrl = new GetGoogleSheetUrlService();
+          var result = await getApiUrl.GetUrl();
+          Helper.Constants.Api_Key = result;
+        }
+      }
+      catch(Exception e)
+      {
+        IsBusy = false;
+      }
+      finally
+      {
+        IsBusy = false;
+      }
     }
   }
 }
