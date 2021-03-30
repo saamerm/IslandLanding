@@ -46,7 +46,8 @@
                FontSize="16"
                FontFamily="PatrickFont"/>
         <pancake:PancakeView HeightRequest="40"
-                             CornerRadius="6">
+                             CornerRadius="6"
+                             BackgroundColor="Transparent">
           <controls:NoBorderEntry VerticalTextAlignment="Center"
                                  Text="{Binding AddFeedback.Name}"
                                   HeightRequest="40"
@@ -54,7 +55,8 @@
                                   Margin="10,0,0,0"
                                   Placeholder="Enter your name"
                                   PlaceholderColor="#DADADA"
-                                  TextColor="White"/>
+                                  TextColor="White"
+                                  BackgroundColor="Transparent"/>
 
           <pancake:PancakeView.Border>
             <pancake:Border Color="{StaticResource orange}" Thickness="1"/>
@@ -68,7 +70,8 @@
                FontFamily="PatrickFont"
                Margin="0,15,0,0"/>
         <pancake:PancakeView HeightRequest="40"
-                             CornerRadius="6">
+                             CornerRadius="6"
+                             BackgroundColor="Transparent">
           <controls:NoBorderEntry VerticalTextAlignment="Center"
                                  Text="{Binding AddFeedback.Email}"
                                   HeightRequest="40"
@@ -77,6 +80,7 @@
                                   PlaceholderColor="#DADADA"
                                   TextColor="White"
                                   Keyboard="Email"
+                                  BackgroundColor="Transparent"
                                    Margin="10,0,0,0"/>
 
           <pancake:PancakeView.Border>
@@ -91,6 +95,7 @@
                FontFamily="PatrickFont"
                Margin="0,15,0,0"/>
         <pancake:PancakeView HeightRequest="200"
+                             BackgroundColor="Transparent"
                              CornerRadius="6">
           <controls:CustomEditorControl
             x:Name="FeedbackMessage"
@@ -98,6 +103,7 @@
             FontSize="18"
             TextColor="White"
             FontFamily="PatrickFont"
+            BackgroundColor="Transparent"
             Text="{Binding AddFeedback.Feedback}"
             Margin="10,0,0,0"
 						/>
@@ -114,7 +120,8 @@
                 CornerRadius="10"
                 HeightRequest="40"
                 FontSize="18"
-                Margin="0,40,0,0"
+                Margin="0,20,0,0"
+                WidthRequest="100"
                 Command="{Binding SubmitCommand}"/>
 
       </StackLayout>

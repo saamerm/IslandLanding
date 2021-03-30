@@ -4,6 +4,7 @@ using IslandLanding.Communication.Services.AddScore;
 using IslandLanding.Enums;
 using IslandLanding.Models;
 using IslandLanding.Views;
+using Microsoft.AppCenter.Crashes;
 using Newtonsoft.Json;
 using Plugin.StoreReview;
 using Rg.Plugins.Popup.Services;
@@ -57,7 +58,7 @@ namespace IslandLanding.ViewModel
         NumberOfVisit = 1;
       }
       DrawLevels();
-      CheckNumberOfVisit();
+     
     }
     private void OpenAppReviewPopup()
     {
@@ -115,7 +116,6 @@ namespace IslandLanding.ViewModel
         Preferences.Set("playerScore", AverageTime);
       }
         PostScore();
-    
     }
     private async void PostScore()
     {
@@ -132,6 +132,7 @@ namespace IslandLanding.ViewModel
             {
               ShowText = "You are now ranked ";
               ShowAverageTime = "NO." + response.Rank;
+              CheckNumberOfVisit();
               return false;
             });
           }
@@ -140,6 +141,7 @@ namespace IslandLanding.ViewModel
       catch(Exception ex)
       {
         IsBusy = false;
+        Crashes.TrackError(ex);
       }
       finally
       {

@@ -15,7 +15,7 @@
 
 
       <AbsoluteLayout  AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional,HeightProportional"
-                       AbsoluteLayout.LayoutBounds="0,0.7,0.99,0.5" 
+                       AbsoluteLayout.LayoutBounds="0,0.7,0.99,0.6" 
                       Margin="30,0,30,0"
                        x:Name="item">
         <pancake:PancakeView  AbsoluteLayout.LayoutBounds="0,0,1,0.5"
