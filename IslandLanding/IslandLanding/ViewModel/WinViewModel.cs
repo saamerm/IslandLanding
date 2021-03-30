@@ -72,11 +72,10 @@ namespace IslandLanding.ViewModel
           OpenAppReviewPopup();
         }
       NumberOfVisit++;
+      Preferences.Set("numberOfVisit", NumberOfVisit);
     }
     private void NoCommandExcute(object obj)
     {
-     
-      Preferences.Set("numberOfVisit", NumberOfVisit);
       App.Current.MainPage.Navigation.PushAsync(new FeedBackPage());
     }
 
@@ -122,22 +121,29 @@ namespace IslandLanding.ViewModel
     {
       try
       {
-        var addScoreService = new AddScoreService();
-        var requestModel = new AddScoreRequestModel { Name = UserTag, Score = AverageTime.ToString(), Difficuilty = Preferences.Get("difficulty", Difficulty.Easy.ToString()) };
-        var response = await addScoreService.AddScore(requestModel);
-        if (response.Status != null)
+        if (!IsBusy)
         {
-          Device.StartTimer(new TimeSpan(0, 0, 6), () =>
+          var addScoreService = new AddScoreService();
+          var requestModel = new AddScoreRequestModel { Name = UserTag, Score = AverageTime.ToString(), Difficuilty = Preferences.Get("difficulty", Difficulty.Easy.ToString()) };
+          var response = await addScoreService.AddScore(requestModel);
+          if (response.Status != null)
           {
-            ShowText = "You are now ranked ";
-            ShowAverageTime = "NO." + response.Rank;
-            return false;
-          });
+            Device.StartTimer(new TimeSpan(0, 0, 6), () =>
+            {
+              ShowText = "You are now ranked ";
+              ShowAverageTime = "NO." + response.Rank;
+              return false;
+            });
+          }
         }
       }
       catch(Exception ex)
       {
-
+        IsBusy = false;
+      }
+      finally
+      {
+        IsBusy = false;
       }
     }
     //TODO in the futur will use it if we want to get ranks 

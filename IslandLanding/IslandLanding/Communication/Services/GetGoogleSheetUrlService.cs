@@ -20,8 +20,7 @@ namespace IslandLanding.Communication.Services
       var client = new HttpClient();
       var response = await client.GetAsync(url);
       var result = await response.Content.ReadAsStringAsync();
-      var apiUrl = JsonConvert.DeserializeObject(result).ToString();
-      return apiUrl;
+      return result;
     }
   }
 }

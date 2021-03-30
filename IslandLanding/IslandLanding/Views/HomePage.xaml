@@ -94,7 +94,7 @@
 
       </StackLayout>
       <StackLayout Grid.RowSpan="3" IsVisible="{Binding IsBusy}"
-             Margin="0,200,0,0" >
+             Margin="0,300,0,0" >
         <ActivityIndicator Color="{StaticResource orange}"
                            HorizontalOptions="Center"
                            VerticalOptions="Center"

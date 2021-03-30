@@ -30,7 +30,7 @@ namespace IslandLanding.ViewModel
     }
     private void BackCommandExcute(object obj)
     {
-      App.Current.MainPage.Navigation.PopToRootAsync();
+      App.Current.MainPage.Navigation.PopAsync();
     }
     private async void SubmitCommandExcute(object obj)
     {
@@ -39,24 +39,33 @@ namespace IslandLanding.ViewModel
         if (!IsBusy)
         {
           IsBusy = true;
-          var feedBackService = new FeedBackService();
-          var result = await feedBackService.AddFeedback(AddFeedback);
-          if (result.Status == "Success")
+          var dialog = new ThanksPopupPage();
+          dialog.BindingContext = this;
+          if (!string.IsNullOrEmpty(AddFeedback.Name)&& !string.IsNullOrEmpty(AddFeedback.Email)&& !string.IsNullOrEmpty(AddFeedback.Feedback))
           {
-            FeedbackAdded = result.Message;
-            var dialog = new ThanksPopupPage();
-            dialog.BindingContext = this;
-            await PopupNavigation.Instance.PushAsync(dialog);
-            Device.StartTimer(new TimeSpan(0, 0, 5), () =>
+            var feedBackService = new FeedBackService();
+            var result = await feedBackService.AddFeedback(AddFeedback);
+           
+            if (result.Status == "Success")
             {
-              App.Current.MainPage.Navigation.PushAsync(new HomePage());
-              return false;
-            });
+              FeedbackAdded = result.Message;
+              await PopupNavigation.Instance.PushAsync(dialog);
+              Device.StartTimer(new TimeSpan(0, 0, 5), () =>
+              {
+                App.Current.MainPage.Navigation.PushAsync(new HomePage());
+                return false;
+              });
+            }
+            else
+            {
+              FeedbackAdded = "Something wrong happen try agian later";
+              await App.Current.MainPage.Navigation.PushAsync(new HomePage());
+            }
           }
           else
           {
-            FeedbackAdded = "Something wrong happen try agian later";
-            await App.Current.MainPage.Navigation.PushAsync(new HomePage());
+            FeedbackAdded = "Please Enter all the field";
+            await PopupNavigation.Instance.PushAsync(dialog);
           }
         }
 
