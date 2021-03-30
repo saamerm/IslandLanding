@@ -1,6 +1,7 @@
 ﻿using IslandLanding.Communication.RequestModel;
 using IslandLanding.Communication.Services;
 using IslandLanding.Communication.Services.AddScore;
+using IslandLanding.Enums;
 using IslandLanding.Models;
 using IslandLanding.Views;
 using Newtonsoft.Json;
@@ -76,7 +77,7 @@ namespace IslandLanding.ViewModel
     private async void PostScore()
     {
       var addScoreService = new AddScoreService();
-      var requestModel = new AddScoreRequestModel { Name = UserTag, Score = AverageTime.ToString(), Difficuilty= Preferences.Get("difficulty", "") };
+      var requestModel = new AddScoreRequestModel { Name = UserTag, Score = AverageTime.ToString(), Difficuilty= Preferences.Get("difficulty", Difficulty.Easy.ToString()) };
       var response = await addScoreService.AddScore(requestModel);
       if(response.Status!=null)
       {

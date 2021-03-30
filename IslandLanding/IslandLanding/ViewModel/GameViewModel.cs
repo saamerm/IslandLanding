@@ -53,12 +53,12 @@ namespace IslandLanding.ViewModel
       //this part for check level and add level time according to choosen difficulity
       if ((Preferences.Get("levelNumber", 1) == 1))
       {
-        var difficulitylevel = Preferences.Get("difficulty", (int)Difficulty.Easy);
-        if (difficulitylevel== (int)Difficulty.Easy)
+        var difficulitylevel = Preferences.Get("difficulty", Difficulty.Easy.ToString());
+        if (difficulitylevel== (Difficulty.Easy.ToString()))
         {
           LevelTime = 5;
         }
-        else if(difficulitylevel == (int)Difficulty.Medium)
+        else if(difficulitylevel == Difficulty.Medium.ToString())
         {
           LevelTime = 25;
         }
