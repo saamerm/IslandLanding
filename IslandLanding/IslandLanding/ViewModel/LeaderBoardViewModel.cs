@@ -1,5 +1,6 @@
 ﻿using IslandLanding.Communication.Services;
 using IslandLanding.Models;
+using Microsoft.AppCenter.Crashes;
 using Sharpnado.Tabs;
 using System;
 using System.Collections.Generic;
@@ -81,6 +82,7 @@ namespace IslandLanding.ViewModel
       catch (Exception e)
       {
         IsBusy = false;
+        Crashes.TrackError(e);
       }
       finally
       {

@@ -1,6 +1,7 @@
 ﻿using IslandLanding.Communication.RequestModel;
 using IslandLanding.Communication.Services.FeedBack;
 using IslandLanding.Views;
+using Microsoft.AppCenter.Crashes;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -73,6 +74,7 @@ namespace IslandLanding.ViewModel
       catch (Exception e)
       {
         IsBusy = false;
+        Crashes.TrackError(e);
       }
       finally
       {
