@@ -26,7 +26,7 @@ namespace IslandLanding.Communication.Services.AddScore
       //var result = await api.PostScore(requestModel);
       //var data = JsonConvert.DeserializeObject<AddScoreResponseModel>(result);
       var client = new HttpClient();
-      var data = new AddScoreRequestModel { Name = requestModel.Name, Score = requestModel.Score };
+      var data = new AddScoreRequestModel { Name = requestModel.Name, Score = requestModel.Score ,Difficuilty=requestModel.Difficuilty};
       var jsonString = JsonConvert.SerializeObject(data);
       var requestContent = new StringContent(jsonString);
       var response = client.PostAsync(Helper.Constants.Api_Key, requestContent).Result;
