@@ -9,7 +9,7 @@ namespace IslandLanding.ViewModel
 {
   public class BaseViewModel : INotifyPropertyChanged
   {
-
+    public bool IsBusy{get;set;}
     public event PropertyChangedEventHandler PropertyChanged;
     protected void NotifyAllPropertiesChanged()
     {
