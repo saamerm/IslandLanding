@@ -1,6 +1,7 @@
 ﻿using IslandLanding.Enums;
 using IslandLanding.Models;
 using IslandLanding.Views;
+using Microsoft.AppCenter.Analytics;
 using Newtonsoft.Json;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -68,6 +69,8 @@ namespace IslandLanding.ViewModel
         }
         LevelNumber = 1;
       }
+      PageTitle = "GamePage";
+      Analytics.TrackEvent("Page", new Dictionary<string, string> { { "Value", PageTitle } });
     }
 
     private void LaunchCommandExcute(object obj)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AppCenter.Analytics;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
@@ -21,6 +22,8 @@ namespace IslandLanding.ViewModel
     {
       BackCommand = new Command(BackCommandExcute);
       SaveCommand = new Command(SaveCommandExcute);
+      PageTitle = "Switch Tag";
+      Analytics.TrackEvent("Page", new Dictionary<string, string> { { "Value", PageTitle } });
     }
 
     private void SaveCommandExcute(object obj)

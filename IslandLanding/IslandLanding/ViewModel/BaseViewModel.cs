@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AppCenter.Analytics;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -10,7 +11,9 @@ namespace IslandLanding.ViewModel
   public class BaseViewModel : INotifyPropertyChanged
   {
     public bool IsBusy{get;set;}
+    public string PageTitle { get; set; }
     public event PropertyChangedEventHandler PropertyChanged;
+   
     protected void NotifyAllPropertiesChanged()
     {
       NotifyPropertyChanged(null);

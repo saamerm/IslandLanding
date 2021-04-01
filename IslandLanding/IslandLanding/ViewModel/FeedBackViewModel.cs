@@ -1,6 +1,7 @@
 ﻿using IslandLanding.Communication.RequestModel;
 using IslandLanding.Communication.Services.FeedBack;
 using IslandLanding.Views;
+using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -28,6 +29,8 @@ namespace IslandLanding.ViewModel
       {
         PopupNavigation.Instance.PopAsync();
       }
+      PageTitle = "FeedBack Page";
+      Analytics.TrackEvent("Page", new Dictionary<string, string> { { "Value", PageTitle } });
     }
     private void BackCommandExcute(object obj)
     {

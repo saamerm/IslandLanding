@@ -3,8 +3,10 @@
              xmlns:pages="http://rotorgames.com" 
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:control="clr-namespace:IslandLanding.Controls" xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms" xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-  x:Class="IslandLanding.Views.AppReviewPopupPage">
+            xmlns:control="clr-namespace:IslandLanding.Controls"
+            xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+           xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+           x:Class="IslandLanding.Views.AppReviewPopupPage">
   <ContentPage.Content>
     <AbsoluteLayout >
       <pancake:PancakeView BackgroundColor="#898989"

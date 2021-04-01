@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AppCenter.Analytics;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
@@ -26,6 +27,9 @@ namespace IslandLanding.ViewModel
 You can click on the Launch Parachute button when you think the time has elapsed.If your time difference is less than 1 second, you can proceed to next level. Pass 10 levels to submit your average to the scoreboard!
 
 This game is developed by The First Prototype.We help mers love, and we specialize in mobile app development.Background vectors created by pikisuperstar";
+
+      PageTitle = "Info Page";
+      Analytics.TrackEvent("Page", new Dictionary<string, string> { { "Value", PageTitle } });
     }
 
     private async void CheckusCommandExcute(object obj)

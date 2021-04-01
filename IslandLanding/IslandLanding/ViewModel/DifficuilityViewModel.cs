@@ -1,5 +1,6 @@
 ﻿using IslandLanding.Enums;
 using IslandLanding.Views;
+using Microsoft.AppCenter.Analytics;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,6 +18,8 @@ namespace IslandLanding.ViewModel
     {
       BackCommand = new Command(BackCommandExcute);
       DiffcultyCommand = new Command<string>(EasyCommandExcute);
+      PageTitle = "Choose Difficulity";
+      Analytics.TrackEvent("Page", new Dictionary<string, string> { { "Value", PageTitle } });
     }
 
     private void EasyCommandExcute(string selectedDiffculty)
