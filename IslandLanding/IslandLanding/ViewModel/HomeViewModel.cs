@@ -1,5 +1,6 @@
 ﻿using IslandLanding.Communication.Services;
 using IslandLanding.Views;
+using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -31,6 +32,8 @@ namespace IslandLanding.ViewModel
       {
         PopupNavigation.Instance.PopAsync();
       }
+      PageTitle = "HomePage";
+      Analytics.TrackEvent(PageTitle);
     }
     private void Notify()
     {

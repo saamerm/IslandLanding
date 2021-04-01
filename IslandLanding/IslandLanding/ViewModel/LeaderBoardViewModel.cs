@@ -1,5 +1,6 @@
 ﻿using IslandLanding.Communication.Services;
 using IslandLanding.Models;
+using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Sharpnado.Tabs;
 using System;
@@ -32,6 +33,8 @@ namespace IslandLanding.ViewModel
       TabSelectedCommand = new Command(TabSelectedCommandExcute);
       BestScore = "Your best time is " + Preferences.Get("playerScore", "") + "s";
      GetBoardData("Easy");
+      PageTitle = "LeaderBoard";
+      Analytics.TrackEvent("Page", new Dictionary<string, string> { { "Value", PageTitle } });
     }
     private void TabSelectedCommandExcute(object obj)
     {

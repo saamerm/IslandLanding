@@ -1,5 +1,6 @@
 ﻿using IslandLanding.Models;
 using IslandLanding.Views;
+using Microsoft.AppCenter.Analytics;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -28,6 +29,8 @@ namespace IslandLanding.ViewModel
         IsLosing = false;
         return false;
       });
+      PageTitle = "LoosePage";
+      Analytics.TrackEvent("Page", new Dictionary<string, string> { { "Value", PageTitle } });
     }
 
     private void TryAginCommandExcute(object obj)

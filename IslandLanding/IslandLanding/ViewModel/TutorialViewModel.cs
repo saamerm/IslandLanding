@@ -1,4 +1,5 @@
 ﻿using IslandLanding.Views;
+using Microsoft.AppCenter.Analytics;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -44,7 +45,8 @@ namespace IslandLanding.ViewModel
       ButtonText = "Next";
       LoadData();
       PositionChangedCommand = new Command<int>(PositionChanged);
-
+      PageTitle = "Tutorial Page";
+      Analytics.TrackEvent("Page", new Dictionary<string, string> { { "Value", PageTitle } });
     }
 
     private void NextCommandExute(object obj)

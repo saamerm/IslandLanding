@@ -4,6 +4,7 @@ using IslandLanding.Communication.Services.AddScore;
 using IslandLanding.Enums;
 using IslandLanding.Models;
 using IslandLanding.Views;
+using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Newtonsoft.Json;
 using Plugin.StoreReview;
@@ -41,7 +42,8 @@ namespace IslandLanding.ViewModel
       NoCommand = new Command(NoCommandExcute);
       IsWinning = true;
       UserTag = Preferences.Get("userTag", "");
-    
+      PageTitle = "Win Page";
+      Analytics.TrackEvent("Page", new Dictionary<string, string> { { "Value", PageTitle } });
       Device.StartTimer(new TimeSpan(0, 0, 3), () =>
       {
         IsWinning = false;

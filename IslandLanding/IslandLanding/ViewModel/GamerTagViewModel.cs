@@ -1,4 +1,5 @@
 ﻿using IslandLanding.Views;
+using Microsoft.AppCenter.Analytics;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,6 +21,8 @@ namespace IslandLanding.ViewModel
     public GamerTagViewModel()
     {
       SaveCommand = new Command(SaveCommandExcute);
+      PageTitle = "GamerTag Page";
+      Analytics.TrackEvent("Page", new Dictionary<string, string> { { "Value", PageTitle } });
     }
 
     private void SaveCommandExcute(object obj)
