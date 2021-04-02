@@ -3,7 +3,6 @@ using IslandLanding.Communication.ResponseModel;
 using IslandLanding.Helper;
 using IslandLanding.Models;
 using Newtonsoft.Json;
-using Refit;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
