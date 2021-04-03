@@ -6,7 +6,7 @@
              xmlns:tabs="clr-namespace:Sharpnado.Tabs;assembly=Sharpnado.Tabs" xmlns:behaviors="clr-namespace:IslandLanding.Behaviours">
   <ContentPage.Content>
     <Grid RowDefinitions="0.1*,0.1*,0.8*">
-      <Image Source="background" Grid.RowSpan="3"  Opacity="0.3"
+      <Image Source="background" Grid.RowSpan="3" 
             Aspect="Fill" />
       <Image Margin="30,25,0,0"
              Grid.Row="0"

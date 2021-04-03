@@ -13,7 +13,7 @@
   </ContentPage.Resources>
   <ContentPage.Content>
     <Grid RowDefinitions="auto,auto,auto,auto,auto,auto">
-      <Image Source="background" Grid.RowSpan="7" Grid.Row="0" Opacity="0.3"
+      <Image Source="background" Grid.RowSpan="7" Grid.Row="0"
             Aspect="AspectFill" />
       <Image Margin="30,27,0,0"
              Grid.Row="0"
@@ -82,7 +82,7 @@
               WidthRequest="178"
               HorizontalOptions="Center"
               VerticalOptions="Center"
-              BorderWidth="4"
+              BorderWidth="2"
               BorderColor="{StaticResource bordercolor}"
               CornerRadius="89"
               Text="Ready"
@@ -126,7 +126,7 @@
               Margin="40,40,40,0"
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"
-              BorderWidth="4" 
+              BorderWidth="2" 
               HeightRequest="60"
               CornerRadius="30"
               BackgroundColor="{StaticResource orange}"

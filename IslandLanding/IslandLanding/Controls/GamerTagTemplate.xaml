@@ -37,7 +37,7 @@
               Margin="40,120,40,0"
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"
-              BorderWidth="4" 
+              BorderWidth="2" 
               HeightRequest="60"
               CornerRadius="30"
               VerticalOptions="EndAndExpand"

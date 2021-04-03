@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Services;
+﻿using IslandLanding.Views;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,9 +24,9 @@ namespace IslandLanding.ViewModel
 
     private void NextCommandExcute(object obj)
     {
-      if (Preferences.Get("levelNumber", 1) > 10)
+      if (Preferences.Get("levelNumber", 1) == 10)
       {
-        // will navigate to win page 
+        App.Current.MainPage.Navigation.PushAsync(new WinPage());
       }
       else
       {

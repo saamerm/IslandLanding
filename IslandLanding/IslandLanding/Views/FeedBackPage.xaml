@@ -7,7 +7,7 @@
              xmlns:controls="clr-namespace:IslandLanding.Controls">
     <ContentPage.Content>
         <Grid RowDefinitions="auto,auto">
-      <Image Source="background" Grid.RowSpan="2" Opacity="0.3"
+      <Image Source="background" Grid.RowSpan="2"
                   Aspect="Fill"/>
       <Image Margin="30,27,0,0"
              Grid.Row="0"

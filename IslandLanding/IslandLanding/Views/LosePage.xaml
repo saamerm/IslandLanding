@@ -13,8 +13,8 @@
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.Content>
-    <Grid RowDefinitions="0.45*,0.45*,0.1*,320">
-      <Image Source="background" Grid.RowSpan="4" Opacity="0.3"
+    <Grid RowDefinitions="0.45*,0.45*,0.1*,0.7*">
+      <Image Source="background" Grid.RowSpan="4" 
                   Aspect="Fill"/>
       <Label 
              Grid.Row="0" 
@@ -51,16 +51,18 @@
           />
       </pancake:PancakeView>
       <!--the other view for lose page -->
-      <forms:AnimationView 
+      
+        <forms:AnimationView  Grid.Row="3" 
           Animation="Resources.lake.json" 
           AnimationSource="EmbeddedResource" 
           AutoPlay="True"  
-            Grid.Row="3"       
           IsVisible="{Binding IsLosing,Converter={StaticResource InverseBool}}"
-          VerticalOptions="FillAndExpand"
+          VerticalOptions="End"
           HorizontalOptions="FillAndExpand"
           RepeatMode="Infinite"
          />
+    
+     
       <Label   Margin="40,60,40,0"
         Grid.Row="0" 
            IsVisible="{Binding IsLosing,Converter={StaticResource InverseBool}}"
@@ -72,7 +74,7 @@
              FontFamily="PatrickFont"/>
       <StackLayout  Grid.Row="1" 
              IsVisible="{Binding IsLosing,Converter={StaticResource InverseBool}}"
-              Margin="{OnPlatform iOS='40,-80,40,0',Android='40,-160,40,0'}"
+              Margin="{OnPlatform iOS='40,-80,40,0',Android='40,-120,40,0'}"
              HorizontalOptions="Center"
              VerticalOptions="Center">
         <Label 
@@ -99,7 +101,7 @@
               Text="Main" Margin="{OnPlatform iOS='40,0,40,0', Android='40,-45,40,0'}"
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"
-              BorderWidth="4" 
+              BorderWidth="2" 
               HeightRequest="60"
               CornerRadius="30"
               BackgroundColor="{StaticResource orange}"
@@ -113,7 +115,7 @@
               Margin="40,10,40,0"
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"
-              BorderWidth="4" 
+              BorderWidth="2" 
               HeightRequest="60"
               CornerRadius="30"
               FontSize="20"

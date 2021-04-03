@@ -78,7 +78,7 @@ namespace IslandLanding.ViewModel
     }
     private void LoadData()
     {
-      TutorialList.Add("Hi mike,You are a pessenger of a flight,your flight is undergoing a severe crash");
+      TutorialList.Add("Hi "+ Preferences.Get("userTag", "")+ ",You are a pessenger of a flight,your flight is undergoing a severe crash");
       TutorialList.Add("Listen to the captain’s instructions and launch your parachute in the given time");
       TutorialList.Add("If your time difference is greater than 1 second, you will land on a lake while others will land on the island");
     }

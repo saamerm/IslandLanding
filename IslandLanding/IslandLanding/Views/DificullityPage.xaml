@@ -5,7 +5,7 @@
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
     <Grid RowDefinitions="auto,auto">
-      <Image Source="background" Grid.RowSpan="2" Opacity="0.3"
+      <Image Source="background" Grid.RowSpan="2" 
                   Aspect="Fill"/>
       <Image Margin="30,45,0,0" Grid.Row="0"
              HorizontalOptions="Start"
@@ -30,7 +30,7 @@
               Margin="40,0,40,0"
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"
-              BorderWidth="4" 
+              BorderWidth="2" 
               HeightRequest="60"
               CornerRadius="30"
               BackgroundColor="{StaticResource orange}"
@@ -45,7 +45,7 @@
               Margin="40,20,40,20"
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"
-              BorderWidth="4" 
+              BorderWidth="2" 
               HeightRequest="60"
               CornerRadius="30"
               BackgroundColor="{StaticResource orange}"
@@ -60,7 +60,7 @@
               Margin="40,0,40,0"
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"
-              BorderWidth="4" 
+              BorderWidth="2" 
               HeightRequest="60"
               CornerRadius="30"
               BackgroundColor="{StaticResource orange}"

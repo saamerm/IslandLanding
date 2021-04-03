@@ -6,8 +6,7 @@
     <ContentPage.Content>
     <Grid >
       <Image Source="background" 
-             Aspect="Fill"
-             Opacity="0.3"/>
+             Aspect="Fill"/>
 
       <CarouselView     Margin="0,180,0,30"
                         x:Name="carousel"
@@ -37,7 +36,7 @@
               Margin="40,0,40,220"
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"
-              BorderWidth="4" 
+              BorderWidth="2" 
               HeightRequest="60"
               CornerRadius="30"
                 Command="{Binding NextCommand}"

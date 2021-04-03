@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace IslandLanding.Droid
 {
-  [Activity(Theme = "@style/MyTheme.Splash", MainLauncher = true, NoHistory = true)]
+  [Activity(Theme = "@style/MyTheme.Splash", MainLauncher = false, NoHistory = true)]
   public class SplashActivity : AppCompatActivity
   {
     static readonly string TAG = "X:" + typeof(SplashActivity).Name;
@@ -23,6 +23,14 @@ namespace IslandLanding.Droid
     {
       base.OnCreate(savedInstanceState, persistentState);
       Log.Debug(TAG, "SplashActivity.OnCreate");
+      int uiOptions = (int)Window.DecorView.SystemUiVisibility;
+
+      uiOptions |= (int)SystemUiFlags.LowProfile;
+      uiOptions |= (int)SystemUiFlags.Fullscreen;
+      uiOptions |= (int)SystemUiFlags.HideNavigation;
+      uiOptions |= (int)SystemUiFlags.ImmersiveSticky;
+
+      Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
     }
 
     // Launches the startup task

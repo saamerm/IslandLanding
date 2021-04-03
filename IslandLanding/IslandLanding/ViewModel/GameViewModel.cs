@@ -89,8 +89,7 @@ namespace IslandLanding.ViewModel
       if (scoretime > -1 && scoretime <= 1)
       {
         IsStarting = false;
-        App.Current.MainPage.Navigation.PushAsync(new WinPage());
-        // PopupNavigation.Instance.PushAsync(new NextPopupPage(scoretime.ToString("0.00")));
+       PopupNavigation.Instance.PushAsync(new NextPopupPage(scoretime.ToString("0.00")));
       }
       else
       {

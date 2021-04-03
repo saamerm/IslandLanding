@@ -7,7 +7,7 @@
              >
     <ContentPage.Content>
     <Grid>
-      <Image Source="background" Opacity="0.3"
+      <Image Source="background" 
                   Aspect="Fill"/>
       <controls:GamerTagTemplate TitleText="Please enter your gamer tag"
                                SubmitCommand="{Binding SaveCommand}"
