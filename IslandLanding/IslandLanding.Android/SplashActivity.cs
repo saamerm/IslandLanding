@@ -23,14 +23,7 @@ namespace IslandLanding.Droid
     {
       base.OnCreate(savedInstanceState, persistentState);
       Log.Debug(TAG, "SplashActivity.OnCreate");
-      int uiOptions = (int)Window.DecorView.SystemUiVisibility;
-
-      uiOptions |= (int)SystemUiFlags.LowProfile;
-      uiOptions |= (int)SystemUiFlags.Fullscreen;
-      uiOptions |= (int)SystemUiFlags.HideNavigation;
-      uiOptions |= (int)SystemUiFlags.ImmersiveSticky;
-
-      Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
+      
     }
 
     // Launches the startup task
