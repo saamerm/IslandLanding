@@ -85,7 +85,7 @@
               BorderWidth="2"
               BorderColor="{StaticResource bordercolor}"
               CornerRadius="89"
-              Text="Ready"
+              Text="Jump"
               FontSize="40"
               TextColor="White"
               FontFamily="PatrickFont"
