@@ -26,7 +26,7 @@
                                CornerRadius="10"
                                    >
           <StackLayout   Margin="0,40,0,0">
-            <Label Text="You've finished the game, we'd love your feedback. Would you like to leave a review in the App Store?"
+            <Label Text="You've won the game. Did you enjoy playing it?"
                    TextColor="Black"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"

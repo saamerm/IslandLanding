@@ -68,7 +68,7 @@ namespace IslandLanding.ViewModel
           }
           else
           {
-            FeedbackAdded = "Please Enter all the field";
+            FeedbackAdded = "Please fill out all the fields”";
             await PopupNavigation.Instance.PushAsync(dialog);
           }
         }

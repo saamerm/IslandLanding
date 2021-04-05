@@ -42,7 +42,7 @@ namespace IslandLanding.ViewModel
       }
       else
       {
-        PopupText = "Please enter userTag";
+        PopupText = "Gamer tag cannot be empty";
         var dialog = new SimplePopupTemplate();
         dialog.BindingContext = this;
         PopupNavigation.Instance.PushAsync(dialog);

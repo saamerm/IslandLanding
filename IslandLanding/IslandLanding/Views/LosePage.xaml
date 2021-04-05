@@ -32,7 +32,7 @@
           <FormattedString>
             <Span Text="Sorry, "/>
             <Span Text="{Binding UserTag}"/>
-            <Span Text=" You have landed on the lake."/>
+            <Span Text=" you have landed on the lake."/>
           </FormattedString>
         </Label.FormattedText>
       </Label>
@@ -57,7 +57,7 @@
           AnimationSource="EmbeddedResource" 
           AutoPlay="True"  
           IsVisible="{Binding IsLosing,Converter={StaticResource InverseBool}}"
-          VerticalOptions="End"
+          VerticalOptions="FillAndExpand"
           HorizontalOptions="FillAndExpand"
           RepeatMode="Infinite"
          />
@@ -74,7 +74,7 @@
              FontFamily="PatrickFont"/>
       <StackLayout  Grid.Row="1" 
              IsVisible="{Binding IsLosing,Converter={StaticResource InverseBool}}"
-              Margin="{OnPlatform iOS='40,-80,40,0',Android='40,-120,40,0'}"
+              Margin="{OnPlatform iOS='40,-100,40,0',Android='40,-120,40,0'}"
              HorizontalOptions="Center"
              VerticalOptions="Center">
         <Label 
@@ -88,9 +88,9 @@
             <FormattedString>
               <Span Text="It took you "/>
               <Span  Text="{Binding GameModel.MainTime}"/>
-              <Span Text=" seconds,which is "/>
+              <Span Text=" seconds, which is "/>
               <Span  Text="{Binding GameModel.TakenTime}"/>
-              <Span Text=" seconds too late"/>
+              <Span Text="{Binding TooLateText}"/>
             </FormattedString>
           </Label.FormattedText>
         </Label>
@@ -98,7 +98,7 @@
       <StackLayout Grid.Row="3"  IsVisible="{Binding IsLosing,Converter={StaticResource InverseBool}}">
         <Button 
               WidthRequest="300"
-              Text="Main" Margin="{OnPlatform iOS='40,0,40,0', Android='40,-45,40,0'}"
+              Text="Dashboard" Margin="{OnPlatform iOS='40,0,40,0', Android='40,-45,40,0'}"
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"
               BorderWidth="2" 

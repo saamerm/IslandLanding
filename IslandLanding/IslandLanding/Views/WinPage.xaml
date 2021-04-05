@@ -126,7 +126,7 @@
                     Grid.Row="1">
         <Button 
               WidthRequest="300"
-              Text="Main"
+              Text="Main Menu"
              
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"

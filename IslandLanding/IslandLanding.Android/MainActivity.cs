@@ -9,7 +9,7 @@ using Android.OS;
 
 namespace IslandLanding.Droid
 {
-  [Activity(Label = "IslandLanding", Icon = "@mipmap/ic_launcher", Theme = "@style/MyTheme.Splash", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
+  [Activity(Label = "IslandLanding", Icon = "@mipmap/ic_launcher", Theme = "@style/MyTheme.Splash", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
   public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
   {
     protected override void OnCreate(Bundle savedInstanceState)
@@ -20,14 +20,7 @@ namespace IslandLanding.Droid
       ToolbarResource = Resource.Layout.Toolbar;
 
       base.OnCreate(savedInstanceState);
-      int uiOptions = (int)Window.DecorView.SystemUiVisibility;
-
-      uiOptions |= (int)SystemUiFlags.LowProfile;
-      uiOptions |= (int)SystemUiFlags.Fullscreen;
-      uiOptions |= (int)SystemUiFlags.HideNavigation;
-      uiOptions |= (int)SystemUiFlags.ImmersiveSticky;
-
-      Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
+      Window.AddFlags(WindowManagerFlags.Fullscreen);
       Xamarin.Essentials.Platform.Init(this, savedInstanceState);
       global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
       Rg.Plugins.Popup.Popup.Init(this);

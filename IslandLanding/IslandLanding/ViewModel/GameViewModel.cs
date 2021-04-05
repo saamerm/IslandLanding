@@ -61,11 +61,11 @@ namespace IslandLanding.ViewModel
         }
         else if(difficulitylevel == Difficulty.Medium.ToString())
         {
-          LevelTime = 25;
+          LevelTime = 10;
         }
         else
         {
-          LevelTime = 45;
+          LevelTime = 15;
         }
         LevelNumber = 1;
       }
@@ -80,16 +80,16 @@ namespace IslandLanding.ViewModel
       var scoretime = LevelTime - diffTime.TotalSeconds;
       GameModel = new GameModel
       {
-        MainTime = diffTime.TotalSeconds.ToString("0.00"),
-        TakenTime = scoretime.ToString("0.00")
+        MainTime = Math.Round(diffTime.TotalSeconds, 2),
+        TakenTime = Math.Round(scoretime, 2)
       };
-      TimeDifferencesList.Add(Math.Round(scoretime, 2));
+      TimeDifferencesList.Add(Math.Abs(Math.Round(scoretime, 2)));
       var listOfTimeAsJson = JsonConvert.SerializeObject(TimeDifferencesList);
       Preferences.Set("listOfTimeAsJson", listOfTimeAsJson);
       if (scoretime > -1 && scoretime <= 1)
       {
         IsStarting = false;
-       PopupNavigation.Instance.PushAsync(new NextPopupPage(scoretime.ToString("0.00")));
+       PopupNavigation.Instance.PushAsync(new NextPopupPage(GameModel));
       }
       else
       {
@@ -172,36 +172,7 @@ namespace IslandLanding.ViewModel
         IsCompleted = false,
         BackgroundColor = Color.Black
       });
-      DotsList.Add(new LevelsModel
-      {
-        LevelNumber = "6",
-        IsCompleted = false,
-        BackgroundColor = Color.Black
-      });
-      DotsList.Add(new LevelsModel
-      {
-        LevelNumber = "7",
-        IsCompleted = false,
-        BackgroundColor = Color.Black
-      });
-      DotsList.Add(new LevelsModel
-      {
-        LevelNumber = "8",
-        IsCompleted = false,
-        BackgroundColor = Color.Black
-      });
-      DotsList.Add(new LevelsModel
-      {
-        LevelNumber = "9",
-        IsCompleted = false,
-        BackgroundColor = Color.Black
-      });
-      DotsList.Add(new LevelsModel
-      {
-        LevelNumber = "10",
-        IsCompleted = false,
-        BackgroundColor = Color.Black
-      });
+    
     }
   }
 }

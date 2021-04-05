@@ -27,7 +27,7 @@
              HorizontalOptions="Center"
              VerticalOptions="Center"
              TextColor="White"
-             Text="Game rules"
+             Text="Instructions"
              FontSize="60"
              FontFamily="PatrickFont"/>
       <Label Grid.Row="2"
