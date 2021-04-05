@@ -38,7 +38,7 @@
         </Image.GestureRecognizers>
       </Image>
       <StackLayout  Grid.Row="1"
-             Margin="0,130,0,0">
+             Margin="0,110,0,0">
         <Label FontSize="40"
              FontAttributes="Bold"
               VerticalOptions="CenterAndExpand"
@@ -78,7 +78,7 @@
               />
         <Button 
               WidthRequest="300"
-              Text="LeaderBoard"
+              Text="Leaderboard"
               Margin="40,10,40,0"
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"

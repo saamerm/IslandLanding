@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using MediaManager;
 using UIKit;
 
 namespace IslandLanding.iOS
@@ -25,6 +26,7 @@ namespace IslandLanding.iOS
       global::Xamarin.Forms.Forms.Init();
       Rg.Plugins.Popup.Popup.Init();
       Sharpnado.Tabs.iOS.Preserver.Preserve();
+      CrossMediaManager.Current.Init();
       LoadApplication(new App());
       return base.FinishedLaunching(app, options);
     }

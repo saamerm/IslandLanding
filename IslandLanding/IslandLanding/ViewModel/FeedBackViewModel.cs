@@ -52,7 +52,7 @@ namespace IslandLanding.ViewModel
            
             if (result.Status == "Success")
             {
-              FeedbackAdded = result.Message;
+              FeedbackAdded = "Thank you for your feedback";
               await PopupNavigation.Instance.PushAsync(dialog);
               Device.StartTimer(new TimeSpan(0, 0, 5), () =>
               {
@@ -68,7 +68,7 @@ namespace IslandLanding.ViewModel
           }
           else
           {
-            FeedbackAdded = "Please fill out all the fields”";
+            FeedbackAdded = "Please fill out all the fields";
             await PopupNavigation.Instance.PushAsync(dialog);
           }
         }

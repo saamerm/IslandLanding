@@ -87,7 +87,7 @@ namespace IslandLanding.ViewModel
     }
     private void LoadData()
     {
-      TutorialList.Add("Hi "+ Preferences.Get("userTag", "")+ ", the pilot will provide you a target time indicating when to launch your parachute");
+      TutorialList.Add("Hi "+ Preferences.Get("userTag", "")+ ", you’re a passenger in a flight that is going to crash. As you are ready to jump from the plane, the pilot will provide you a target time indicating when to launch your parachute.");
       TutorialList.Add("Listen to the captain’s instructions, the pilot will provide you a target time indicating when to launch your parachute");
       TutorialList.Add("The time will disappear after you jump. You must launch your parachute within 1 second of the indicated time, so that you will land on the island and not get eaten up by the sharks");
     }

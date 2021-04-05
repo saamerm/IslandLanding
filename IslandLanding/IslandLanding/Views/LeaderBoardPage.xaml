@@ -28,12 +28,14 @@
         <Label 
              FontSize="50"
              Text="Leaderboard"
+             TextColor="White"
               FontFamily="PatrickFont"
              HorizontalOptions="Center"
              VerticalOptions="Center"/>
         <Label 
              FontSize="22"
              Margin="0,-15,0,0"
+          TextColor="White"
              Text="{Binding BestScore}"
               FontFamily="PatrickFont"
              HorizontalOptions="Center"
