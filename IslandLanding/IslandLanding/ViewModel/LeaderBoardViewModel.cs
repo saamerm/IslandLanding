@@ -17,6 +17,7 @@ namespace IslandLanding.ViewModel
   {
     public ICommand BackCommand { get; set; }
     public string Difficulity { get; set; }
+    public bool IsBestTime { get; set; }
     public ObservableCollection<LeaderBoardModel> BoardList { get; set; }
     public ICommand TabSelectedCommand { get; set; }
     private int _selectedViewModelIndex = 0;
@@ -31,7 +32,15 @@ namespace IslandLanding.ViewModel
       BackCommand = new Command(BackCommandExcute);
       BoardList = new ObservableCollection<LeaderBoardModel>();
       TabSelectedCommand = new Command(TabSelectedCommandExcute);
-      BestScore = "Your best time is " + Preferences.Get("playerScore", "") + "s";
+      if (Preferences.ContainsKey("playerScore"))
+      {
+        BestScore = "Your best time is " + Preferences.Get("playerScore", "") + "s";
+      }
+      else
+      {
+        BestScore = "";
+      }
+    
      GetBoardData("Easy");
       PageTitle = "LeaderBoard";
       Analytics.TrackEvent("Page", new Dictionary<string, string> { { "Value", PageTitle } });
@@ -86,6 +95,7 @@ namespace IslandLanding.ViewModel
       {
         IsBusy = false;
         Crashes.TrackError(e);
+        BestScore = "Error connecting to global leaderboard";
       }
       finally
       {

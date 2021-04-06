@@ -6,10 +6,9 @@
     <ContentPage.Content>
     <Grid >
       <Image Source="background" 
-             Aspect="Fill"
-             Opacity="0.3"/>
+             Aspect="Fill"/>
 
-      <CarouselView     Margin="0,180,0,30"
+      <CarouselView     Margin="0,175,0,30"
                         x:Name="carousel"
                          Position="{Binding CurrentPosition}"
                    PositionChangedCommand="{Binding PositionChangedCommand}"
@@ -31,16 +30,30 @@
         </CarouselView.ItemTemplate>
         
       </CarouselView>
-      <Button VerticalOptions="End"
+      <Button VerticalOptions="End" IsVisible="{Binding IsNext}"
               WidthRequest="300"
               Text="{Binding ButtonText}"
-              Margin="40,0,40,220"
+              Margin="40,0,40,100"
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"
-              BorderWidth="4" 
+              BorderWidth="2" 
               HeightRequest="60"
               CornerRadius="30"
                 Command="{Binding NextCommand}"
+            CommandParameter="{Binding Source={x:Reference carousel},Path=Position}"
+              BackgroundColor="{StaticResource orange}"
+           
+              />
+      <Button VerticalOptions="End" IsVisible="{Binding IsPlaying}"
+              WidthRequest="300"
+              Text="{Binding ButtonText}"
+              Margin="40,0,40,100"
+              TextColor="White"
+              BorderColor="{StaticResource bordercolor}"
+              BorderWidth="2" 
+              HeightRequest="60"
+              CornerRadius="30"
+                Command="{Binding PlayCommand}"
             CommandParameter="{Binding Source={x:Reference carousel},Path=Position}"
               BackgroundColor="{StaticResource orange}"
            

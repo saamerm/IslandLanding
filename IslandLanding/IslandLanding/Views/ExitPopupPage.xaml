@@ -6,7 +6,7 @@
              x:Class="IslandLanding.Views.ExitPopupPage"
             xmlns:control="clr-namespace:IslandLanding.Controls">
     <ContentPage.Content>
-    <control:PopupTemplate TitleText="Would you like to exit?"
+    <control:PopupTemplate TitleText="Would you like to exit? "
                            NoCommand="{Binding NoCommand}"
                            YesCommand="{Binding YesCommand}"/>
   </ContentPage.Content>

@@ -10,7 +10,6 @@
     <Grid RowDefinitions="auto,auto">
       <Image Source="background"
              Grid.RowSpan="2"
-             Opacity="0.3"
               Aspect="Fill"/>
       <Image Margin="24,38,0,0" Grid.Row="0"
              HorizontalOptions="Start"

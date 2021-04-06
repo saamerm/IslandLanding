@@ -6,7 +6,7 @@ namespace IslandLanding.Models
 {
   public class GameModel
   {
-    public string MainTime { get; set; }
-    public string TakenTime { get; set; }
+    public double MainTime { get; set; }
+    public double TakenTime { get; set; }
   }
 }

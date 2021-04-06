@@ -19,6 +19,7 @@
     <None Remove="Fonts\FontAwesome5Solid.otf" />
     <None Remove="Fonts\PatrickHand-Regular.ttf" />
     <None Remove="Resources\lake.json" />
+    <None Remove="Resources\lake2.json" />
     <None Remove="Resources\parachut.json" />
     <None Remove="Resources\win.json" />
   </ItemGroup>
@@ -28,22 +29,24 @@
     <EmbeddedResource Include="Fonts\FontAwesome5Solid.otf" />
     <EmbeddedResource Include="Fonts\PatrickHand-Regular.ttf" />
     <EmbeddedResource Include="Resources\lake.json" />
+    <EmbeddedResource Include="Resources\lake2.json" />
     <EmbeddedResource Include="Resources\parachut.json" />
     <EmbeddedResource Include="Resources\win.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.0.8" />
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.0.9" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.2.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="particle.forms" Version="1.0.0" />
+    <PackageReference Include="Plugin.MediaManager.Forms" Version="1.0.8" />
     <PackageReference Include="Plugin.StoreReview" Version="3.1.0" />
     <PackageReference Include="PropertyChanged.Fody" Version="3.3.2" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.11" />
     <PackageReference Include="Sharpnado.Tabs" Version="2.1.0" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
   </ItemGroup>
 
@@ -52,6 +55,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Controls\PopupTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\SimplePopupTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\AppReviewPopupPage.xaml">

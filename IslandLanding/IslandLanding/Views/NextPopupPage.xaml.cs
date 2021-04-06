@@ -1,4 +1,5 @@
-﻿using IslandLanding.ViewModel;
+﻿using IslandLanding.Models;
+using IslandLanding.ViewModel;
 using Rg.Plugins.Popup.Pages;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,10 @@ namespace IslandLanding.Views
   [XamlCompilation(XamlCompilationOptions.Compile)]
   public partial class NextPopupPage : PopupPage
   {
-    public NextPopupPage( string diffTime)
+    public NextPopupPage(GameModel gameModel)
     {
       InitializeComponent();
-      BindingContext = new NextPopupViewModel(diffTime);
+      BindingContext = new NextPopupViewModel(gameModel);
     }
   }
 }

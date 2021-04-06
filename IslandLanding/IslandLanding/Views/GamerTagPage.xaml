@@ -7,9 +7,9 @@
              >
     <ContentPage.Content>
     <Grid>
-      <Image Source="background" Opacity="0.3"
+      <Image Source="background" 
                   Aspect="Fill"/>
-      <controls:GamerTagTemplate TitleText="Please enter your gamer tag"
+      <controls:GamerTagTemplate TitleText="Enter a gamer tag below:"
                                SubmitCommand="{Binding SaveCommand}"
                                GamerTag="{Binding UserTag,Mode=TwoWay}"
                                 Margin="{OnPlatform Android='0,70,0,0', iOS='0,20,0,0'}"

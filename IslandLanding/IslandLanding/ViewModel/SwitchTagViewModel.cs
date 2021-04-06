@@ -1,4 +1,6 @@
-﻿using Microsoft.AppCenter.Analytics;
+﻿using IslandLanding.Controls;
+using Microsoft.AppCenter.Analytics;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,6 +19,12 @@ namespace IslandLanding.ViewModel
       get => _userTag;
       set => SetProperty(ref _userTag, value);
     }
+    private string _popupText;
+    public string PopupText
+    {
+      get => _popupText;
+      set => SetProperty(ref _popupText, value);
+    }
     public ICommand SaveCommand { get; set; }
     public SwitchTagViewModel()
     {
@@ -28,8 +36,19 @@ namespace IslandLanding.ViewModel
 
     private void SaveCommandExcute(object obj)
     {
-      Preferences.Set("userTag", UserTag);
-      App.Current.MainPage.Navigation.PopAsync();
+      if (!string.IsNullOrEmpty(UserTag))
+      {
+        Preferences.Set("userTag", UserTag);
+        App.Current.MainPage.Navigation.PopAsync();
+      }
+      else
+      {
+        PopupText = "Gamer tag cannot be empty";
+        var dialog = new SimplePopupTemplate();
+        dialog.BindingContext = this;
+        PopupNavigation.Instance.PushAsync(dialog);
+      }
+    
     }
 
     private void BackCommandExcute(object obj)

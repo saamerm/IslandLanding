@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              x:Class="IslandLanding.Views.InfoPage"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviours="clr-namespace:IslandLanding.Behaviours"
+             x:Class="IslandLanding.Views.InfoPage"
               NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-    <Grid RowDefinitions="auto,auto,auto,auto">
-      <Image Source="background" Grid.RowSpan="4" Opacity="0.3"
+    <Grid RowDefinitions="auto,auto,auto">
+      <Image Source="background" Grid.RowSpan="3" 
                   Aspect="Fill"/>
-      <Image Margin="30,45,0,0" Grid.Row="0"
+      <Image Margin="30,40,0,0" Grid.Row="0"
              HorizontalOptions="Start"
              HeightRequest="24"
              WidthRequest="24"
@@ -23,30 +23,48 @@
           <TapGestureRecognizer Command="{Binding BackCommand}"  NumberOfTapsRequired="1"/>
         </Image.GestureRecognizers>
       </Image>
-      <Label Grid.Row="1" Margin="0,-25,0,0"
+      <Switch   Margin="30,40,30,0"
+                Grid.Row="0"
+                IsToggled="{Binding IsPlaying}"
+                ThumbColor="White"
+                OnColor="{StaticResource orange}"
+                VerticalOptions="Center"
+                HorizontalOptions="End">
+        <Switch.Behaviors>
+          <behaviours:SwitchBehaviour Command="{Binding PlayCommand}"
+                                      EventName="Toggled"/>
+        </Switch.Behaviors>
+      </Switch>
+      <Label Grid.Row="1" Margin="0,-10,0,0"
              HorizontalOptions="Center"
              VerticalOptions="Center"
              TextColor="White"
-             Text="Game rules"
+             Text="Instructions"
              FontSize="60"
              FontFamily="PatrickFont"/>
-      <Label Grid.Row="2"
-             Margin="30,-10,30,0"
+      <ScrollView Grid.Row="2" Margin="0,-10,0,0">
+        <Grid RowDefinitions="auto,auto">
+         
+          <Label Grid.Row="0"
+             Margin="30,0,30,0"
              Text="{Binding Rules}"
              TextColor="White"
              FontSize="20"
              FontFamily="PatrickFont"/>
-      <Label Grid.Row="3"
-             Margin="30,0"
+          <Label Grid.Row="1"
+             Margin="30,0,30,0"
              Text="Check us out here!"
              TextDecorations="Underline"
              TextColor="White"
              FontSize="20"
              FontFamily="PatrickFont">
-        <Label.GestureRecognizers>
-          <TapGestureRecognizer Command="{Binding CheckusCommand}"/>
-        </Label.GestureRecognizers>
-      </Label>
+            <Label.GestureRecognizers>
+              <TapGestureRecognizer Command="{Binding CheckusCommand}"/>
+            </Label.GestureRecognizers>
+          </Label>
+        </Grid>
+      </ScrollView>
+    
 
     </Grid>
   </ContentPage.Content>

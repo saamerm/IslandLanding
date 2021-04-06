@@ -17,12 +17,18 @@ namespace IslandLanding.ViewModel
     public ICommand MainCommand { get; set; }
     public ICommand TryAginCommand { get; set; }
     public string UserTag { get; set; }
+    public string TooLateText { get; set; }
     public LoseViewModel(GameModel game)
     {
       IsLosing = true;
       MainCommand = new Command(MainCommandExcute);
       TryAginCommand = new Command(TryAginCommandExcute);
-      GameModel = game;
+      GameModel = new GameModel
+      {
+        MainTime = game.MainTime,
+        TakenTime = Math.Abs(game.TakenTime)
+      };
+      TooLateText = (GameModel.TakenTime > 0) ? " seconds too early" : " seconds too late";
       UserTag = Preferences.Get("userTag", "");
       Device.StartTimer(new TimeSpan(0, 0, 4), () =>
       {

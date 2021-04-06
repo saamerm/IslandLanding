@@ -92,7 +92,7 @@ namespace IslandLanding.ViewModel
       ShowText = "Your average is ";
       var diffTimeListJson = Preferences.Get("listOfTimeAsJson", "");
       var DiffList = JsonConvert.DeserializeObject<List<double>>(diffTimeListJson);
-      AverageTime = Math.Abs(DiffList.Sum() / DiffList.Count);
+      AverageTime =Math.Round(Math.Abs(DiffList.Sum() / DiffList.Count),2);
       ShowAverageTime = AverageTime + " seconds";
       if (Preferences.ContainsKey("playerScore"))
       {
@@ -143,6 +143,8 @@ namespace IslandLanding.ViewModel
       catch(Exception ex)
       {
         IsBusy = false;
+        ShowText = "Play again to sharpen your brain";
+        ShowAverageTime = "";
         Crashes.TrackError(ex);
       }
       finally
@@ -217,36 +219,7 @@ namespace IslandLanding.ViewModel
         IsCompleted = true,
         BackgroundColor = Color.FromHex("#C5C5C5")
       });
-      DotsList.Add(new LevelsModel
-      {
-        LevelNumber = "6",
-        IsCompleted = true,
-        BackgroundColor = Color.FromHex("#C5C5C5")
-      });
-      DotsList.Add(new LevelsModel
-      {
-        LevelNumber = "7",
-        IsCompleted = true,
-        BackgroundColor = Color.FromHex("#C5C5C5")
-      });
-      DotsList.Add(new LevelsModel
-      {
-        LevelNumber = "8",
-        IsCompleted = true,
-        BackgroundColor = Color.FromHex("#C5C5C5")
-      });
-      DotsList.Add(new LevelsModel
-      {
-        LevelNumber = "9",
-        IsCompleted = true,
-        BackgroundColor = Color.FromHex("#C5C5C5")
-      });
-      DotsList.Add(new LevelsModel
-      {
-        LevelNumber = "10",
-        IsCompleted = true,
-        BackgroundColor = Color.FromHex("#C5C5C5")
-      });
+ 
     }
   }
 }
