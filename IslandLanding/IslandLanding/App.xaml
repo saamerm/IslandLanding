@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:converters="clr-namespace:IslandLanding.Converters"
              x:Class="IslandLanding.App">
     <Application.Resources>
     <ResourceDictionary>
@@ -9,6 +9,7 @@
       <Color x:Key="bordercolor">#4F3824</Color>
       <Color x:Key="orange">#E8A24F</Color>
       <Color x:Key="orangeLabel">#DDB967</Color>
+      <converters:ImageConverter x:Key="ImageConverter" />
     </ResourceDictionary>
     </Application.Resources>
 </Application>

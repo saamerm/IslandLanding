@@ -30,7 +30,7 @@ namespace IslandLanding.ViewModel
       {
         Seconds = GameModel.MainTime + "  seconds, you barely missed the sharks!";
       }
-      else if (GameModel.TakenTime < 0.1 || GameModel.TakenTime > -0.1)
+      else if (GameModel.TakenTime <= 0.1 || GameModel.TakenTime >= -0.1)
       {
         Seconds = GameModel.MainTime + " seconds, your accuracy is amazing, you must be a skydiver!";
       }

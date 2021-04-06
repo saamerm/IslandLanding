@@ -29,10 +29,10 @@ namespace IslandLanding.ViewModel
     public GamerTagViewModel()
     {
       SaveCommand = new Command(SaveCommandExcute);
+      InfoViewModel.Play();
       PageTitle = "GamerTag Page";
       Analytics.TrackEvent("Page", new Dictionary<string, string> { { "Value", PageTitle } });
     }
-
     private void SaveCommandExcute(object obj)
     {
       if (!string.IsNullOrEmpty(UserTag))

@@ -2,6 +2,8 @@
 using Microsoft.AppCenter.Analytics;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -21,6 +23,7 @@ namespace IslandLanding.ViewModel
     public ICommand PlayCommand { get; set; }
     public ICommand CheckusCommand { get; set; }
     public bool IsPlaying { get; set; }
+    public string PauseImage { get; set; }
     public InfoViewModel()
     {
       CheckusCommand = new Command(CheckusCommandExcute);
@@ -37,23 +40,25 @@ This game is developed by The First Prototype. We specialize in UI design and Mo
       if (Preferences.ContainsKey("playMusic"))
       {
         IsPlaying = Preferences.Get("playMusic", false);
+        PauseImage = "volume_up_24px.png";
       }
       else
         IsPlaying = false;
-
+        PauseImage = "volume_off_24px.png";
     }
 
     private  async void PlayCommandExcute(object obj)
     {
-      var playMusic = obj as Switch;
-      if (playMusic.IsToggled)
+      if (!IsPlaying)
       {
         Preferences.Set("playMusic", true);
+        PauseImage = "volume_up_24px.png";
         IsPlaying = true;
         Play();
       }
       else
       {
+        PauseImage = "volume_off_24px.png";
         IsPlaying = false;
         Preferences.Set("playMusic", false);
         await CrossMediaManager.Current.Stop();
@@ -71,11 +76,10 @@ This game is developed by The First Prototype. We specialize in UI design and Mo
         // An unexpected error occured. No browser may be installed on the device.
       }
     }
-    private async void Play()
+    public static async void Play()
     {
-      await CrossMediaManager.Current.Play("https://ia800806.us.archive.org/15/items/Mp3Playlist_555/AaronNeville-CrazyLove.mp3");
-     // await mediaInfo.Play("https://drive.google.com/file/d/1MSnVohtx-GfvzJJSYycuOq8y22q4o42h/view");
-     // this link not work 
+      var audio =  CrossMediaManager.Current;
+      await audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
     }
     private void BackCommandExcute(object obj)
     {

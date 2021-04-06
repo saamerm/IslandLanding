@@ -20,6 +20,7 @@
     <None Remove="Fonts\PatrickHand-Regular.ttf" />
     <None Remove="Resources\lake.json" />
     <None Remove="Resources\lake2.json" />
+    <None Remove="Resources\music.mp3" />
     <None Remove="Resources\parachut.json" />
     <None Remove="Resources\win.json" />
   </ItemGroup>
@@ -30,6 +31,7 @@
     <EmbeddedResource Include="Fonts\PatrickHand-Regular.ttf" />
     <EmbeddedResource Include="Resources\lake.json" />
     <EmbeddedResource Include="Resources\lake2.json" />
+    <EmbeddedResource Include="Resources\music.mp3" />
     <EmbeddedResource Include="Resources\parachut.json" />
     <EmbeddedResource Include="Resources\win.json" />
   </ItemGroup>
