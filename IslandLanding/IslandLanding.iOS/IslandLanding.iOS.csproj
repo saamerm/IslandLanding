@@ -177,6 +177,24 @@
   <ItemGroup>
     <BundleResource Include="Resources\background.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\volume_off_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\volume_off_24px%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\volume_off_24px%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\volume_up_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\volume_up_24px%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\volume_up_24px%403x.png" />
+  </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
       <UserProperties TriggeredFromHotReload="False" />
