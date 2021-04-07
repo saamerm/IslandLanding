@@ -1,5 +1,6 @@
 ﻿using IslandLanding.Communication.Services;
 using IslandLanding.Views;
+using MediaManager;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Rg.Plugins.Popup.Services;
@@ -20,12 +21,16 @@ namespace IslandLanding.ViewModel
     public ICommand LeaderBoardCommand { get; set; }
     public ICommand StartCommand { get; set; }
     public ICommand InfoCommand { get; set; }
+    public ICommand PlayCommand { get; set; }
+    public bool IsPlaying { get; set; }
+    public string ButtonText { get; set; }
     public HomeViewModel()
     {
       ProfileCommand = new Command(ProfileCommandExcute);
       LeaderBoardCommand = new Command(LeaderBoardCommandExcute);
       StartCommand = new Command(StartCommandExcute);
       InfoCommand = new Command(InfoCommandExcute);
+      PlayCommand = new Command(PlayCommandExcute);
       GetApiUrl();
       Notify();
       if (Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopupStack.Any())
@@ -33,8 +38,29 @@ namespace IslandLanding.ViewModel
         PopupNavigation.Instance.PopAsync();
       }
       PageTitle = "HomePage";
+      ButtonText = "MUSIC: ON";
       Analytics.TrackEvent(PageTitle);
     }
+
+    private async void PlayCommandExcute(object obj)
+    {
+      if (!IsPlaying)
+      {
+        Preferences.Set("playMusic", true);
+        IsPlaying = true;
+        var audio = CrossMediaManager.Current;
+        ButtonText = "MUSIC: ON";
+        await audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
+      }
+      else
+      {
+        IsPlaying = false;
+        ButtonText = "MUSIC: OFF";
+        Preferences.Set("playMusic", false);
+        await CrossMediaManager.Current.Stop();
+      }
+    }
+
     private void Notify()
     {
       if (!Preferences.Get("firstTime", false))

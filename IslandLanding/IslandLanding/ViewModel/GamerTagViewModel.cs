@@ -32,7 +32,6 @@ namespace IslandLanding.ViewModel
       PageTitle = "GamerTag Page";
       Analytics.TrackEvent("Page", new Dictionary<string, string> { { "Value", PageTitle } });
     }
-
     private void SaveCommandExcute(object obj)
     {
       if (!string.IsNullOrEmpty(UserTag))
