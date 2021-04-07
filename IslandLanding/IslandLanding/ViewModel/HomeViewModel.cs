@@ -38,7 +38,16 @@ namespace IslandLanding.ViewModel
         PopupNavigation.Instance.PopAsync();
       }
       PageTitle = "HomePage";
-      ButtonText = "MUSIC: ON";
+      if (Preferences.ContainsKey("playMusic"))
+      {
+        IsPlaying = Preferences.Get("playMusic", false);
+        ButtonText =(IsPlaying)? "Music: On": "Music: Off";
+      }
+      else
+      {
+        IsPlaying = false;
+        ButtonText = "Music: Off";
+      }
       Analytics.TrackEvent(PageTitle);
     }
 
@@ -49,13 +58,13 @@ namespace IslandLanding.ViewModel
         Preferences.Set("playMusic", true);
         IsPlaying = true;
         var audio = CrossMediaManager.Current;
-        ButtonText = "MUSIC: ON";
+        ButtonText = "Music: On";
         await audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
       }
       else
       {
         IsPlaying = false;
-        ButtonText = "MUSIC: OFF";
+        ButtonText = "Music: Off";
         Preferences.Set("playMusic", false);
         await CrossMediaManager.Current.Stop();
       }

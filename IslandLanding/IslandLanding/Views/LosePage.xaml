@@ -5,7 +5,8 @@
              xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms" 
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="IslandLanding.Views.LosePage"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#242424">
 
   <ContentPage.Resources>
     <ResourceDictionary>

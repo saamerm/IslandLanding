@@ -6,7 +6,8 @@
              xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
              xmlns:form="clr-namespace:Particle.Forms;assembly=Particle.Forms"
              NavigationPage.HasNavigationBar="False"
-             x:Class="IslandLanding.Views.WinPage">
+             x:Class="IslandLanding.Views.WinPage"
+             BackgroundColor="#242424">
   <ContentPage.Resources>
     <ResourceDictionary>
       <conv:InverseBoolConverter x:Key="InverseBool"/>

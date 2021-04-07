@@ -4,6 +4,7 @@
              xmlns:controls="clr-namespace:IslandLanding.Controls"
              x:Class="IslandLanding.Views.GamerTagPage"
              NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#242424"
              >
     <ContentPage.Content>
     <Grid>

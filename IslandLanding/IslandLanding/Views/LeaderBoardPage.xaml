@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IslandLanding.Views.LeaderBoardPage"
              NavigationPage.HasNavigationBar="False"
-             xmlns:tabs="clr-namespace:Sharpnado.Tabs;assembly=Sharpnado.Tabs" xmlns:behaviors="clr-namespace:IslandLanding.Behaviours">
+             xmlns:tabs="clr-namespace:Sharpnado.Tabs;assembly=Sharpnado.Tabs"
+             xmlns:behaviors="clr-namespace:IslandLanding.Behaviours"
+             BackgroundColor="#242424">
   <ContentPage.Content>
     <Grid RowDefinitions="0.1*,0.1*,0.8*">
       <Image Source="background" Grid.RowSpan="3" 

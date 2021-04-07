@@ -5,6 +5,7 @@
              x:Class="IslandLanding.Views.SwitchUserAccountPage"
               NavigationPage.HasNavigationBar="False"
              NavigationPage.HasBackButton="False"
+             BackgroundColor="#242424"
              >
   <ContentPage.Content>
     <Grid RowDefinitions="auto,auto">

@@ -37,14 +37,18 @@ This game is developed by The First Prototype. We specialize in UI design and Mo
 
       PageTitle = "Info Page";
       Analytics.TrackEvent("Page", new Dictionary<string, string> { { "Value", PageTitle } });
+      // will make it message center to retreiive data and check 
       if (Preferences.ContainsKey("playMusic"))
       {
         IsPlaying = Preferences.Get("playMusic", false);
         PauseImage = "volume_up_24px.png";
       }
       else
+      {
         IsPlaying = false;
         PauseImage = "volume_off_24px.png";
+      }
+        
     }
 
     private  async void PlayCommandExcute(object obj)

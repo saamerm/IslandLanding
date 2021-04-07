@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IslandLanding.Views.GamePage"
-            NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#242424"
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms" 
              xmlns:conv="clr-namespace:IslandLanding.Converters">
