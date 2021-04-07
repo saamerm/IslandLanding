@@ -38,7 +38,7 @@ namespace IslandLanding.ViewModel
         PopupNavigation.Instance.PopAsync();
       }
       PageTitle = "HomePage";
-      ButtonText = "Sound on";
+      ButtonText = "MUSIC: ON";
       Analytics.TrackEvent(PageTitle);
     }
 
