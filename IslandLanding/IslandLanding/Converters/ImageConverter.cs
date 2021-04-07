@@ -13,17 +13,11 @@ namespace IslandLanding.Converters
     {
       string ButtonImage = "volume_off_24px.png";
 
-      if (value is string)
+      if (value is string && !string.IsNullOrEmpty((string)value))
       {
-        var imageValue = (string)value;
-        if (!string.IsNullOrEmpty(imageValue))
-        {
-          ButtonImage = imageValue;
-        }
+        ButtonImage = (string)value;
       }
-
       return ButtonImage;
-
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

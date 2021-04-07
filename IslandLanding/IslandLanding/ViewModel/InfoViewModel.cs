@@ -76,7 +76,7 @@ This game is developed by The First Prototype. We specialize in UI design and Mo
         // An unexpected error occured. No browser may be installed on the device.
       }
     }
-    public static async void Play()
+    public  async void Play()
     {
       var audio =  CrossMediaManager.Current;
       await audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);

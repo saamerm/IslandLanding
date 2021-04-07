@@ -91,7 +91,20 @@
              Command="{Binding LeaderBoardCommand}"
               />
 
-
+        <Button 
+              WidthRequest="300"
+              Text="{Binding ButtonText}"
+              Margin="40,10,40,0"
+              TextColor="White"
+              BorderColor="{StaticResource bordercolor}"
+              BorderWidth="2" 
+              HeightRequest="60"
+              CornerRadius="30"
+              FontSize="20"
+              FontFamily="PatrickFont"
+              BackgroundColor="{StaticResource orange}"
+             Command="{Binding PlayCommand}"
+              />
       </StackLayout>
       <StackLayout Grid.RowSpan="3" IsVisible="{Binding IsBusy}"
              Margin="0,300,0,0" >
