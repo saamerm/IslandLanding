@@ -49,13 +49,13 @@ namespace IslandLanding.ViewModel
         Preferences.Set("playMusic", true);
         IsPlaying = true;
         var audio = CrossMediaManager.Current;
-        ButtonText = "Sound on";
+        ButtonText = "MUSIC: ON";
         await audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
       }
       else
       {
         IsPlaying = false;
-        ButtonText = "Sound off";
+        ButtonText = "MUSIC: OFF";
         Preferences.Set("playMusic", false);
         await CrossMediaManager.Current.Stop();
       }
