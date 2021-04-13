@@ -27,8 +27,7 @@
       <Image Source="background" Grid.RowSpan="3" 
                   Aspect="Fill"/>
       <Label
-             Grid.Row="0"
-             IsVisible="{Binding IsWinning}"
+             Grid.Row="0" x:Name="winText"
              HorizontalOptions="Center"
              VerticalOptions="Center"
              TextColor="White"
@@ -45,8 +44,7 @@
           </FormattedString>
         </Label.FormattedText>
       </Label>
-      <pancake:PancakeView Grid.Row="1"
-                           IsVisible="{Binding IsWinning}"
+      <pancake:PancakeView Grid.Row="1" x:Name="winParachut"
                            HorizontalOptions="Center"
                            VerticalOptions="Center">
         <forms:AnimationView
@@ -57,17 +55,15 @@
           WidthRequest="257"
           RepeatMode="Infinite"/>
       </pancake:PancakeView>
-      <Label Text="CONGRATULATIONS "
+      <Label Text="CONGRATULATIONS " x:Name="congratulationsText"
               Grid.Row="0"
-           IsVisible="{Binding IsWinning,Converter={StaticResource InverseBool}}"
               Margin="0,100,0,0"
              TextColor="{StaticResource orange}"
              FontSize="40"
              VerticalTextAlignment="Center"
              HorizontalTextAlignment="Center"
              FontFamily="PatrickFont"/>
-      <StackLayout  Grid.Row="0"
-           IsVisible="{Binding IsWinning,Converter={StaticResource InverseBool}}"
+      <StackLayout  Grid.Row="0" x:Name="WinTextStack"
               Margin="40,250,40,0"
              HorizontalOptions="Center"
              VerticalOptions="Center">
@@ -92,7 +88,7 @@
       <!--dots for levels-->
       <StackLayout Orientation="Horizontal"
             VerticalOptions="Center" 
-            IsVisible="{Binding IsWinning}"
+            x:Name="dots"
               Grid.Row="2"
                  Margin="0,0,0,100"
             HorizontalOptions="Center"
@@ -123,7 +119,7 @@
                             HorizontalOptions="FillAndExpand"
                             ParticleColors="{StaticResource ConfettiColors}" />
       <StackLayout  Margin="40,70,40,0" 
-                     IsVisible="{Binding IsWinning,Converter={StaticResource InverseBool}}"
+                    x:Name="winButtonsStack"
                     Grid.Row="1">
         <Button 
               WidthRequest="300"

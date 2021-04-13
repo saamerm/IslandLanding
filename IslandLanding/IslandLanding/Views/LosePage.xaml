@@ -18,8 +18,8 @@
       <Image Source="background" Grid.RowSpan="4" 
                   Aspect="Fill"/>
       <Label 
-             Grid.Row="0" 
-             IsVisible="{Binding IsLosing}"
+             Grid.Row="0" x:Name="loseText"
+            
              HorizontalOptions="Center"
              VerticalOptions="Center"
              TextColor="White"
@@ -37,9 +37,9 @@
           </FormattedString>
         </Label.FormattedText>
       </Label>
-      <pancake:PancakeView Grid.Row="1"
+      <pancake:PancakeView Grid.Row="1"  x:Name="parachut"
                          Margin="0,50,0,0"
-                           IsVisible="{Binding IsLosing}" Grid.RowSpan="2"
+                         Grid.RowSpan="2"
                            HorizontalOptions="Center"
                            VerticalOptions="Center" >
         <forms:AnimationView
@@ -53,11 +53,11 @@
       </pancake:PancakeView>
       <!--the other view for lose page -->
       
-        <forms:AnimationView  Grid.Row="3" 
+        <forms:AnimationView  Grid.Row="3" x:Name="lake"
           Animation="Resources.lake.json" 
           AnimationSource="EmbeddedResource" 
           AutoPlay="True"  
-          IsVisible="{Binding IsLosing,Converter={StaticResource InverseBool}}"
+         
           VerticalOptions="FillAndExpand"
           HorizontalOptions="FillAndExpand"
           RepeatMode="Infinite"
@@ -65,8 +65,8 @@
     
      
      
-      <StackLayout  Grid.Row="0" 
-             IsVisible="{Binding IsLosing,Converter={StaticResource InverseBool}}"
+      <StackLayout  Grid.Row="0" x:Name="textStack"
+            
               Margin="{OnPlatform iOS='40,130,40,0',Android='40,130,40,0'}"
              HorizontalOptions="Center"
              VerticalOptions="Center">
@@ -97,7 +97,8 @@
           </Label.FormattedText>
         </Label>
       </StackLayout>
-      <StackLayout Grid.Row="3"  IsVisible="{Binding IsLosing,Converter={StaticResource InverseBool}}">
+      <StackLayout Grid.Row="3" x:Name="buttonsStack"
+                   IsVisible="{Binding IsLosing,Converter={StaticResource InverseBool}}">
         <Button 
               WidthRequest="300"
               Text="Main Menu" Margin="{OnPlatform iOS='40,0,40,0', Android='40,-45,40,0'}"

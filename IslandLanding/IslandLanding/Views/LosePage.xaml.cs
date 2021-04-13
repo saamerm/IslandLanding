@@ -18,6 +18,23 @@ namespace IslandLanding.Views
     {
       InitializeComponent();
       BindingContext = new LoseViewModel(game);
+      Animation();
+
+    }
+    private async void Animation()
+    {
+      loseText.Opacity = 1;
+      parachut.Opacity = 1;
+      lake.Opacity = 0;
+      buttonsStack.Opacity = 0;
+      textStack.Opacity = 0;
+      await loseText.FadeTo(0, 4000);
+      await parachut.FadeTo(0, 4000);
+      await textStack.FadeTo(1, 4000);
+      await buttonsStack.FadeTo(1, 4000);
+      await lake.FadeTo(1, 2000);
+    
+     
     }
   }
 }
