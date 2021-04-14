@@ -32,29 +32,42 @@
           <TapGestureRecognizer Command="{Binding BackCommand}"  NumberOfTapsRequired="1"/>
         </Image.GestureRecognizers>
       </Image>
-      <Image Grid.Row="0"
-             Margin="0,27,24,0"
-             HorizontalOptions="End"
+      <StackLayout Orientation="Horizontal"
+                   Grid.Row="0"
+                  Margin="0,27,24,0"
+                   HorizontalOptions="End">
+        <Image  
+               Source="{Binding PauseImage,Converter={StaticResource ImageConverter}}"
+                VerticalOptions="Center"
+                HorizontalOptions="End">
+          <Image.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding PlayCommand}"/>
+          </Image.GestureRecognizers>
+        </Image>
+        <Image 
+             
              VerticalOptions="Center"
              HeightRequest="20"
              WidthRequest="20"
             >
-        <Image.Source>
-          <FontImageSource Color="{StaticResource orange}"
+          <Image.Source>
+            <FontImageSource Color="{StaticResource orange}"
                                              FontFamily="FontAwesome5Solid"
                                              Glyph="&#xf01e;"/>
-        </Image.Source>
-        <Image.GestureRecognizers>
-          <TapGestureRecognizer Command="{Binding RestartCommand}" NumberOfTapsRequired="1"/>
-        </Image.GestureRecognizers>
-      </Image>
+          </Image.Source>
+          <Image.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding RestartCommand}" NumberOfTapsRequired="1"/>
+          </Image.GestureRecognizers>
+        </Image>
+      </StackLayout>
+     
       <Label 
              Grid.Row="1"
              HorizontalOptions="Center"
              VerticalOptions="Center"
              TextColor="White"
              FontSize="30"
-             Margin="0,30,0,0"
+             Margin="0,70,0,0"
              FontFamily="PatrickFont">
         <Label.FormattedText>
           <FormattedString>
@@ -69,8 +82,10 @@
              VerticalOptions="Center"
              TextColor="White"
              FontFamily="PatrickFont"
-             FontSize="28"
-             Margin="0,30,0,0">
+             FontSize="30"
+             VerticalTextAlignment="Center"
+             HorizontalTextAlignment="Center"
+             Margin="30,30,30,0">
         <Label.FormattedText>
           <FormattedString>
             <Span Text="Launch the parachute in " />
@@ -92,7 +107,7 @@
               FontSize="40"
               TextColor="White"
               FontFamily="PatrickFont"
-              Margin="0,70,0,0"
+              Margin="0,95,0,0"
               Command="{Binding ReadyCommand}"/>
       <!-- Game Start-->
       <Label 

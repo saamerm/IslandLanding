@@ -21,20 +21,29 @@ namespace IslandLanding.Views
       Animation();
 
     }
-    private async void Animation()
+    private  void Animation()
     {
       loseText.Opacity = 1;
-      parachut.Opacity = 1;
+     // parachut.Opacity = 1;
+      loseGameText.Opacity = 0;
       lake.Opacity = 0;
       buttonsStack.Opacity = 0;
       textStack.Opacity = 0;
-      await loseText.FadeTo(0, 4000);
-      await parachut.FadeTo(0, 4000);
-      await textStack.FadeTo(1, 4000);
-      await buttonsStack.FadeTo(1, 4000);
-      await lake.FadeTo(1, 2000);
-    
-     
+      Device.StartTimer(new TimeSpan(0, 0, 3), () =>
+         {
+           Fading();
+           return false;
+         });
+    }
+    private async void Fading()
+    {
+      var x= loseText.FadeTo(0, 2000);
+     // var x1= parachut.FadeTo(0, 2000);
+      var x2= loseGameText.FadeTo(1, 2000);
+      var x3= textStack.FadeTo(1, 2000);
+      var x4= buttonsStack.FadeTo(1, 2000);
+      var x5= lake.FadeTo(1, 2000);
+      await Task.WhenAll(x,x2,x3,x4,x5);
     }
   }
 }

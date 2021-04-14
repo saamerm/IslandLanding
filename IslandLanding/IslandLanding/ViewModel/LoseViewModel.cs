@@ -18,6 +18,7 @@ namespace IslandLanding.ViewModel
     public ICommand TryAginCommand { get; set; }
     public string UserTag { get; set; }
     public string TooLateText { get; set; }
+    public string FinalLoseText { get; set; }
     public LoseViewModel(GameModel game)
     {
       IsLosing = true;
@@ -37,6 +38,7 @@ namespace IslandLanding.ViewModel
       });
       PageTitle = "LoosePage";
       Analytics.TrackEvent("Page", new Dictionary<string, string> { { "Value", PageTitle } });
+      FinalLoseText = "It took you " + GameModel.MainTime + " seconds, which is " + GameModel.TakenTime + TooLateText;
     }
 
     private void TryAginCommandExcute(object obj)
