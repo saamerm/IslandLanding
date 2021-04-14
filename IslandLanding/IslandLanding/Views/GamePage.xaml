@@ -69,11 +69,13 @@
              VerticalOptions="Center"
              TextColor="White"
              FontFamily="PatrickFont"
+             FontSize="28"
              Margin="0,30,0,0">
         <Label.FormattedText>
           <FormattedString>
-            <Span Text="{Binding LevelTime}" FontSize="64"/>
-            <Span Text=" seconds"  FontSize="30"/>
+            <Span Text="Launch the parachute in " />
+            <Span Text="{Binding LevelTime}" />
+            <Span Text=" seconds"/>
           </FormattedString>
         </Label.FormattedText>
       </Label>
@@ -93,7 +95,7 @@
               Margin="0,70,0,0"
               Command="{Binding ReadyCommand}"/>
       <!-- Game Start-->
-      <Label Text="Focus on the time"
+      <Label 
              IsVisible="{Binding IsStarting}"
              Grid.Row="2"
              HorizontalOptions="Center"
@@ -101,8 +103,18 @@
              FontSize="30"
               FontFamily="PatrickFont"
              TextColor="White"
+        HorizontalTextAlignment="Center"
+        VerticalTextAlignment="Center"
              Margin="0,30,0,0"
-             />
+             >
+        <Label.FormattedText>
+          <FormattedString>
+            <Span Text="Count for "/>
+            <Span Text="{Binding LevelTime}"/>
+            <Span Text=" seconds in mind and launch parachute"/>
+          </FormattedString>
+        </Label.FormattedText>
+      </Label>
       <!--this will appeaer when press on button  parachut-->
       <pancake:PancakeView Grid.Row="3"
                            

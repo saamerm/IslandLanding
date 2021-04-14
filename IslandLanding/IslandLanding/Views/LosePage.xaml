@@ -72,7 +72,6 @@
              VerticalOptions="Center">
         <Label   
         Grid.Row="0" 
-           IsVisible="{Binding IsLosing,Converter={StaticResource InverseBool}}"
         Text="You lost the game"
              TextColor="White"
              FontSize="40"
@@ -98,7 +97,7 @@
         </Label>
       </StackLayout>
       <StackLayout Grid.Row="3" x:Name="buttonsStack"
-                   IsVisible="{Binding IsLosing,Converter={StaticResource InverseBool}}">
+                 >
         <Button 
               WidthRequest="300"
               Text="Main Menu" Margin="{OnPlatform iOS='40,0,40,0', Android='40,-45,40,0'}"
