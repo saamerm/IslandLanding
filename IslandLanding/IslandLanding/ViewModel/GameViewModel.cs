@@ -79,14 +79,8 @@ namespace IslandLanding.ViewModel
       if (Preferences.ContainsKey("playMusic"))
       {
         IsPlaying = Preferences.Get("playMusic", false);
-        PauseImage = "volume_up_24px.png";
+        PauseImage =(IsPlaying)? "volume_up_24px.png" : "volume_off_24px.png";
       }
-      else
-      {
-        IsPlaying = false;
-        PauseImage = "volume_off_24px.png";
-      }
-
     }
 
     private async void PlayCommandExcute(object obj)

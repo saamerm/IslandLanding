@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace IslandLanding.ViewModel
@@ -26,6 +27,8 @@ namespace IslandLanding.ViewModel
     private void YesCommandExcute(object obj)
     {
       //throw new NotImplementedException();
+      var isPlaying = Preferences.Get("playMusic", false);
+      MessagingCenter.Send<ExitPopupViewModel, bool>(this, "isPlaying", isPlaying);
       App.Current.MainPage.Navigation.PopToRootAsync();
       PopupNavigation.Instance.PopAsync();
     }
