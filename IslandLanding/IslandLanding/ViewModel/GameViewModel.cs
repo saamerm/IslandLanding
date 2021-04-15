@@ -57,8 +57,10 @@ namespace IslandLanding.ViewModel
         }
       });
       //this part for check level and add level time according to choosen difficulity
+      var x = Preferences.Get("levelNumber", 1);
       if ((Preferences.Get("levelNumber", 1) == 1))
       {
+        LevelNumber = 1;
         var difficulitylevel = Preferences.Get("difficulty", Difficulty.Easy.ToString());
         if (difficulitylevel== (Difficulty.Easy.ToString()))
         {
@@ -72,7 +74,7 @@ namespace IslandLanding.ViewModel
         {
           LevelTime = 15;
         }
-        LevelNumber = 1;
+     
       }
       PageTitle = "GamePage";
       Analytics.TrackEvent("Page", new Dictionary<string, string> { { "Value", PageTitle } });

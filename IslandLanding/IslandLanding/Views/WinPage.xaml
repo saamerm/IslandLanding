@@ -36,14 +36,9 @@
              HorizontalTextAlignment="Center"
              Margin="40,140,40,0"
              WidthRequest="313"
-             FontFamily="PatrickFont">
-        <Label.FormattedText>
-          <FormattedString>
-            <Span Text="{Binding UserTag}"/>
-            <Span Text=", you have successfully landed on the island!"/>
-          </FormattedString>
-        </Label.FormattedText>
-      </Label>
+             FontFamily="PatrickFont"
+        Text="{Binding WinText}"/>
+
       <pancake:PancakeView Grid.Row="1" x:Name="winParachut"
                            HorizontalOptions="Center"
                            VerticalOptions="Center">
@@ -123,8 +118,7 @@
                     Grid.Row="1">
         <Button 
               WidthRequest="300"
-              Text="Main Menu"
-             
+               Text="Try Again"
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"
               BorderWidth="2" 
@@ -133,11 +127,12 @@
               BackgroundColor="{StaticResource orange}"
              FontFamily="PatrickFont"
              FontSize="20"
-            Command="{Binding MainCommand}"
+           Command="{Binding TryAginCommand}"
+     
               />
         <Button 
               WidthRequest="300"
-              Text="Try Again"
+              Text="Main Menu"
               Margin="0,10,0,0"
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"
@@ -147,7 +142,7 @@
               FontSize="20"
               FontFamily="PatrickFont"
               BackgroundColor="{StaticResource orange}"
-              Command="{Binding TryAginCommand}"
+               Command="{Binding MainCommand}"
               />
       </StackLayout>
 

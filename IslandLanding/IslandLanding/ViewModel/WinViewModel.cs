@@ -32,6 +32,7 @@ namespace IslandLanding.ViewModel
     public ICommand TryAginCommand { get; set; }
     public ICommand YesCommand { get; set; }
     public ICommand NoCommand { get; set; }
+    public string WinText { get; set; }
     public ObservableCollection<LevelsModel> DotsList { get; set; }
     public int NumberOfVisit { get; set; }
     public WinViewModel()
@@ -60,7 +61,8 @@ namespace IslandLanding.ViewModel
         NumberOfVisit = 1;
       }
       DrawLevels();
-     
+      WinText = UserTag + ", you have successfully landed on the island!";
+    
     }
     private void OpenAppReviewPopup()
     {
@@ -117,7 +119,13 @@ namespace IslandLanding.ViewModel
       {
         Preferences.Set("playerScore", AverageTime);
       }
-        PostScore();
+      Device.StartTimer(new TimeSpan(0, 0, 2), () =>
+         {
+           PostScore();
+           return false;
+
+         });
+      Preferences.Set("levelNumber", 1);
     }
     private async void PostScore()
     {

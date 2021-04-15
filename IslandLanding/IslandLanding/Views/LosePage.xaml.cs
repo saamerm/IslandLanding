@@ -37,13 +37,13 @@ namespace IslandLanding.Views
     }
     private async void Fading()
     {
-      var x= loseText.FadeTo(0, 2000);
+      var loseTextFade= loseText.FadeTo(0, 2000);
      // var x1= parachut.FadeTo(0, 2000);
-      var x2= loseGameText.FadeTo(1, 2000);
-      var x3= textStack.FadeTo(1, 2000);
-      var x4= buttonsStack.FadeTo(1, 2000);
-      var x5= lake.FadeTo(1, 2000);
-      await Task.WhenAll(x,x2,x3,x4,x5);
+      var loseGameTextFade= loseGameText.FadeTo(1, 2000);
+      var textStackFade= textStack.FadeTo(1, 2000);
+      var buttonsStackFade= buttonsStack.FadeTo(1, 2000);
+      var lakeFade= lake.FadeTo(1, 2000);
+      await Task.WhenAll(loseTextFade,loseGameTextFade,textStackFade,buttonsStackFade,lakeFade);
     }
   }
 }
