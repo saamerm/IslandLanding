@@ -147,11 +147,12 @@
           VerticalOptions="Center"
           HorizontalOptions="Center" />
       </pancake:PancakeView>
-      <Button Grid.Row="4"
+      <StackLayout Margin="0,40,0,0" Grid.Row="4">
+        <Button 
               IsVisible="{Binding IsStarting}"
               WidthRequest="300"
               Text="Launch Parachute"
-              Margin="40,40,40,0"
+              Margin="40,0,40,0"
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"
               BorderWidth="2" 
@@ -162,29 +163,29 @@
              FontSize="20"
            Command="{Binding LaunchCommand}"
               />
-      <!--dots for levels-->
-      <StackLayout Orientation="Horizontal"
-            VerticalOptions="Center" 
-              Grid.Row="5"
-                 Margin="0,60,0,0"
+        <!--dots for levels-->
+        <StackLayout Orientation="Horizontal"
             HorizontalOptions="Center"
+                     Margin="0,30,0,0"
             BindableLayout.ItemsSource="{Binding DotsList}">
-        <BindableLayout.ItemTemplate>
-          <DataTemplate>
-            <pancake:PancakeView  
+          <BindableLayout.ItemTemplate>
+            <DataTemplate>
+              <pancake:PancakeView  
                      CornerRadius="7"
                       WidthRequest="15"
                       HeightRequest="15"
                       BackgroundColor="{Binding BackgroundColor}"
                       HorizontalOptions="Start">
-              <pancake:PancakeView.Border>
-                <pancake:Border Color="White" Thickness="3"/>
-              </pancake:PancakeView.Border>
-            </pancake:PancakeView>
-          </DataTemplate>
-        </BindableLayout.ItemTemplate>
+                <pancake:PancakeView.Border>
+                  <pancake:Border Color="White" Thickness="3"/>
+                </pancake:PancakeView.Border>
+              </pancake:PancakeView>
+            </DataTemplate>
+          </BindableLayout.ItemTemplate>
+        </StackLayout>
       </StackLayout>
-      
+     
+
     </Grid>
   </ContentPage.Content>
 </ContentPage>

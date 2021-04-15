@@ -48,6 +48,10 @@ namespace IslandLanding.ViewModel
         IsPlaying = Preferences.Get("playMusic", false);
         ButtonText = (IsPlaying) ? "Music: On" : "Music: Off";
       }
+      else
+      {
+        ButtonText ="Music: Off";
+      }
 
       Analytics.TrackEvent(PageTitle);
     }
