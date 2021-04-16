@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
+using IslandLanding.Helper;
 
 namespace IslandLanding.ViewModel
 {
@@ -13,7 +14,12 @@ namespace IslandLanding.ViewModel
     public bool IsBusy{get;set;}
     public string PageTitle { get; set; }
     public event PropertyChangedEventHandler PropertyChanged;
-   
+
+    public BaseViewModel()
+    {
+        Analytics.TrackEvent("PageView: " + this.GetType().Name.Replace("ViewModel", string.Empty).SplitPascalCase());
+    }
+
     protected void NotifyAllPropertiesChanged()
     {
       NotifyPropertyChanged(null);
@@ -39,7 +45,5 @@ namespace IslandLanding.ViewModel
     {
       PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
-
-
   }
 }

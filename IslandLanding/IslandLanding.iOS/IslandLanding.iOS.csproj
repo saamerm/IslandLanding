@@ -51,6 +51,8 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>None</MtouchLink>
     <MtouchInterpreter>-all</MtouchInterpreter>
+    <MtouchFloat32>true</MtouchFloat32>
+    <OptimizePNGs>false</OptimizePNGs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -161,7 +163,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\IslandLanding\IslandLanding.csproj">
-      <Project>{21F074EC-F62B-4465-A902-FAB98C27E42F}</Project>
+      <Project>{34E9C666-F1CD-47A1-8AC2-D37A6960F70E}</Project>
       <Name>IslandLanding</Name>
     </ProjectReference>
   </ItemGroup>

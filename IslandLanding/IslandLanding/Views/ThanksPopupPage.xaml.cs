@@ -1,11 +1,5 @@
-﻿using Rg.Plugins.Popup.Pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿using IslandLanding.ViewModel;
+using Rg.Plugins.Popup.Pages;
 using Xamarin.Forms.Xaml;
 
 namespace IslandLanding.Views
@@ -16,6 +10,7 @@ namespace IslandLanding.Views
     public ThanksPopupPage()
     {
       InitializeComponent();
+      BindingContext = new EmptyPopupViewModel();
     }
   }
 }
