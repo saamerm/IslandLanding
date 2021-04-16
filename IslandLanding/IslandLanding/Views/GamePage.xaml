@@ -13,7 +13,7 @@
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.Content>
-    <Grid RowDefinitions="auto,auto,auto,auto,auto,auto">
+    <Grid RowDefinitions="auto,auto,auto,auto">
       <Image Source="background" Grid.RowSpan="7" Grid.Row="0"
             Aspect="AspectFill" />
       <Image Margin="30,27,0,0"
@@ -60,24 +60,24 @@
           </Image.GestureRecognizers>
         </Image>
       </StackLayout>
-     
-      <Label 
-             Grid.Row="1"
+      <StackLayout  Margin="0,50,0,0" Grid.Row="1">
+        <Label 
+             
              HorizontalOptions="Center"
              VerticalOptions="Center"
              TextColor="White"
              FontSize="30"
-             Margin="0,70,0,0"
+            
              FontFamily="PatrickFont">
-        <Label.FormattedText>
-          <FormattedString>
-            <Span Text="LEVEL "/>
-            <Span Text="{Binding LevelNumber}" />
-          </FormattedString>
-        </Label.FormattedText>
-      </Label>
-      <Label IsVisible="{Binding IsStarting,Converter={StaticResource InverseBool}}"
-             Grid.Row="2"
+          <Label.FormattedText>
+            <FormattedString>
+              <Span Text="LEVEL "/>
+              <Span Text="{Binding LevelNumber}" />
+            </FormattedString>
+          </Label.FormattedText>
+        </Label>
+        <Label IsVisible="{Binding IsStarting,Converter={StaticResource InverseBool}}"
+        
              HorizontalOptions="Center"
              VerticalOptions="Center"
              TextColor="White"
@@ -85,16 +85,16 @@
              FontSize="30"
              VerticalTextAlignment="Center"
              HorizontalTextAlignment="Center"
-             Margin="30,30,30,0">
-        <Label.FormattedText>
-          <FormattedString>
-            <Span Text="Launch the parachute in " />
-            <Span Text="{Binding LevelTime}" />
-            <Span Text=" seconds"/>
-          </FormattedString>
-        </Label.FormattedText>
-      </Label>
-      <Button Grid.Row="3" IsVisible="{Binding IsStarting,Converter={StaticResource InverseBool}}"
+             Margin="30,10,30,0">
+          <Label.FormattedText>
+            <FormattedString>
+              <Span Text="Launch the parachute in " />
+              <Span Text="{Binding LevelTime}" />
+              <Span Text=" seconds"/>
+            </FormattedString>
+          </Label.FormattedText>
+        </Label>
+        <Button  IsVisible="{Binding IsStarting,Converter={StaticResource InverseBool}}"
               BackgroundColor="{StaticResource orange}"
               HeightRequest="178"
               WidthRequest="178"
@@ -107,8 +107,11 @@
               FontSize="40"
               TextColor="White"
               FontFamily="PatrickFont"
-              Margin="0,95,0,0"
+              Margin="0,40,0,0"
               Command="{Binding ReadyCommand}"/>
+      </StackLayout>
+     
+     
       <!-- Game Start-->
       <Label 
              IsVisible="{Binding IsStarting}"
@@ -120,7 +123,6 @@
              TextColor="White"
         HorizontalTextAlignment="Center"
         VerticalTextAlignment="Center"
-             Margin="0,30,0,0"
              >
         <Label.FormattedText>
           <FormattedString>
@@ -131,13 +133,14 @@
         </Label.FormattedText>
       </Label>
       <!--this will appeaer when press on button  parachut-->
-      <pancake:PancakeView Grid.Row="3"
+      <StackLayout Grid.Row="3">
+        <pancake:PancakeView
                            
                            IsVisible="{ Binding IsStarting}"
                            HorizontalOptions="Center"
                            VerticalOptions="Center"                   
        >
-        <forms:AnimationView
+          <forms:AnimationView
           Animation="Resources.parachut.json"
           AnimationSource="EmbeddedResource"
           AutoPlay="True"
@@ -146,9 +149,9 @@
           RepeatMode="Infinite"
           VerticalOptions="Center"
           HorizontalOptions="Center" />
-      </pancake:PancakeView>
-      <StackLayout Margin="0,40,0,0" Grid.Row="4">
-        <Button 
+        </pancake:PancakeView>
+        <StackLayout Margin="0,20,0,0">
+          <Button 
               IsVisible="{Binding IsStarting}"
               WidthRequest="300"
               Text="Launch Parachute"
@@ -163,28 +166,30 @@
              FontSize="20"
            Command="{Binding LaunchCommand}"
               />
-        <!--dots for levels-->
-        <StackLayout Orientation="Horizontal"
+          <!--dots for levels-->
+          <StackLayout Orientation="Horizontal"
             HorizontalOptions="Center"
                      Margin="0,30,0,0"
             BindableLayout.ItemsSource="{Binding DotsList}">
-          <BindableLayout.ItemTemplate>
-            <DataTemplate>
-              <pancake:PancakeView  
+            <BindableLayout.ItemTemplate>
+              <DataTemplate>
+                <pancake:PancakeView  
                      CornerRadius="7"
                       WidthRequest="15"
                       HeightRequest="15"
                       BackgroundColor="{Binding BackgroundColor}"
                       HorizontalOptions="Start">
-                <pancake:PancakeView.Border>
-                  <pancake:Border Color="White" Thickness="3"/>
-                </pancake:PancakeView.Border>
-              </pancake:PancakeView>
-            </DataTemplate>
-          </BindableLayout.ItemTemplate>
+                  <pancake:PancakeView.Border>
+                    <pancake:Border Color="White" Thickness="3"/>
+                  </pancake:PancakeView.Border>
+                </pancake:PancakeView>
+              </DataTemplate>
+            </BindableLayout.ItemTemplate>
+          </StackLayout>
         </StackLayout>
+
       </StackLayout>
-     
+    
 
     </Grid>
   </ContentPage.Content>
