@@ -8,24 +8,25 @@
            xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
            x:Class="IslandLanding.Views.AppReviewPopupPage">
   <ContentPage.Content>
-    <AbsoluteLayout >
+    <Grid >
       <pancake:PancakeView BackgroundColor="#898989"
-                                    AbsoluteLayout.LayoutFlags="PositionProportional,SizeProportional"
-                                     AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                    
                                      VerticalOptions="FillAndExpand"
                                      Opacity="0.3"/>
 
 
-      <AbsoluteLayout  AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional,HeightProportional"
-                       AbsoluteLayout.LayoutBounds="0.5,0.7,0.9,0.5" 
-                      Margin="30,0,30,0"
+      <Grid  HorizontalOptions="Center"
+             VerticalOptions="Center"
+
                        x:Name="item">
-        <pancake:PancakeView  AbsoluteLayout.LayoutBounds="0,0,1,0.46"
+        <pancake:PancakeView  HeightRequest="180"
                               BackgroundColor="White"
-                              AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional,HeightProportional"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
                                CornerRadius="10"
+                              Margin="34,0"
                                    >
-          <StackLayout   Margin="0,40,0,0">
+          <StackLayout   Margin="15,48,15,0">
             <Label Text="You've won the game. Did you enjoy playing it?"
                    TextColor="Black"
                    HorizontalOptions="Center"
@@ -36,7 +37,7 @@
                    FontSize="20"
                    Margin="5,0"/>
             <StackLayout Orientation="Horizontal" 
-                        Margin="20,10,20,0"
+                        Margin="20,19,20,0"
                          HorizontalOptions="Center"
                         >
               <Button Text="Yes"
@@ -60,18 +61,17 @@
 
         </pancake:PancakeView>
 
-        <forms:AnimationView   AbsoluteLayout.LayoutBounds="0.5,-0.35,140,140"
-                                AbsoluteLayout.LayoutFlags="XProportional,YProportional"
+        <forms:AnimationView   Margin="0,0,0,190"
           Animation="Resources.parachut.json"
           AnimationSource="EmbeddedResource"
           AutoPlay="True"
-          HeightRequest="257"
-          WidthRequest="257"
+          HeightRequest="150"
+          WidthRequest="150"
           RepeatMode="Infinite"
           VerticalOptions="Center"
           HorizontalOptions="Center" />
-      </AbsoluteLayout>
+      </Grid>
 
-    </AbsoluteLayout>
+    </Grid>
   </ContentPage.Content>
   </pages:PopupPage>
