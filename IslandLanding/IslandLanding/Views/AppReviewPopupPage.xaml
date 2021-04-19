@@ -26,7 +26,7 @@
                                CornerRadius="10"
                               Margin="34,0"
                                    >
-          <StackLayout   Margin="15,48,15,0">
+          <StackLayout   Margin="15,50,15,0">
             <Label Text="You've won the game. Did you enjoy playing it?"
                    TextColor="Black"
                    HorizontalOptions="Center"
