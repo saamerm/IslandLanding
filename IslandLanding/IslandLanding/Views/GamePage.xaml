@@ -13,7 +13,7 @@
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.Content>
-    <Grid RowDefinitions="auto,auto,auto,auto,auto,auto">
+    <Grid RowDefinitions="auto,auto,auto,auto">
       <Image Source="background" Grid.RowSpan="7" Grid.Row="0"
             Aspect="AspectFill" />
       <Image Margin="30,27,0,0"
@@ -32,52 +32,69 @@
           <TapGestureRecognizer Command="{Binding BackCommand}"  NumberOfTapsRequired="1"/>
         </Image.GestureRecognizers>
       </Image>
-      <Image Grid.Row="0"
-             Margin="0,27,24,0"
-             HorizontalOptions="End"
+      <StackLayout Orientation="Horizontal"
+                   Grid.Row="0"
+                  Margin="0,27,24,0"
+                   HorizontalOptions="End">
+        <Image  
+               Source="{Binding PauseImage,Converter={StaticResource ImageConverter}}"
+                VerticalOptions="Center"
+                HorizontalOptions="End">
+          <Image.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding PlayCommand}"/>
+          </Image.GestureRecognizers>
+        </Image>
+        <Image 
+             
              VerticalOptions="Center"
              HeightRequest="20"
              WidthRequest="20"
             >
-        <Image.Source>
-          <FontImageSource Color="{StaticResource orange}"
+          <Image.Source>
+            <FontImageSource Color="{StaticResource orange}"
                                              FontFamily="FontAwesome5Solid"
                                              Glyph="&#xf01e;"/>
-        </Image.Source>
-        <Image.GestureRecognizers>
-          <TapGestureRecognizer Command="{Binding RestartCommand}" NumberOfTapsRequired="1"/>
-        </Image.GestureRecognizers>
-      </Image>
-      <Label 
-             Grid.Row="1"
+          </Image.Source>
+          <Image.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding RestartCommand}" NumberOfTapsRequired="1"/>
+          </Image.GestureRecognizers>
+        </Image>
+      </StackLayout>
+      <StackLayout  Margin="0,50,0,0" Grid.Row="1">
+        <Label 
+             
              HorizontalOptions="Center"
              VerticalOptions="Center"
              TextColor="White"
              FontSize="30"
-             Margin="0,30,0,0"
+            
              FontFamily="PatrickFont">
-        <Label.FormattedText>
-          <FormattedString>
-            <Span Text="LEVEL "/>
-            <Span Text="{Binding LevelNumber}" />
-          </FormattedString>
-        </Label.FormattedText>
-      </Label>
-      <Label IsVisible="{Binding IsStarting,Converter={StaticResource InverseBool}}"
-             Grid.Row="2"
+          <Label.FormattedText>
+            <FormattedString>
+              <Span Text="LEVEL "/>
+              <Span Text="{Binding LevelNumber}" />
+            </FormattedString>
+          </Label.FormattedText>
+        </Label>
+        <Label IsVisible="{Binding IsStarting,Converter={StaticResource InverseBool}}"
+        
              HorizontalOptions="Center"
              VerticalOptions="Center"
              TextColor="White"
              FontFamily="PatrickFont"
-             Margin="0,30,0,0">
-        <Label.FormattedText>
-          <FormattedString>
-            <Span Text="{Binding LevelTime}" FontSize="64"/>
-            <Span Text=" seconds"  FontSize="30"/>
-          </FormattedString>
-        </Label.FormattedText>
-      </Label>
-      <Button Grid.Row="3" IsVisible="{Binding IsStarting,Converter={StaticResource InverseBool}}"
+             FontSize="30"
+             VerticalTextAlignment="Center"
+             HorizontalTextAlignment="Center"
+             Margin="30,10,30,0">
+          <Label.FormattedText>
+            <FormattedString>
+              <Span Text="Launch the parachute in " />
+              <Span Text="{Binding LevelTime}" />
+              <Span Text=" seconds"/>
+            </FormattedString>
+          </Label.FormattedText>
+        </Label>
+        <Button  IsVisible="{Binding IsStarting,Converter={StaticResource InverseBool}}"
               BackgroundColor="{StaticResource orange}"
               HeightRequest="178"
               WidthRequest="178"
@@ -90,10 +107,13 @@
               FontSize="40"
               TextColor="White"
               FontFamily="PatrickFont"
-              Margin="0,70,0,0"
+              Margin="0,40,0,0"
               Command="{Binding ReadyCommand}"/>
+      </StackLayout>
+     
+     
       <!-- Game Start-->
-      <Label Text="Focus on the time"
+      <Label 
              IsVisible="{Binding IsStarting}"
              Grid.Row="2"
              HorizontalOptions="Center"
@@ -101,16 +121,26 @@
              FontSize="30"
               FontFamily="PatrickFont"
              TextColor="White"
-             Margin="0,30,0,0"
-             />
+        HorizontalTextAlignment="Center"
+        VerticalTextAlignment="Center"
+             >
+        <Label.FormattedText>
+          <FormattedString>
+            <Span Text="Count for "/>
+            <Span Text="{Binding LevelTime}"/>
+            <Span Text=" seconds in mind and launch parachute"/>
+          </FormattedString>
+        </Label.FormattedText>
+      </Label>
       <!--this will appeaer when press on button  parachut-->
-      <pancake:PancakeView Grid.Row="3"
+      <StackLayout Grid.Row="3">
+        <pancake:PancakeView
                            
                            IsVisible="{ Binding IsStarting}"
                            HorizontalOptions="Center"
                            VerticalOptions="Center"                   
        >
-        <forms:AnimationView
+          <forms:AnimationView
           Animation="Resources.parachut.json"
           AnimationSource="EmbeddedResource"
           AutoPlay="True"
@@ -119,12 +149,13 @@
           RepeatMode="Infinite"
           VerticalOptions="Center"
           HorizontalOptions="Center" />
-      </pancake:PancakeView>
-      <Button Grid.Row="4"
+        </pancake:PancakeView>
+        <StackLayout Margin="0,20,0,0">
+          <Button 
               IsVisible="{Binding IsStarting}"
               WidthRequest="300"
               Text="Launch Parachute"
-              Margin="40,40,40,0"
+              Margin="40,0,40,0"
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"
               BorderWidth="2" 
@@ -135,29 +166,31 @@
              FontSize="20"
            Command="{Binding LaunchCommand}"
               />
-      <!--dots for levels-->
-      <StackLayout Orientation="Horizontal"
-            VerticalOptions="Center" 
-              Grid.Row="5"
-                 Margin="0,60,0,0"
+          <!--dots for levels-->
+          <StackLayout Orientation="Horizontal"
             HorizontalOptions="Center"
+                     Margin="0,30,0,0"
             BindableLayout.ItemsSource="{Binding DotsList}">
-        <BindableLayout.ItemTemplate>
-          <DataTemplate>
-            <pancake:PancakeView  
+            <BindableLayout.ItemTemplate>
+              <DataTemplate>
+                <pancake:PancakeView  
                      CornerRadius="7"
                       WidthRequest="15"
                       HeightRequest="15"
                       BackgroundColor="{Binding BackgroundColor}"
                       HorizontalOptions="Start">
-              <pancake:PancakeView.Border>
-                <pancake:Border Color="White" Thickness="3"/>
-              </pancake:PancakeView.Border>
-            </pancake:PancakeView>
-          </DataTemplate>
-        </BindableLayout.ItemTemplate>
+                  <pancake:PancakeView.Border>
+                    <pancake:Border Color="White" Thickness="3"/>
+                  </pancake:PancakeView.Border>
+                </pancake:PancakeView>
+              </DataTemplate>
+            </BindableLayout.ItemTemplate>
+          </StackLayout>
+        </StackLayout>
+
       </StackLayout>
-      
+    
+
     </Grid>
   </ContentPage.Content>
 </ContentPage>

@@ -17,6 +17,31 @@ namespace IslandLanding.Views
     {
       InitializeComponent();
       BindingContext = new WinViewModel();
+      Animation();
+    }
+    private void Animation()
+    {
+      winText.Opacity = 1;
+      winParachut.Opacity = 1;
+      dots.Opacity = 1;
+      congratulationsText.Opacity = 0;
+      WinTextStack.Opacity = 0;
+      winButtonsStack.Opacity = 0;
+      Device.StartTimer(new TimeSpan(0, 0, 3), () =>
+      {
+        Fading();
+        return false;
+      });
+    }
+    private async void Fading()
+    {
+      var winFade= winText.FadeTo(0, 2000);
+      var parachutFade= winParachut.FadeTo(0, 2000);
+      var dotsFade = dots.FadeTo(0, 2000);
+      var congratulationsFade = congratulationsText.FadeTo(1, 2000);
+      var WinTextStackFade = WinTextStack.FadeTo(1, 2000);
+      var buttonFade= winButtonsStack.FadeTo(1, 2000);
+      await Task.WhenAll(winFade, parachutFade, dotsFade, congratulationsFade, WinTextStackFade,buttonFade);
     }
   }
 }

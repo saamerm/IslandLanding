@@ -1,6 +1,7 @@
 ﻿using IslandLanding.Enums;
 using IslandLanding.Models;
 using IslandLanding.Views;
+using MediaManager;
 using Microsoft.AppCenter.Analytics;
 using Newtonsoft.Json;
 using Rg.Plugins.Popup.Services;
@@ -24,16 +25,20 @@ namespace IslandLanding.ViewModel
     public ICommand BackCommand { get; set; }
     public ICommand RestartCommand { get; set; }
     public ICommand LaunchCommand { get; set; }
+    public ICommand PlayCommand { get; set; }
     public ObservableCollection<LevelsModel> DotsList { get; set; }
     public bool IsStarting { get; set; }
     public GameModel GameModel { get; set; }
     public List<double> TimeDifferencesList { get; set; }
+    public bool IsPlaying { get; set; }
+    public string PauseImage { get; set; }
     public GameViewModel()
     {
       ReadyCommand = new Command(ReadyCommandExcute);
       BackCommand = new Command(BackCommandExcute);
       RestartCommand = new Command(RestartCommandExcute);
       LaunchCommand = new Command(LaunchCommandExcute);
+      PlayCommand = new Command(PlayCommandExcute);
       TimeDifferencesList = new List<double>();
       DrawLevels();
       MessagingCenter.Subscribe<NextPopupViewModel>(this,"nextLevel", (sender) =>
@@ -52,8 +57,10 @@ namespace IslandLanding.ViewModel
         }
       });
       //this part for check level and add level time according to choosen difficulity
+      var x = Preferences.Get("levelNumber", 1);
       if ((Preferences.Get("levelNumber", 1) == 1))
       {
+        LevelNumber = 1;
         var difficulitylevel = Preferences.Get("difficulty", Difficulty.Easy.ToString());
         if (difficulitylevel== (Difficulty.Easy.ToString()))
         {
@@ -67,10 +74,34 @@ namespace IslandLanding.ViewModel
         {
           LevelTime = 15;
         }
-        LevelNumber = 1;
+     
       }
       PageTitle = "GamePage";
       Analytics.TrackEvent("Page", new Dictionary<string, string> { { "Value", PageTitle } });
+      if (Preferences.ContainsKey("playMusic"))
+      {
+        IsPlaying = Preferences.Get("playMusic", false);
+        PauseImage =(IsPlaying)? "volume_up_24px.png" : "volume_off_24px.png";
+      }
+    }
+
+    private async void PlayCommandExcute(object obj)
+    {
+      if (!IsPlaying)
+      {
+        Preferences.Set("playMusic", true);
+        PauseImage = "volume_up_24px.png";
+        IsPlaying = true;
+        var audio = CrossMediaManager.Current;
+        await audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
+      }
+      else
+      {
+        PauseImage = "volume_off_24px.png";
+        IsPlaying = false;
+        Preferences.Set("playMusic", false);
+        await CrossMediaManager.Current.Stop();
+      }
     }
 
     private void LaunchCommandExcute(object obj)

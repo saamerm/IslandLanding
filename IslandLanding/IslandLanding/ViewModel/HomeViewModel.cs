@@ -15,7 +15,7 @@ using Xamarin.Forms;
 
 namespace IslandLanding.ViewModel
 {
- public class HomeViewModel:BaseViewModel
+  public class HomeViewModel : BaseViewModel
   {
     public ICommand ProfileCommand { get; set; }
     public ICommand LeaderBoardCommand { get; set; }
@@ -38,16 +38,21 @@ namespace IslandLanding.ViewModel
         PopupNavigation.Instance.PopAsync();
       }
       PageTitle = "HomePage";
+      MessagingCenter.Subscribe<ExitPopupViewModel, bool>(this, "isPlaying", (sender, _isPlaying) =>
+         {
+           IsPlaying = _isPlaying;
+           ButtonText = (_isPlaying) ? "Music: On" : "Music: Off";
+         });
       if (Preferences.ContainsKey("playMusic"))
       {
         IsPlaying = Preferences.Get("playMusic", false);
-        ButtonText =(IsPlaying)? "Music: On": "Music: Off";
+        ButtonText = (IsPlaying) ? "Music: On" : "Music: Off";
       }
       else
       {
-        IsPlaying = false;
-        ButtonText = "Music: Off";
+        ButtonText ="Music: Off";
       }
+
       Analytics.TrackEvent(PageTitle);
     }
 
@@ -116,7 +121,7 @@ namespace IslandLanding.ViewModel
           Helper.Constants.Api_Key = result;
         }
       }
-      catch(Exception e)
+      catch (Exception e)
       {
         IsBusy = false;
         Crashes.TrackError(e);
