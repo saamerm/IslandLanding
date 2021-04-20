@@ -8,6 +8,7 @@ using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -17,21 +18,22 @@ namespace IslandLanding.ViewModel
 {
   public class GameViewModel : BaseViewModel
   {
-    public string Seconds { get; set; }
     public int LevelTime { get; set; }
     public int LevelNumber { get; set; }
-    public DateTime StartedTime { get; set; }
+    public double StartedTime { get; set; }
     public ICommand ReadyCommand { get; set; }
     public ICommand BackCommand { get; set; }
     public ICommand RestartCommand { get; set; }
     public ICommand LaunchCommand { get; set; }
     public ICommand PlayCommand { get; set; }
     public ObservableCollection<LevelsModel> DotsList { get; set; }
-    public bool IsStarting { get; set; }
     public GameModel GameModel { get; set; }
     public List<double> TimeDifferencesList { get; set; }
     public bool IsPlaying { get; set; }
     public string PauseImage { get; set; }
+    public string LaunchText { get; set; }
+    public string JumpButtonText { get; set; }
+    Stopwatch stopwatch { set; get; }
     public GameViewModel()
     {
       ReadyCommand = new Command(ReadyCommandExcute);
@@ -40,10 +42,11 @@ namespace IslandLanding.ViewModel
       LaunchCommand = new Command(LaunchCommandExcute);
       PlayCommand = new Command(PlayCommandExcute);
       TimeDifferencesList = new List<double>();
+      stopwatch = new Stopwatch();
+    
       DrawLevels();
       MessagingCenter.Subscribe<NextPopupViewModel>(this,"nextLevel", (sender) =>
       {
-        IsStarting = false;
         LevelNumber = Preferences.Get("levelNumber", 1) + 1;
         LevelTime += 1;
         foreach (var item in DotsList)
@@ -83,6 +86,8 @@ namespace IslandLanding.ViewModel
         IsPlaying = Preferences.Get("playMusic", false);
         PauseImage =(IsPlaying)? "volume_up_24px.png" : "volume_off_24px.png";
       }
+      LaunchText = "Launch the parachute in " + LevelTime + " seconds";
+      JumpButtonText = "Jump";
     }
 
     private async void PlayCommandExcute(object obj)
@@ -106,12 +111,13 @@ namespace IslandLanding.ViewModel
 
     private void LaunchCommandExcute(object obj)
     {//between -1 and +1
-      var time = DateTime.Now;
-      var diffTime = DateTime.Now - StartedTime;
-      var scoretime = LevelTime - diffTime.TotalSeconds;
+      stopwatch.Stop();
+      var time = stopwatch.Elapsed.TotalSeconds;
+      var diffTime = time - StartedTime;
+      var scoretime = LevelTime - diffTime;
       GameModel = new GameModel
       {
-        MainTime = Math.Round(diffTime.TotalSeconds, 2),
+        MainTime = Math.Round(diffTime, 2),
         TakenTime = Math.Round(scoretime, 2)
       };
       TimeDifferencesList.Add(Math.Abs(Math.Round(scoretime, 2)));
@@ -119,7 +125,6 @@ namespace IslandLanding.ViewModel
       Preferences.Set("listOfTimeAsJson", listOfTimeAsJson);
       if (scoretime > -1 && scoretime <= 1)
       {
-        IsStarting = false;
        PopupNavigation.Instance.PushAsync(new NextPopupPage(GameModel));
       }
       else
@@ -140,32 +145,11 @@ namespace IslandLanding.ViewModel
 
     private void ReadyCommandExcute(object obj)
     {
-      IsStarting = true;
       Preferences.Set("levelNumber", LevelNumber);
-      StartedTime = DateTime.Now;
-    }
-    /// <summary>
-    /// TODO we will use function in future
-    /// </summary>
-    public void CalculateTimeRemaining()
-    {
-      //DateTime timeExpired = DateTime.Now.AddSeconds(8);
-      //Xamarin.Forms.Device.StartTimer(new TimeSpan(0, 0, 1), () =>
-      //{
-      //  var timespan = timeExpired - DateTime.Now;
-      //  if (timespan.TotalSeconds > 1)
-      //  { 
-      //    Seconds = "in " + timespan.Seconds.ToString() + " s";
-
-      //    return true;
-      //  }
-      //  else
-      //  {
-
-      //    Seconds = "0:0:0";
-      //    return false;
-      //  }
-      //});
+      JumpButtonText = "Release to launch parachute";
+      stopwatch.Start();
+      StartedTime = stopwatch.Elapsed.TotalSeconds;
+      LaunchText = "Count for " + LevelTime + " seconds in mind and launch parachute";
     }
     private void DrawLevels()
     {

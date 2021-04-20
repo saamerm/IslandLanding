@@ -5,9 +5,9 @@
              NavigationPage.HasNavigationBar="False"
                BackgroundColor="#242424">
     <ContentPage.Content>
-    <Grid RowDefinitions="auto,auto">
+    <Grid RowDefinitions="auto,*">
       <Image Source="background" Grid.RowSpan="2" 
-                  Aspect="Fill"/>
+                  Aspect="AspectFill"/>
       <Image Margin="30,45,0,0" Grid.Row="0"
              HorizontalOptions="Start"
              HeightRequest="24"
@@ -24,7 +24,7 @@
           <TapGestureRecognizer Command="{Binding BackCommand}"  NumberOfTapsRequired="1"/>
         </Image.GestureRecognizers>
       </Image>
-      <StackLayout Grid.Row="1" Margin="0,170,0,0">
+      <StackLayout Grid.Row="1" Margin="0,180,0,0">
         <Button 
               WidthRequest="300"
               Text="Easy"

@@ -5,10 +5,11 @@
              BackgroundColor="#242424"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-    <Grid RowDefinitions="auto,auto,auto">
+    <Grid RowDefinitions="auto,auto,*">
       <Image Source="background"
               Grid.RowSpan="3"
-                  Aspect="Fill"/>
+                  Aspect="AspectFill"
+           />
       <Image Grid.Row="0" Margin="24,30,0,30"
              HorizontalOptions="Start"
              HeightRequest="24"
@@ -39,7 +40,7 @@
         </Image.GestureRecognizers>
       </Image>
       <StackLayout  Grid.Row="1"
-             Margin="0,110,0,0">
+             Margin="0,40,0,0">
         <Label FontSize="40"
              FontAttributes="Bold"
               VerticalOptions="CenterAndExpand"
@@ -63,10 +64,10 @@
                TextColor="White"
                FontFamily="PatrickFont"
                Margin="0,-3,0,0"/>
-        <Button 
+        <Button VerticalOptions="Center"
               WidthRequest="300"
               Text="Start"
-              Margin="40,65,40,0"
+              Margin="40,100,40,0"
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"
               BorderWidth="2" 

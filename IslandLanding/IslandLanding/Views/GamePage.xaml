@@ -4,6 +4,7 @@
              x:Class="IslandLanding.Views.GamePage"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#242424"
+             xmlns:behaviours="clr-namespace:IslandLanding.Behaviours"
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms" 
              xmlns:conv="clr-namespace:IslandLanding.Converters">
@@ -13,9 +14,11 @@
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.Content>
-    <Grid RowDefinitions="auto,auto,auto,auto">
-      <Image Source="background" Grid.RowSpan="7" Grid.Row="0"
-            Aspect="AspectFill" />
+    <Grid RowDefinitions="auto,auto,auto,*">
+      <Image Source="background" Grid.RowSpan="4" Grid.Row="0"
+            Aspect="AspectFill"
+             HorizontalOptions="FillAndExpand"
+             VerticalOptions="FillAndExpand"/>
       <Image Margin="30,27,0,0"
              Grid.Row="0"
              HorizontalOptions="Start"
@@ -60,7 +63,7 @@
           </Image.GestureRecognizers>
         </Image>
       </StackLayout>
-      <StackLayout  Margin="0,50,0,0" Grid.Row="1">
+      <StackLayout  Margin="0,40,0,0" Grid.Row="1">
         <Label 
              
              HorizontalOptions="Center"
@@ -76,8 +79,8 @@
             </FormattedString>
           </Label.FormattedText>
         </Label>
-        <Label IsVisible="{Binding IsStarting,Converter={StaticResource InverseBool}}"
-        
+        <Label
+             Text="{Binding LaunchText}"
              HorizontalOptions="Center"
              VerticalOptions="Center"
              TextColor="White"
@@ -85,61 +88,57 @@
              FontSize="30"
              VerticalTextAlignment="Center"
              HorizontalTextAlignment="Center"
-             Margin="30,10,30,0">
-          <Label.FormattedText>
-            <FormattedString>
-              <Span Text="Launch the parachute in " />
-              <Span Text="{Binding LevelTime}" />
-              <Span Text=" seconds"/>
-            </FormattedString>
-          </Label.FormattedText>
-        </Label>
-        <Button  IsVisible="{Binding IsStarting,Converter={StaticResource InverseBool}}"
+             Margin="30,10,30,0"/>
+
+      
+      </StackLayout>
+      <StackLayout Grid.Row="3">
+        <Button 
               BackgroundColor="{StaticResource orange}"
-              HeightRequest="178"
-              WidthRequest="178"
+              HeightRequest="60"
               HorizontalOptions="Center"
               VerticalOptions="Center"
               BorderWidth="2"
+              WidthRequest="300"
               BorderColor="{StaticResource bordercolor}"
-              CornerRadius="89"
-              Text="Jump"
-              FontSize="40"
+              CornerRadius="30"
+              Text="{Binding JumpButtonText}"
+              FontSize="25"
               TextColor="White"
               FontFamily="PatrickFont"
-              Margin="0,40,0,0"
-              Command="{Binding ReadyCommand}"/>
+              Margin="0,10,0,0">
+          <Button.Behaviors>
+            <behaviours:ButtonBehviour Command="{Binding ReadyCommand}"
+                                       Released="{Binding LaunchCommand}"/>
+          </Button.Behaviors>
+        </Button>
+        <StackLayout Orientation="Horizontal"
+            HorizontalOptions="Center"
+                     Margin="0,40,0,10"
+            BindableLayout.ItemsSource="{Binding DotsList}">
+          <BindableLayout.ItemTemplate>
+            <DataTemplate>
+              <pancake:PancakeView  
+                     CornerRadius="7"
+                      WidthRequest="15"
+                      HeightRequest="15"
+                      BackgroundColor="{Binding BackgroundColor}"
+                      HorizontalOptions="Start">
+                <pancake:PancakeView.Border>
+                  <pancake:Border Color="White" Thickness="3"/>
+                </pancake:PancakeView.Border>
+              </pancake:PancakeView>
+            </DataTemplate>
+          </BindableLayout.ItemTemplate>
+        </StackLayout>
       </StackLayout>
-     
-     
-      <!-- Game Start-->
-      <Label 
-             IsVisible="{Binding IsStarting}"
-             Grid.Row="2"
-             HorizontalOptions="Center"
-             VerticalOptions="Center"
-             FontSize="30"
-              FontFamily="PatrickFont"
-             TextColor="White"
-        HorizontalTextAlignment="Center"
-        VerticalTextAlignment="Center"
-             >
-        <Label.FormattedText>
-          <FormattedString>
-            <Span Text="Count for "/>
-            <Span Text="{Binding LevelTime}"/>
-            <Span Text=" seconds in mind and launch parachute"/>
-          </FormattedString>
-        </Label.FormattedText>
-      </Label>
       <!--this will appeaer when press on button  parachut-->
-      <StackLayout Grid.Row="3">
+      <StackLayout Grid.Row="2">
         <pancake:PancakeView
                            
-                           IsVisible="{ Binding IsStarting}"
+                          
                            HorizontalOptions="Center"
-                           VerticalOptions="Center"                   
-       >
+                           VerticalOptions="Center">
           <forms:AnimationView
           Animation="Resources.parachut.json"
           AnimationSource="EmbeddedResource"
@@ -150,44 +149,6 @@
           VerticalOptions="Center"
           HorizontalOptions="Center" />
         </pancake:PancakeView>
-        <StackLayout Margin="0,20,0,0">
-          <Button 
-              IsVisible="{Binding IsStarting}"
-              WidthRequest="300"
-              Text="Launch Parachute"
-              Margin="40,0,40,0"
-              TextColor="White"
-              BorderColor="{StaticResource bordercolor}"
-              BorderWidth="2" 
-              HeightRequest="60"
-              CornerRadius="30"
-              BackgroundColor="{StaticResource orange}"
-             FontFamily="PatrickFont"
-             FontSize="20"
-           Command="{Binding LaunchCommand}"
-              />
-          <!--dots for levels-->
-          <StackLayout Orientation="Horizontal"
-            HorizontalOptions="Center"
-                     Margin="0,30,0,0"
-            BindableLayout.ItemsSource="{Binding DotsList}">
-            <BindableLayout.ItemTemplate>
-              <DataTemplate>
-                <pancake:PancakeView  
-                     CornerRadius="7"
-                      WidthRequest="15"
-                      HeightRequest="15"
-                      BackgroundColor="{Binding BackgroundColor}"
-                      HorizontalOptions="Start">
-                  <pancake:PancakeView.Border>
-                    <pancake:Border Color="White" Thickness="3"/>
-                  </pancake:PancakeView.Border>
-                </pancake:PancakeView>
-              </DataTemplate>
-            </BindableLayout.ItemTemplate>
-          </StackLayout>
-        </StackLayout>
-
       </StackLayout>
     
 
