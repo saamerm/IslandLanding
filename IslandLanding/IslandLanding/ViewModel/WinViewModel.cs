@@ -140,8 +140,11 @@ namespace IslandLanding.ViewModel
           {
             Device.StartTimer(new TimeSpan(0, 0, 6), () =>
             {
-              ShowText = "You are now ranked ";
-              ShowAverageTime = "NO." + response.Rank;
+              if (response.Rank != 0)
+              {
+                ShowText = "You are now ranked ";
+                ShowAverageTime = "NO." + response.Rank;
+              }
               CheckNumberOfVisit();
               return false;
             });

@@ -47,8 +47,10 @@ namespace IslandLanding.ViewModel
       DrawLevels();
       MessagingCenter.Subscribe<NextPopupViewModel>(this,"nextLevel", (sender) =>
       {
+        JumpButtonText = "Jump";
         LevelNumber = Preferences.Get("levelNumber", 1) + 1;
         LevelTime += 1;
+        LaunchText = "Launch the parachute in " + LevelTime + " seconds";
         foreach (var item in DotsList)
         {
           
@@ -145,11 +147,12 @@ namespace IslandLanding.ViewModel
 
     private void ReadyCommandExcute(object obj)
     {
+      LaunchText = "Count for " + LevelTime + " seconds in mind and launch parachute";
       Preferences.Set("levelNumber", LevelNumber);
       JumpButtonText = "Release to launch parachute";
       stopwatch.Start();
       StartedTime = stopwatch.Elapsed.TotalSeconds;
-      LaunchText = "Count for " + LevelTime + " seconds in mind and launch parachute";
+     
     }
     private void DrawLevels()
     {
