@@ -8,10 +8,10 @@
              BackgroundColor="#242424"
              >
   <ContentPage.Content>
-    <Grid RowDefinitions="auto,auto">
+    <Grid RowDefinitions="auto,0.8*">
       <Image Source="background"
              Grid.RowSpan="2"
-              Aspect="Fill"/>
+              Aspect="AspectFill"/>
       <Image Margin="24,38,0,0" Grid.Row="0"
              HorizontalOptions="Start"
              HeightRequest="24"

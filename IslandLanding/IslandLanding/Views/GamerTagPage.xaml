@@ -9,7 +9,7 @@
     <ContentPage.Content>
     <Grid>
       <Image Source="background" 
-                  Aspect="Fill"/>
+                  Aspect="AspectFill"/>
       <controls:GamerTagTemplate TitleText="Enter a gamer tag below:"
                                SubmitCommand="{Binding SaveCommand}"
                                GamerTag="{Binding UserTag,Mode=TwoWay}"

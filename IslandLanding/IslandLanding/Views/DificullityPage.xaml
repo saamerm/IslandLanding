@@ -24,7 +24,8 @@
           <TapGestureRecognizer Command="{Binding BackCommand}"  NumberOfTapsRequired="1"/>
         </Image.GestureRecognizers>
       </Image>
-      <StackLayout Grid.Row="1" Margin="0,180,0,0">
+      <StackLayout Grid.Row="1"
+                   VerticalOptions="Center">
         <Button 
               WidthRequest="300"
               Text="Easy"

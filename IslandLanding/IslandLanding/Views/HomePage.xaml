@@ -5,9 +5,9 @@
              BackgroundColor="#242424"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-    <Grid RowDefinitions="auto,auto,*">
+    <Grid RowDefinitions="auto,auto,auto,*">
       <Image Source="background"
-              Grid.RowSpan="3"
+              Grid.RowSpan="4"
                   Aspect="AspectFill"
            />
       <Image Grid.Row="0" Margin="24,30,0,30"
@@ -39,9 +39,10 @@
           <TapGestureRecognizer Command="{Binding InfoCommand}" NumberOfTapsRequired="1"/>
         </Image.GestureRecognizers>
       </Image>
-      <StackLayout  Grid.Row="1"
-             Margin="0,40,0,0">
-        <Label FontSize="40"
+   
+        <Label FontSize="47"
+               Margin="0,70,0,0"
+               Grid.Row="1"
              FontAttributes="Bold"
               VerticalOptions="CenterAndExpand"
                HorizontalOptions="Center"
@@ -57,17 +58,23 @@
             </FormattedString>
           </Label.FormattedText>
         </Label>
-        <Label FontSize="17"
+        <Label FontSize="20" Grid.Row="2"
                Text="Improve your time sensibility"
               VerticalOptions="CenterAndExpand"
                HorizontalOptions="Center"
+               VerticalTextAlignment="Center"
                TextColor="White"
                FontFamily="PatrickFont"
                Margin="0,-3,0,0"/>
-        <Button VerticalOptions="Center"
+   
+      <StackLayout  Grid.Row="3" Margin="0,-30,0,0"
+                    HorizontalOptions="Center"
+            VerticalOptions="Center">
+       
+        <Button 
               WidthRequest="300"
               Text="Start"
-              Margin="40,100,40,0"
+              Margin="40,0,40,0"
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"
               BorderWidth="2" 
@@ -108,7 +115,7 @@
              Command="{Binding PlayCommand}"
               />
       </StackLayout>
-      <StackLayout Grid.RowSpan="3" IsVisible="{Binding IsBusy}"
+      <StackLayout Grid.RowSpan="4" IsVisible="{Binding IsBusy}"
              Margin="0,300,0,0" >
         <ActivityIndicator Color="{StaticResource orange}"
                            HorizontalOptions="Center"

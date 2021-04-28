@@ -33,6 +33,8 @@ namespace IslandLanding.ViewModel
     public string PauseImage { get; set; }
     public string LaunchText { get; set; }
     public string JumpButtonText { get; set; }
+    public Color JumpButtonBackgroundColor { get; set; }
+    public Color JumpButtonBorderColor { get; set; }
     Stopwatch stopwatch { set; get; }
     public GameViewModel()
     {
@@ -47,7 +49,9 @@ namespace IslandLanding.ViewModel
       DrawLevels();
       MessagingCenter.Subscribe<NextPopupViewModel>(this,"nextLevel", (sender) =>
       {
-        JumpButtonText = "Jump";
+        JumpButtonText = "Ready";
+        JumpButtonBackgroundColor = Color.FromHex("#E8A24F");
+        JumpButtonBorderColor = Color.FromHex("#4F3824");
         LevelNumber = Preferences.Get("levelNumber", 1) + 1;
         LevelTime += 1;
         LaunchText = "Launch the parachute in " + LevelTime + " seconds";
@@ -89,7 +93,9 @@ namespace IslandLanding.ViewModel
         PauseImage =(IsPlaying)? "volume_up_24px.png" : "volume_off_24px.png";
       }
       LaunchText = "Launch the parachute in " + LevelTime + " seconds";
-      JumpButtonText = "Jump";
+      JumpButtonText = "Ready";
+      JumpButtonBackgroundColor = Color.FromHex("#E8A24F");
+      JumpButtonBorderColor = Color.FromHex("#4F3824");
     }
 
     private async void PlayCommandExcute(object obj)
@@ -148,8 +154,10 @@ namespace IslandLanding.ViewModel
     private void ReadyCommandExcute(object obj)
     {
       LaunchText = "Count for " + LevelTime + " seconds in mind and launch parachute";
+      JumpButtonText = "Jump";
       Preferences.Set("levelNumber", LevelNumber);
-      JumpButtonText = "Release to launch parachute";
+      JumpButtonBackgroundColor = Color.FromHex("#4F3824"); 
+      JumpButtonBorderColor = Color.FromHex("#E8A24F");
       stopwatch.Start();
       StartedTime = stopwatch.Elapsed.TotalSeconds;
      

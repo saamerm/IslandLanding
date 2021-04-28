@@ -14,8 +14,8 @@
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.Content>
-    <Grid RowDefinitions="auto,auto,auto,*">
-      <Image Source="background" Grid.RowSpan="4" Grid.Row="0"
+    <Grid RowDefinitions="auto,auto,*">
+      <Image Source="background" Grid.RowSpan="3" Grid.Row="0"
             Aspect="AspectFill"
              HorizontalOptions="FillAndExpand"
              VerticalOptions="FillAndExpand"/>
@@ -63,7 +63,9 @@
           </Image.GestureRecognizers>
         </Image>
       </StackLayout>
-      <StackLayout  Margin="0,40,0,0" Grid.Row="1">
+      <StackLayout  Margin="0,50,0,0"
+                    VerticalOptions="Center"
+                    Grid.Row="1">
         <Label 
              
              HorizontalOptions="Center"
@@ -92,64 +94,53 @@
 
       
       </StackLayout>
-      <StackLayout Grid.Row="3">
+    
         <Button 
-              BackgroundColor="{StaticResource orange}"
-              HeightRequest="60"
+             Grid.Row="2" 
+              BackgroundColor="{Binding JumpButtonBackgroundColor}"
+              HeightRequest="178"
+              WidthRequest="178"
               HorizontalOptions="Center"
               VerticalOptions="Center"
-              BorderWidth="2"
-              WidthRequest="300"
-              BorderColor="{StaticResource bordercolor}"
-              CornerRadius="30"
+              BorderWidth="5"
+              BorderColor="{Binding JumpButtonBorderColor}"
+              CornerRadius="89"
               Text="{Binding JumpButtonText}"
-              FontSize="25"
+              FontSize="40"
               TextColor="White"
               FontFamily="PatrickFont"
-              Margin="0,10,0,0">
+              Margin="0,-50,0,0"
+              >
           <Button.Behaviors>
             <behaviours:ButtonBehviour Command="{Binding ReadyCommand}"
                                        Released="{Binding LaunchCommand}"/>
           </Button.Behaviors>
         </Button>
-        <StackLayout Orientation="Horizontal"
+       
+     
+      <StackLayout Orientation="Horizontal"
             HorizontalOptions="Center"
-                     Margin="0,40,0,10"
+                   VerticalOptions="End"
+                     Margin="0,0,0,60"
+                   Grid.Row="2"
             BindableLayout.ItemsSource="{Binding DotsList}">
-          <BindableLayout.ItemTemplate>
-            <DataTemplate>
-              <pancake:PancakeView  
+        <BindableLayout.ItemTemplate>
+          <DataTemplate>
+            <pancake:PancakeView  
                      CornerRadius="7"
                       WidthRequest="15"
                       HeightRequest="15"
                       BackgroundColor="{Binding BackgroundColor}"
                       HorizontalOptions="Start">
-                <pancake:PancakeView.Border>
-                  <pancake:Border Color="White" Thickness="3"/>
-                </pancake:PancakeView.Border>
-              </pancake:PancakeView>
-            </DataTemplate>
-          </BindableLayout.ItemTemplate>
-        </StackLayout>
+              <pancake:PancakeView.Border>
+                <pancake:Border Color="White" Thickness="3"/>
+              </pancake:PancakeView.Border>
+            </pancake:PancakeView>
+          </DataTemplate>
+        </BindableLayout.ItemTemplate>
       </StackLayout>
       <!--this will appeaer when press on button  parachut-->
-      <StackLayout Grid.Row="2">
-        <pancake:PancakeView
-                           
-                          
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center">
-          <forms:AnimationView
-          Animation="Resources.parachut.json"
-          AnimationSource="EmbeddedResource"
-          AutoPlay="True"
-          HeightRequest="257"
-          WidthRequest="257"
-          RepeatMode="Infinite"
-          VerticalOptions="Center"
-          HorizontalOptions="Center" />
-        </pancake:PancakeView>
-      </StackLayout>
+     
     
 
     </Grid>
