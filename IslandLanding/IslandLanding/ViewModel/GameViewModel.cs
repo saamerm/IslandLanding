@@ -30,6 +30,7 @@ namespace IslandLanding.ViewModel
     public GameModel GameModel { get; set; }
     public List<double> TimeDifferencesList { get; set; }
     public bool IsPlaying { get; set; }
+    public bool IsRestarting { get; set; }
     public string PauseImage { get; set; }
     public string LaunchText { get; set; }
     public string JumpButtonText { get; set; }
@@ -49,12 +50,13 @@ namespace IslandLanding.ViewModel
       DrawLevels();
       MessagingCenter.Subscribe<NextPopupViewModel>(this,"nextLevel", (sender) =>
       {
-        JumpButtonText = "Ready";
+        JumpButtonText = "Hold";
         JumpButtonBackgroundColor = Color.FromHex("#E8A24F");
         JumpButtonBorderColor = Color.FromHex("#4F3824");
         LevelNumber = Preferences.Get("levelNumber", 1) + 1;
         LevelTime += 1;
-        LaunchText = "Launch the parachute in " + LevelTime + " seconds";
+        LaunchText = "Hold for " + LevelTime + " seconds and release to launch parachute";
+        IsRestarting = true;
         foreach (var item in DotsList)
         {
           
@@ -65,17 +67,42 @@ namespace IslandLanding.ViewModel
           }
         }
       });
+      MessagingCenter.Subscribe<RestartPopupViewModel>(this, "restartGame", (sender) =>
+      {
+        
+        LevelNumber =1;
+        CheckLevelTime();
+        IsRestarting = false;
+        DrawLevels();
+       
+      });
       //this part for check level and add level time according to choosen difficulity
+      CheckLevelTime();
+      PageTitle = "GamePage";
+      Analytics.TrackEvent("Page", new Dictionary<string, string> { { "Value", PageTitle } });
+      CheckMusicIsPlaying();
+    }
+    private void CheckMusicIsPlaying()
+    {
+      if (Preferences.ContainsKey("playMusic"))
+      {
+        IsPlaying = Preferences.Get("playMusic", false);
+        PauseImage = (IsPlaying) ? "volume_up_24px.png" : "volume_off_24px.png";
+      }
+    }
+    private void CheckLevelTime()
+    {
       var x = Preferences.Get("levelNumber", 1);
       if ((Preferences.Get("levelNumber", 1) == 1))
       {
         LevelNumber = 1;
+        IsRestarting = (LevelNumber == 1) ? false : true;
         var difficulitylevel = Preferences.Get("difficulty", Difficulty.Easy.ToString());
-        if (difficulitylevel== (Difficulty.Easy.ToString()))
+        if (difficulitylevel == (Difficulty.Easy.ToString()))
         {
           LevelTime = 5;
         }
-        else if(difficulitylevel == Difficulty.Medium.ToString())
+        else if (difficulitylevel == Difficulty.Medium.ToString())
         {
           LevelTime = 10;
         }
@@ -83,21 +110,27 @@ namespace IslandLanding.ViewModel
         {
           LevelTime = 15;
         }
-     
       }
-      PageTitle = "GamePage";
-      Analytics.TrackEvent("Page", new Dictionary<string, string> { { "Value", PageTitle } });
-      if (Preferences.ContainsKey("playMusic"))
+      else
       {
-        IsPlaying = Preferences.Get("playMusic", false);
-        PauseImage =(IsPlaying)? "volume_up_24px.png" : "volume_off_24px.png";
+        LevelNumber = 1;
+        LevelTime = 5;
       }
-      LaunchText = "Launch the parachute in " + LevelTime + " seconds";
-      JumpButtonText = "Ready";
+      JumpButtonText = "Hold";
       JumpButtonBackgroundColor = Color.FromHex("#E8A24F");
       JumpButtonBorderColor = Color.FromHex("#4F3824");
-    }
+      LaunchText = "Hold for " + LevelTime + " seconds and release to launch parachute"; 
+      foreach (var item in DotsList)
+      {
 
+        if (item.LevelNumber == LevelNumber.ToString())
+        {
+          item.IsCompleted = true;
+          item.BackgroundColor = Color.FromHex("#C5C5C5");
+        }
+      }
+
+    }
     private async void PlayCommandExcute(object obj)
     {
       if (!IsPlaying)
@@ -153,8 +186,8 @@ namespace IslandLanding.ViewModel
 
     private void ReadyCommandExcute(object obj)
     {
-      LaunchText = "Count for " + LevelTime + " seconds in mind and launch parachute";
-      JumpButtonText = "Jump";
+      LaunchText = "Release in " + LevelTime + " seconds to launch parachute";
+      JumpButtonText = "Release";
       Preferences.Set("levelNumber", LevelNumber);
       JumpButtonBackgroundColor = Color.FromHex("#4F3824"); 
       JumpButtonBorderColor = Color.FromHex("#E8A24F");

@@ -48,7 +48,7 @@
           </Image.GestureRecognizers>
         </Image>
         <Image 
-             
+             IsEnabled="{Binding IsRestarting,Mode=TwoWay}"
              VerticalOptions="Center"
              HeightRequest="20"
              WidthRequest="20"

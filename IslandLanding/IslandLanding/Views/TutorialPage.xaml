@@ -1,26 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
              x:Class="IslandLanding.Views.TutorialPage"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#242424">
     <ContentPage.Content>
-    <Grid >
+    <Grid RowDefinitions="0.4*,0.3*,0.3*" >
       <Image Source="background" 
-             Aspect="Fill"/>
+             Grid.RowSpan="3"
+             Aspect="AspectFill"/>
 
-      <CarouselView     Margin="0,175,0,30"
+      <CarouselView   
                         x:Name="carousel"
+                        Grid.Row="0"
                          Position="{Binding CurrentPosition}"
                    PositionChangedCommand="{Binding PositionChangedCommand}"
               PositionChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=Position}"
                         ItemsSource="{Binding TutorialList}">
         <CarouselView.ItemTemplate>
           <DataTemplate>
-            <StackLayout>
+            <StackLayout Margin="0,100,0,0">
               <Label Text="{Binding .}"
-                   Margin="20,0"
+                   Margin="20,50,20,0"
                      FontSize="22"
+                     HeightRequest="300"
+                     VerticalOptions="Center"
                       FontFamily="PatrickFont"
                      VerticalTextAlignment="Center"
                      TextColor="White"
@@ -31,24 +35,27 @@
         </CarouselView.ItemTemplate>
         
       </CarouselView>
-      <Button VerticalOptions="End" IsVisible="{Binding IsNext}"
+      <Button  IsVisible="{Binding IsNext}"
+               Grid.Row="1"
               WidthRequest="300"
               Text="{Binding ButtonText}"
-              Margin="40,0,40,100"
+              Margin="40,80,40,0"
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"
               BorderWidth="2" 
               HeightRequest="60"
               CornerRadius="30"
+               VerticalOptions="Center"
                 Command="{Binding NextCommand}"
             CommandParameter="{Binding Source={x:Reference carousel},Path=Position}"
               BackgroundColor="{StaticResource orange}"
            
               />
-      <Button VerticalOptions="End" IsVisible="{Binding IsPlaying}"
+      <Button  Grid.Row="1" IsVisible="{Binding IsPlaying}"
               WidthRequest="300"
               Text="{Binding ButtonText}"
-              Margin="40,0,40,100"
+              Margin="40,80,40,0"
+               VerticalOptions="Center"
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"
               BorderWidth="2" 
@@ -59,6 +66,16 @@
               BackgroundColor="{StaticResource orange}"
            
               />
+      <pancake:PancakeView Grid.Row="2" >
+        <forms:AnimationView
+          Animation="Resources.airplane.json"
+          AnimationSource="EmbeddedResource"
+          AutoPlay="True"
+          HeightRequest="260"
+          WidthRequest="260" 
+          RepeatMode="Infinite"
+          />
+      </pancake:PancakeView>
     </Grid>
   </ContentPage.Content>
 </ContentPage>

@@ -67,7 +67,7 @@
                FontFamily="PatrickFont"
                Margin="0,-3,0,0"/>
    
-      <StackLayout  Grid.Row="3" Margin="0,-30,0,0"
+      <StackLayout  Grid.Row="3" Margin="0,40,0,0"
                     HorizontalOptions="Center"
             VerticalOptions="Center">
        

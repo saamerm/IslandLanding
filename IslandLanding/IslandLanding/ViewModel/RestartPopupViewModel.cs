@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace IslandLanding.ViewModel
@@ -25,7 +26,9 @@ namespace IslandLanding.ViewModel
 
     private void YesCommandExcute(object obj)
     {
-      App.Current.MainPage.Navigation.PushAsync(new GamePage());
+      Preferences.Set("levelNumber", 1);
+      // App.Current.MainPage.Navigation.PushAsync(new GamePage());
+      MessagingCenter.Send<RestartPopupViewModel>(this, "restartGame");
       PopupNavigation.Instance.PopAsync();
     }
   }

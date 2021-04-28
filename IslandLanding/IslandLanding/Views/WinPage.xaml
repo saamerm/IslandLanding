@@ -24,7 +24,7 @@
   </ContentPage.Resources>
   <ContentPage.Content>
     <Grid RowDefinitions="auto,auto,auto">
-      <Image Source="background" Grid.RowSpan="3" 
+      <Image Source="background" Grid.RowSpan="4" 
                   Aspect="AspectFill"/>
       <Label
              Grid.Row="0" x:Name="winText"
@@ -108,7 +108,7 @@
                             HasFallingParticles="True"
                             FallingParticlesPerSecond="20"
                             Margin="0,20" 
-                            Grid.RowSpan="3"
+                            Grid.RowSpan="4"
                             VerticalOptions="FillAndExpand"
                             HorizontalOptions="FillAndExpand"
                             ParticleColors="{StaticResource ConfettiColors}" />
