@@ -28,6 +28,7 @@ namespace IslandLanding.ViewModel
     {
       //throw new NotImplementedException();
       var isPlaying = Preferences.Get("playMusic", false);
+      Preferences.Set("levelNumber", 1);
       MessagingCenter.Send<ExitPopupViewModel, bool>(this, "isPlaying", isPlaying);
       App.Current.MainPage.Navigation.PopToRootAsync();
       PopupNavigation.Instance.PopAsync();

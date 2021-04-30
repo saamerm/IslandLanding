@@ -87,6 +87,7 @@ namespace IslandLanding.ViewModel
     private async void YesCommandExcute(object obj)
     {
       await CrossStoreReview.Current.RequestReview(false);
+      await PopupNavigation.Instance.PopAsync();
     }
 
     private void CheckHighScore()
@@ -138,10 +139,13 @@ namespace IslandLanding.ViewModel
           var response = await addScoreService.AddScore(requestModel);
           if (response.Status != null)
           {
-            Device.StartTimer(new TimeSpan(0, 0, 6), () =>
+            Device.StartTimer(new TimeSpan(0, 0, 5), () =>
             {
-              ShowText = "You are now ranked ";
-              ShowAverageTime = "NO." + response.Rank;
+              if (response.Rank != 0)
+              {
+                ShowText = "You are now ranked ";
+                ShowAverageTime = "NO." + response.Rank;
+              }
               CheckNumberOfVisit();
               return false;
             });

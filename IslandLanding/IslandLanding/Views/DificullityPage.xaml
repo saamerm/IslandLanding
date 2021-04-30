@@ -5,9 +5,9 @@
              NavigationPage.HasNavigationBar="False"
                BackgroundColor="#242424">
     <ContentPage.Content>
-    <Grid RowDefinitions="auto,auto">
-      <Image Source="background" Grid.RowSpan="2" 
-                  Aspect="Fill"/>
+    <Grid RowDefinitions="auto,auto,*">
+      <Image Source="background" Grid.RowSpan="3" 
+                  Aspect="AspectFill"/>
       <Image Margin="30,45,0,0" Grid.Row="0"
              HorizontalOptions="Start"
              HeightRequest="24"
@@ -24,11 +24,30 @@
           <TapGestureRecognizer Command="{Binding BackCommand}"  NumberOfTapsRequired="1"/>
         </Image.GestureRecognizers>
       </Image>
-      <StackLayout Grid.Row="1" Margin="0,170,0,0">
+      <StackLayout Grid.Row="1" Margin="0,80,0,0">
+        <Label Text="Choose your difficulty level"
+               VerticalTextAlignment="Center"
+              VerticalOptions="Center"
+               FontSize="30"
+               FontFamily="PatrickFont"
+               TextColor="White"
+               HorizontalOptions="Center"/>
+        <Label Text="Increase in difficulty to test your time sensitivity skills"
+               VerticalTextAlignment="Center"
+               FontSize="14.5"
+               VerticalOptions="Center"
+               FontFamily="PatrickFont"
+               TextColor="White"
+               HorizontalOptions="Center"/>
+      </StackLayout>
+      <StackLayout Grid.Row="2"
+                   Margin="0,80,0,0"
+                 VerticalOptions="Center" >
         <Button 
               WidthRequest="300"
               Text="Easy"
               Margin="40,0,40,0"
+          VerticalOptions="Center"
               TextColor="White"
               BorderColor="{StaticResource bordercolor}"
               BorderWidth="2" 
