@@ -26,10 +26,11 @@ namespace IslandLanding.ViewModel
       TryAginCommand = new Command(TryAginCommandExcute);
       GameModel = new GameModel
       {
+        LevelTime = game.LevelTime,
         MainTime = game.MainTime,
         TakenTime = Math.Abs(game.TakenTime)
       };
-      TooLateText = (GameModel.TakenTime > 0) ? " seconds too early" : " seconds too late";
+      TooLateText = (GameModel.TakenTime < GameModel.LevelTime) ? " seconds too early" : " seconds too late";
       UserTag = Preferences.Get("userTag", "");
       Device.StartTimer(new TimeSpan(0, 0, 4), () =>
       {
@@ -44,7 +45,7 @@ namespace IslandLanding.ViewModel
     private void TryAginCommandExcute(object obj)
     {
       Preferences.Set("levelNumber", 1);
-      App.Current.MainPage.Navigation.PushAsync(new GamePage());
+      App.Current.MainPage.Navigation.PopAsync();
     }
 
     private void MainCommandExcute(object obj)

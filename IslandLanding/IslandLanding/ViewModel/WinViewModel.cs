@@ -190,7 +190,7 @@ namespace IslandLanding.ViewModel
     private void TryAginCommandExcute(object obj)
     {
       Preferences.Set("levelNumber", 1);
-      App.Current.MainPage.Navigation.PushAsync(new GamePage());
+      App.Current.MainPage.Navigation.PopAsync();
     }
 
     private void MainCommandExcute(object obj)
