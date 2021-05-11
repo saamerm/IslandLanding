@@ -158,6 +158,7 @@ namespace IslandLanding.ViewModel
       var scoretime = LevelTime - diffTime;
       GameModel = new GameModel
       {
+        LevelTime = LevelTime,
         MainTime = Math.Round(diffTime, 2),
         TakenTime = Math.Round(scoretime, 2)
       };
