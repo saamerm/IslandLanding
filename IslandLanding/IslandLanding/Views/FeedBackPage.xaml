@@ -17,6 +17,9 @@
              WidthRequest="24"
              VerticalOptions="Center"
            >
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true"
+    BackgroundColor="Black"
         <Image.Source>
           <FontImageSource Color="{StaticResource orange}"
                                          FontFamily="FontAwesome5Solid"

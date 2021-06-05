@@ -10,15 +10,21 @@ using Xamarin.Forms;
 
 namespace IslandLanding.ViewModel
 {
- public class LoseViewModel:BaseViewModel
+  public class LoseViewModel : BaseViewModel
   {
     public bool IsLosing { get; set; }
     public GameModel GameModel { get; set; }
     public ICommand MainCommand { get; set; }
     public ICommand TryAginCommand { get; set; }
     public string UserTag { get; set; }
-    public string TooLateText { get; set; }
+    private string _tooLateTex;
+    public string TooLateText
+    {
+      get => _tooLateTex;
+      set => SetProperty(ref _tooLateTex, value);
+    }
     public string FinalLoseText { get; set; }
+    public bool IsPlaying { get; set; }
     public LoseViewModel(GameModel game)
     {
       IsLosing = true;
@@ -30,7 +36,8 @@ namespace IslandLanding.ViewModel
         MainTime = game.MainTime,
         TakenTime = Math.Abs(game.TakenTime)
       };
-      TooLateText = (GameModel.TakenTime < GameModel.LevelTime) ? " seconds too early" : " seconds too late";
+      IsPlaying = true;
+      TooLateText = (GameModel.MainTime < GameModel.LevelTime) ? " seconds too early" : " seconds too late";
       UserTag = Preferences.Get("userTag", "");
       Device.StartTimer(new TimeSpan(0, 0, 4), () =>
       {
@@ -45,12 +52,15 @@ namespace IslandLanding.ViewModel
     private void TryAginCommandExcute(object obj)
     {
       Preferences.Set("levelNumber", 1);
+      MessagingCenter.Send<LoseViewModel>(this, "tryAgain");
+      IsPlaying = false;
       App.Current.MainPage.Navigation.PopAsync();
     }
 
     private void MainCommandExcute(object obj)
     {
       Preferences.Set("levelNumber", 1);
+      IsPlaying = false;
       App.Current.MainPage.Navigation.PopToRootAsync();
     }
   }

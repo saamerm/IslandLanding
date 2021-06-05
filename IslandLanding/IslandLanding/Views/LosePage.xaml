@@ -1,128 +1,126 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:conv="clr-namespace:IslandLanding.Converters"
-             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms" 
-             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             x:Class="IslandLanding.Views.LosePage"
-             NavigationPage.HasNavigationBar="False"
-             BackgroundColor="#242424">
+<ContentPage
+    x:Class="IslandLanding.Views.LosePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:conv="clr-namespace:IslandLanding.Converters"
+    xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    BackgroundColor="#242424"
+    NavigationPage.HasNavigationBar="False">
 
-  <ContentPage.Resources>
-    <ResourceDictionary>
-      <conv:InverseBoolConverter x:Key="InverseBool"/>
-    </ResourceDictionary>
-  </ContentPage.Resources>
-  <ContentPage.Content>
-    <Grid RowDefinitions="0.62*,0.4*" >
-      <Image Source="background" Grid.RowSpan="2" 
-                  Aspect="AspectFill"/>
-      <StackLayout Grid.Row="0" x:Name="loseText"
-                      Margin="40,100,40,0" >
-        <Label 
-             
-            
-             HorizontalOptions="Center"
-             VerticalOptions="Center"
-             TextColor="White"
-             FontSize="30"
-             VerticalTextAlignment="Center"
-             HorizontalTextAlignment="Center"
-          
-             WidthRequest="313"
-             FontFamily="PatrickFont">
-          <Label.FormattedText>
-            <FormattedString>
-              <Span Text="Sorry, "/>
-              <Span Text="{Binding UserTag}"/>
-              <Span Text=" you have landed on the lake."/>
-            </FormattedString>
-          </Label.FormattedText>
-        </Label>
-        <pancake:PancakeView 
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center" >
-          <forms:AnimationView
-          Animation="Resources.parachut.json"
-          AnimationSource="EmbeddedResource"
-          AutoPlay="True"
-          HeightRequest="300"
-          WidthRequest="300" 
-          RepeatMode="Infinite"
-          />
-        </pancake:PancakeView>
-      </StackLayout>
-   
-      <!--the other view for lose page -->
-      
-      
-      <forms:AnimationView  Grid.Row="1" x:Name="lake"
-          Animation="Resources.lake.json" 
-          AnimationSource="EmbeddedResource" 
-          AutoPlay="True"  
-          VerticalOptions="FillAndExpand"
-          HorizontalOptions="FillAndExpand"
-          RepeatMode="Infinite"
-         />
-
-
-      <StackLayout  x:Name="buttonsStack"  Grid.Row="0" 
-                  
-               Margin="{OnPlatform iOS='40,110,40,0', Android='40,100,40,0'}" 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <conv:InverseBoolConverter x:Key="InverseBool" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowDefinitions="0.62*,0.4*">
+            <Image
+                Grid.RowSpan="2"
+                Aspect="AspectFill"
+                Source="background" />
+            <StackLayout
+                x:Name="loseText"
+                Grid.Row="0"
+                Margin="40,100,40,0">
+                <Label
+                    FontFamily="PatrickFont"
+                    FontSize="30"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    TextColor="White"
                     VerticalOptions="Center"
-                    >
-        <Label  
-            
-               x:Name="loseGameText"
-              Text="You lost the game"
-             TextColor="White"
-             FontSize="30"
-             VerticalTextAlignment="Center"
-             HorizontalTextAlignment="Center"
-             FontFamily="PatrickFont"/>
+                    VerticalTextAlignment="Center"
+                    WidthRequest="313">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Sorry, " />
+                            <Span Text="{Binding UserTag}" />
+                            <Span Text=" you have landed on the lake." />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <pancake:PancakeView HorizontalOptions="Center" VerticalOptions="Center">
+                    <forms:AnimationView
+                        Animation="Resources.parachut.json"
+                        AnimationSource="EmbeddedResource"
+                        AutoPlay="True"
+                        HeightRequest="300"
+                        RepeatMode="Infinite"
+                        WidthRequest="300" />
+                </pancake:PancakeView>
+            </StackLayout>
+
+            <!--  the other view for lose page  -->
 
 
-        <Label 
-             TextColor="White"
-             FontSize="27"
-              Text="{Binding FinalLoseText}"
-                x:Name="textStack"
-             VerticalTextAlignment="Center"
-             HorizontalTextAlignment="Center"
-             FontFamily="PatrickFont"/>
+            <forms:AnimationView
+                x:Name="lake"
+                Grid.Row="1"
+                Animation="Resources.lake.json"
+                AnimationSource="EmbeddedResource"
+                AutoPlay="{Binding IsPlaying}"
+                HorizontalOptions="FillAndExpand"
+                RepeatMode="Infinite"
+                VerticalOptions="FillAndExpand" />
 
-        <Button 
-              WidthRequest="300"
-             Text="Try Again"
-            Margin="0,30,0,0"
-              TextColor="White"
-              BorderColor="{StaticResource bordercolor}"
-              BorderWidth="2" 
-              HeightRequest="60"
-              CornerRadius="30"
-              BackgroundColor="{StaticResource orange}"
-             FontFamily="PatrickFont"
-             FontSize="20"
-           Command="{Binding TryAginCommand}"
-              />
-        <Button 
-              WidthRequest="300"
-              Text="Main Menu" 
-              Margin="0,5,0,0"
-              TextColor="White"
-              BorderColor="{StaticResource bordercolor}"
-              BorderWidth="2" 
-              HeightRequest="60"
-              CornerRadius="30"
-              FontSize="20"
-              FontFamily="PatrickFont"
-              BackgroundColor="{StaticResource orange}" 
-            Command="{Binding MainCommand}"
-              />
-      </StackLayout>
-   
 
-    
-    </Grid>
-  </ContentPage.Content>
+            <StackLayout
+                x:Name="buttonsStack"
+                Grid.Row="0"
+                Margin="{OnPlatform iOS='40,110,40,0',
+                                    Android='40,100,40,0'}"
+                VerticalOptions="Center">
+                <Label
+                    x:Name="loseGameText"
+                    FontFamily="PatrickFont"
+                    FontSize="30"
+                    HorizontalTextAlignment="Center"
+                    Text="You lost the game"
+                    TextColor="White"
+                    VerticalTextAlignment="Center" />
+
+
+                <Label
+                    x:Name="textStack"
+                    FontFamily="PatrickFont"
+                    FontSize="27"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding FinalLoseText}"
+                    TextColor="White"
+                    VerticalTextAlignment="Center" />
+
+                <Button
+                    Margin="0,30,0,0"
+                    BackgroundColor="{StaticResource orange}"
+                    BorderColor="{StaticResource bordercolor}"
+                    BorderWidth="2"
+                    Command="{Binding TryAginCommand}"
+                    CornerRadius="30"
+                    FontFamily="PatrickFont"
+                    FontSize="20"
+                    HeightRequest="60"
+                    Text="Try Again"
+                    TextColor="White"
+                    WidthRequest="300" />
+                <Button
+                    Margin="0,5,0,0"
+                    BackgroundColor="{StaticResource orange}"
+                    BorderColor="{StaticResource bordercolor}"
+                    BorderWidth="2"
+                    Command="{Binding MainCommand}"
+                    CornerRadius="30"
+                    FontFamily="PatrickFont"
+                    FontSize="20"
+                    HeightRequest="60"
+                    Text="Main Menu"
+                    TextColor="White"
+                    WidthRequest="300" />
+            </StackLayout>
+
+
+
+        </Grid>
+    </ContentPage.Content>
 </ContentPage>
