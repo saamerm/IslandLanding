@@ -9,27 +9,27 @@
     xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     BackgroundColor="#242424"
     NavigationPage.HasNavigationBar="False">
-  <ContentPage.Resources>
-    <ResourceDictionary>
-      <conv:InverseBoolConverter x:Key="InverseBool" />
-      <x:Array x:Key="ConfettiColors" Type="{x:Type Color}">
-        <Color>#a864fd</Color>
-        <Color>#29cdff</Color>
-        <Color>#78ff44</Color>
-        <Color>#ff718d</Color>
-        <Color>#fdff6a</Color>
-        <Color>#ffcbf2</Color>
-      </x:Array>
-    </ResourceDictionary>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <conv:InverseBoolConverter x:Key="InverseBool" />
+            <x:Array x:Key="ConfettiColors" Type="{x:Type Color}">
+                <Color>#a864fd</Color>
+                <Color>#29cdff</Color>
+                <Color>#78ff44</Color>
+                <Color>#ff718d</Color>
+                <Color>#fdff6a</Color>
+                <Color>#ffcbf2</Color>
+            </x:Array>
+        </ResourceDictionary>
 
-  </ContentPage.Resources>
-  <ContentPage.Content>
-    <Grid RowDefinitions="auto,auto,auto">
-      <Image
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowDefinitions="auto,auto,auto">
+            <Image
                 Grid.RowSpan="4"
                 Aspect="AspectFill"
                 Source="background" />
-      <Label
+            <Label
                 x:Name="winText"
                 Grid.Row="0"
                 Margin="40,140,40,0"
@@ -43,12 +43,12 @@
                 VerticalTextAlignment="Center"
                 WidthRequest="313" />
 
-      <pancake:PancakeView
+            <pancake:PancakeView
                 x:Name="winParachut"
                 Grid.Row="1"
                 HorizontalOptions="Center"
                 VerticalOptions="Center">
-        <forms:AnimationView
+                <forms:AnimationView
                     x:Name="parachutAnimation"
                     Animation="Resources.parachut.json"
                     AnimationSource="EmbeddedResource"
@@ -56,8 +56,8 @@
                     HeightRequest="257"
                     RepeatMode="Infinite"
                     WidthRequest="257" />
-      </pancake:PancakeView>
-      <Label
+            </pancake:PancakeView>
+            <Label
                 x:Name="congratulationsText"
                 Grid.Row="0"
                 Margin="0,100,0,0"
@@ -67,21 +67,21 @@
                 Text="CONGRATULATIONS "
                 TextColor="{StaticResource orange}"
                 VerticalTextAlignment="Center" />
-      <StackLayout
+            <StackLayout
                 x:Name="WinTextStack"
                 Grid.Row="0"
                 Margin="40,250,40,0"
                 HorizontalOptions="Center"
                 VerticalOptions="Center">
 
-        <Label
+                <Label
                     FontFamily="PatrickFont"
                     FontSize="30"
                     HorizontalTextAlignment="Center"
                     Text="{Binding ShowText}"
                     TextColor="White"
                     VerticalTextAlignment="Center" />
-        <Label
+                <Label
                     Margin="0,-10,0,0"
                     FontFamily="PatrickFont"
                     FontSize="30"
@@ -91,32 +91,32 @@
                     VerticalTextAlignment="Center" />
 
 
-      </StackLayout>
+            </StackLayout>
 
-      <!--  dots for levels  -->
-      <StackLayout
+            <!--  dots for levels  -->
+            <StackLayout
                 x:Name="dots"
                 Grid.Row="2"
                 BindableLayout.ItemsSource="{Binding DotsList}"
                 HorizontalOptions="Center"
                 Orientation="Horizontal"
                 VerticalOptions="Center">
-        <BindableLayout.ItemTemplate>
-          <DataTemplate>
-            <pancake:PancakeView
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <pancake:PancakeView
                             BackgroundColor="{Binding BackgroundColor}"
                             CornerRadius="7"
                             HeightRequest="15"
                             HorizontalOptions="Start"
                             WidthRequest="15">
-              <pancake:PancakeView.Border>
-                <pancake:Border Thickness="3" Color="White" />
-              </pancake:PancakeView.Border>
-            </pancake:PancakeView>
-          </DataTemplate>
-        </BindableLayout.ItemTemplate>
-      </StackLayout>
-      <form:ParticleView
+                            <pancake:PancakeView.Border>
+                                <pancake:Border Thickness="3" Color="White" />
+                            </pancake:PancakeView.Border>
+                        </pancake:PancakeView>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+            <form:ParticleView
                 x:Name="MyParticleCanvas"
                 Grid.RowSpan="4"
                 Margin="0,20"
@@ -127,11 +127,11 @@
                 IsRunning="True"
                 ParticleColors="{StaticResource ConfettiColors}"
                 VerticalOptions="FillAndExpand" />
-      <StackLayout
+            <StackLayout
                 x:Name="winButtonsStack"
                 Grid.Row="1"
                 Margin="40,70,40,0">
-        <Button
+                <Button
                     BackgroundColor="{StaticResource orange}"
                     BorderColor="{StaticResource bordercolor}"
                     BorderWidth="2"
@@ -143,7 +143,7 @@
                     Text="Play Again"
                     TextColor="White"
                     WidthRequest="300" />
-        <Button
+                <Button
                     Margin="0,10,0,0"
                     BackgroundColor="{StaticResource orange}"
                     BorderColor="{StaticResource bordercolor}"
@@ -156,19 +156,19 @@
                     Text="Main Menu"
                     TextColor="White"
                     WidthRequest="300" />
-      </StackLayout>
+            </StackLayout>
 
 
-      <ActivityIndicator
+            <ActivityIndicator
                 x:Name="indicator"
                 Grid.RowSpan="2"
                 HorizontalOptions="Center"
-                IsRunning="{Binding IsBusy}"
-                IsVisible="{Binding IsBusy}"
+                IsRunning="{Binding iIsViewBusy}"
+                IsVisible="{Binding iIsViewBusy}"
                 VerticalOptions="Center"
                 Color="{StaticResource orange}" />
 
 
-    </Grid>
-  </ContentPage.Content>
+        </Grid>
+    </ContentPage.Content>
 </ContentPage>
