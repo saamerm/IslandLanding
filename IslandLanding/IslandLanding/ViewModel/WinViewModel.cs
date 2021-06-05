@@ -14,17 +14,18 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace IslandLanding.ViewModel
 {
- public class WinViewModel:BaseViewModel
+  public class WinViewModel : BaseViewModel
   {
     public bool IsWinning { get; set; }
     public bool IsTop { get; set; }
-    public string UserTag { get; set;}
+    public string UserTag { get; set; }
     public double AverageTime { get; set; }
     public string ShowAverageTime { get; set; }
     public string ShowText { get; set; }
@@ -45,12 +46,12 @@ namespace IslandLanding.ViewModel
       UserTag = Preferences.Get("userTag", "");
       PageTitle = "Win Page";
       Analytics.TrackEvent("Page", new Dictionary<string, string> { { "Value", PageTitle } });
-      Device.StartTimer(new TimeSpan(0, 0, 3), () =>
-      {
-        IsWinning = false;
-        CheckHighScore();
-        return false;
-      });
+      //Device.StartTimer(new TimeSpan(0, 0, 3), () =>
+      //{
+      //    IsWinning = false;
+      CheckHighScore();
+      // return false;
+      // });
 
       if (Preferences.ContainsKey("numberOfVisit"))
       {
@@ -62,7 +63,7 @@ namespace IslandLanding.ViewModel
       }
       DrawLevels();
       WinText = UserTag + ", you have successfully landed on the island!";
-    
+
     }
     private void OpenAppReviewPopup()
     {
@@ -72,10 +73,10 @@ namespace IslandLanding.ViewModel
     }
     private void CheckNumberOfVisit()
     {
-      if (NumberOfVisit == 1||NumberOfVisit==3 || NumberOfVisit == 10)
-        {
-          OpenAppReviewPopup();
-        }
+      if (NumberOfVisit == 1 || NumberOfVisit == 3 || NumberOfVisit == 10)
+      {
+        OpenAppReviewPopup();
+      }
       NumberOfVisit++;
       Preferences.Set("numberOfVisit", NumberOfVisit);
     }
@@ -93,19 +94,23 @@ namespace IslandLanding.ViewModel
     private void CheckHighScore()
     {
       ShowText = "Your average is ";
-      var diffTimeListJson = Preferences.Get("listOfTimeAsJson", "");
-      var DiffList = JsonConvert.DeserializeObject<List<double>>(diffTimeListJson);
-      AverageTime =Math.Round(Math.Abs(DiffList.Sum() / DiffList.Count),2);
-      ShowAverageTime = AverageTime + " seconds";
+      Device.BeginInvokeOnMainThread(() =>
+      {
+        var diffTimeListJson = Preferences.Get("listOfTimeAsJson", "");
+        var DiffList = JsonConvert.DeserializeObject<List<double>>(diffTimeListJson);
+        AverageTime = Math.Round(Math.Abs(DiffList.Sum() / DiffList.Count), 2);
+        ShowAverageTime = AverageTime + " seconds";
+              // PostScore();
+            });
       if (Preferences.ContainsKey("playerScore"))
       {
-        var prevousScore=Preferences.Get("playerScore", 0.0);
-        if(AverageTime<prevousScore)
+        var prevousScore = Preferences.Get("playerScore", 0.0);
+        if (AverageTime < prevousScore)
         {
           Preferences.Set("playerScore", AverageTime);
           IsTop = true;
           PopupNavigation.Instance.PushAsync(new WinPopupPage());
-          Device.StartTimer(new TimeSpan(0, 0, 10), () =>
+          Device.StartTimer(new TimeSpan(0, 0, 5), () =>
           {
             if (Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopupStack.Any())
             {
@@ -113,22 +118,17 @@ namespace IslandLanding.ViewModel
             }
             return false;
           });
-         
+
         }
       }
       else
       {
         Preferences.Set("playerScore", AverageTime);
       }
-      Device.StartTimer(new TimeSpan(0, 0, 2), () =>
-         {
-           PostScore();
-           return false;
 
-         });
       Preferences.Set("levelNumber", 1);
     }
-    private async void PostScore()
+    public async Task PostScore()
     {
       try
       {
@@ -139,20 +139,17 @@ namespace IslandLanding.ViewModel
           var response = await addScoreService.AddScore(requestModel);
           if (response.Status != null)
           {
-            Device.StartTimer(new TimeSpan(0, 0, 5), () =>
+
+            if (response.Rank != 0)
             {
-              if (response.Rank != 0)
-              {
-                ShowText = "You are now ranked ";
-                ShowAverageTime = "NO." + response.Rank;
-              }
-              CheckNumberOfVisit();
-              return false;
-            });
+              ShowText = "You are now ranked ";
+              ShowAverageTime = "NO." + response.Rank;
+            }
+            CheckNumberOfVisit();
           }
         }
       }
-      catch(Exception ex)
+      catch (Exception ex)
       {
         IsBusy = false;
         ShowText = "Play again to sharpen your brain";
@@ -164,33 +161,10 @@ namespace IslandLanding.ViewModel
         IsBusy = false;
       }
     }
-    //TODO in the futur will use it if we want to get ranks 
-    //private async void GetRank()
-    //{
-    //  var getLeaderBoardService = new GetLeaderBoardService();
-    //  var ListData = await getLeaderBoardService.GetBoard();
-    //  if(ListData.Count>0)
-    //  {
-    //    try
-    //    {
-    //      var rank = ListData.Where(x => x.Name == UserTag).ToList();
-    //      if (rank.Count>0)
-    //      {
-
-    //        ShowText = "You are now ranked ";
-    //        ShowAverageTime = "NO." + rank.FirstOrDefault().Rank;
-    //      }
-    //    }
-    //    catch (Exception e)
-    //    {
-    //      //TODO Handle exception
-    //    }
-    //  }
-    //}
     private void TryAginCommandExcute(object obj)
     {
       Preferences.Set("levelNumber", 1);
-      App.Current.MainPage.Navigation.PopAsync();
+      App.Current.MainPage.Navigation.PushAsync(new DificullityPage());
     }
 
     private void MainCommandExcute(object obj)
@@ -199,7 +173,7 @@ namespace IslandLanding.ViewModel
     }
     private void DrawLevels()
     {
-     
+
       DotsList = new ObservableCollection<LevelsModel>();
       DotsList.Add(new LevelsModel
       {
@@ -231,7 +205,7 @@ namespace IslandLanding.ViewModel
         IsCompleted = true,
         BackgroundColor = Color.FromHex("#C5C5C5")
       });
- 
+
     }
   }
 }

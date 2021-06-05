@@ -46,35 +46,43 @@ namespace IslandLanding.ViewModel
       PlayCommand = new Command(PlayCommandExcute);
       TimeDifferencesList = new List<double>();
       stopwatch = new Stopwatch();
-    
+
       DrawLevels();
-      MessagingCenter.Subscribe<NextPopupViewModel>(this,"nextLevel", (sender) =>
+      MessagingCenter.Subscribe<NextPopupViewModel>(this, "nextLevel", (sender) =>
+       {
+         JumpButtonText = "Hold";
+         JumpButtonBackgroundColor = Color.FromHex("#E8A24F");
+         JumpButtonBorderColor = Color.FromHex("#4F3824");
+         LevelNumber = Preferences.Get("levelNumber", 1) + 1;
+         LevelTime += 1;
+         LaunchText = "Hold for " + LevelTime + " seconds and release to launch parachute";
+         IsRestarting = true;
+         foreach (var item in DotsList)
+         {
+
+           if (item.LevelNumber == LevelNumber.ToString())
+           {
+             item.IsCompleted = true;
+             item.BackgroundColor = Color.FromHex("#C5C5C5");
+           }
+         }
+       });
+      MessagingCenter.Subscribe<RestartPopupViewModel>(this, "restartGame", (sender) =>
+      {
+
+        LevelNumber = 1;
+        CheckLevelTime();
+        IsRestarting = false;
+        DrawLevels();
+
+      });
+      MessagingCenter.Subscribe<LoseViewModel>(this, "tryAgain", (sender) =>
       {
         JumpButtonText = "Hold";
         JumpButtonBackgroundColor = Color.FromHex("#E8A24F");
         JumpButtonBorderColor = Color.FromHex("#4F3824");
-        LevelNumber = Preferences.Get("levelNumber", 1) + 1;
-        LevelTime += 1;
         LaunchText = "Hold for " + LevelTime + " seconds and release to launch parachute";
-        IsRestarting = true;
-        foreach (var item in DotsList)
-        {
-          
-          if(item.LevelNumber==LevelNumber.ToString())
-          {
-            item.IsCompleted = true;
-            item.BackgroundColor = Color.FromHex("#C5C5C5");
-          }
-        }
-      });
-      MessagingCenter.Subscribe<RestartPopupViewModel>(this, "restartGame", (sender) =>
-      {
-        
-        LevelNumber =1;
-        CheckLevelTime();
-        IsRestarting = false;
-        DrawLevels();
-       
+
       });
       //this part for check level and add level time according to choosen difficulity
       CheckLevelTime();
@@ -119,7 +127,7 @@ namespace IslandLanding.ViewModel
       JumpButtonText = "Hold";
       JumpButtonBackgroundColor = Color.FromHex("#E8A24F");
       JumpButtonBorderColor = Color.FromHex("#4F3824");
-      LaunchText = "Hold for " + LevelTime + " seconds and release to launch parachute"; 
+      LaunchText = "Hold for " + LevelTime + " seconds and release to launch parachute";
       foreach (var item in DotsList)
       {
 
@@ -167,7 +175,7 @@ namespace IslandLanding.ViewModel
       Preferences.Set("listOfTimeAsJson", listOfTimeAsJson);
       if (scoretime > -1 && scoretime <= 1)
       {
-       PopupNavigation.Instance.PushAsync(new NextPopupPage(GameModel));
+        PopupNavigation.Instance.PushAsync(new NextPopupPage(GameModel));
       }
       else
       {
@@ -190,11 +198,11 @@ namespace IslandLanding.ViewModel
       LaunchText = "Release in " + LevelTime + " seconds to launch parachute";
       JumpButtonText = "Release";
       Preferences.Set("levelNumber", LevelNumber);
-      JumpButtonBackgroundColor = Color.FromHex("#4F3824"); 
+      JumpButtonBackgroundColor = Color.FromHex("#4F3824");
       JumpButtonBorderColor = Color.FromHex("#E8A24F");
       stopwatch.Start();
       StartedTime = stopwatch.Elapsed.TotalSeconds;
-     
+
     }
     private void DrawLevels()
     {
@@ -232,7 +240,7 @@ namespace IslandLanding.ViewModel
         IsCompleted = false,
         BackgroundColor = Color.Black
       });
-    
+
     }
   }
 }

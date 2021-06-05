@@ -10,14 +10,20 @@ using Xamarin.Forms;
 
 namespace IslandLanding.ViewModel
 {
- public class LoseViewModel:BaseViewModel
+  public class LoseViewModel : BaseViewModel
   {
     public bool IsLosing { get; set; }
     public GameModel GameModel { get; set; }
     public ICommand MainCommand { get; set; }
     public ICommand TryAginCommand { get; set; }
     public string UserTag { get; set; }
-    public string TooLateText { get; set; }
+    private string _tooLateTex;
+    public string TooLateText
+    {
+      get => _tooLateTex;
+      set => SetProperty(ref _tooLateTex, value);
+    }
+    public bool IsPlaying { get; set; }
     public string FinalLoseText { get; set; }
     public LoseViewModel(GameModel game)
     {
@@ -45,12 +51,15 @@ namespace IslandLanding.ViewModel
     private void TryAginCommandExcute(object obj)
     {
       Preferences.Set("levelNumber", 1);
+      MessagingCenter.Send<LoseViewModel>(this, "tryAgain");
+      IsPlaying = false;
       App.Current.MainPage.Navigation.PopAsync();
     }
 
     private void MainCommandExcute(object obj)
     {
       Preferences.Set("levelNumber", 1);
+      IsPlaying = false;
       App.Current.MainPage.Navigation.PopToRootAsync();
     }
   }
