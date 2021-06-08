@@ -1,4 +1,5 @@
 ﻿using IslandLanding.ViewModel;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,18 @@ namespace IslandLanding.Views
   [XamlCompilation(XamlCompilationOptions.Compile)]
   public partial class WinPage : ContentPage
   {
+
+    public WinViewModel winView;
     public WinPage()
     {
       InitializeComponent();
-      BindingContext = new WinViewModel();
+      winView = new WinViewModel();
+      BindingContext = winView;
+      if (Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopupStack.Any())
+      {
+        PopupNavigation.Instance.PopAsync();
+      }
+
       Animation();
     }
     private void Animation()
@@ -24,6 +33,7 @@ namespace IslandLanding.Views
       winText.Opacity = 1;
       winParachut.Opacity = 1;
       dots.Opacity = 1;
+      //indicator.Opacity = 0;
       congratulationsText.Opacity = 0;
       WinTextStack.Opacity = 0;
       winButtonsStack.Opacity = 0;
@@ -35,13 +45,16 @@ namespace IslandLanding.Views
     }
     private async void Fading()
     {
-      var winFade= winText.FadeTo(0, 2000);
-      var parachutFade= winParachut.FadeTo(0, 2000);
+      parachutAnimation.AutoPlay = false;
+      var winFade = winText.FadeTo(0, 2000);
+      var parachutFade = winParachut.FadeTo(0, 2000);
       var dotsFade = dots.FadeTo(0, 2000);
+      // var viewIndicator = indicator.FadeTo(1, 2000);
       var congratulationsFade = congratulationsText.FadeTo(1, 2000);
       var WinTextStackFade = WinTextStack.FadeTo(1, 2000);
-      var buttonFade= winButtonsStack.FadeTo(1, 2000);
-      await Task.WhenAll(winFade, parachutFade, dotsFade, congratulationsFade, WinTextStackFade,buttonFade);
+      var buttonFade = winButtonsStack.FadeTo(1, 2000);
+      // indicator.IsRunning = true;
+      await Task.WhenAll(winFade, parachutFade, dotsFade, congratulationsFade, WinTextStackFade, buttonFade, winView.PostScore());
     }
   }
 }

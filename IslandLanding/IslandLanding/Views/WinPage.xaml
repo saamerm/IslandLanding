@@ -1,17 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:conv="clr-namespace:IslandLanding.Converters" 
-             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
-             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
-             xmlns:form="clr-namespace:Particle.Forms;assembly=Particle.Forms"
-             NavigationPage.HasNavigationBar="False"
-             x:Class="IslandLanding.Views.WinPage"
-             BackgroundColor="#242424">
+<ContentPage
+    x:Class="IslandLanding.Views.WinPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:conv="clr-namespace:IslandLanding.Converters"
+    xmlns:form="clr-namespace:Particle.Forms;assembly=Particle.Forms"
+    xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    BackgroundColor="#242424"
+    NavigationPage.HasNavigationBar="False">
   <ContentPage.Resources>
     <ResourceDictionary>
-      <conv:InverseBoolConverter x:Key="InverseBool"/>
-      <x:Array Type="{x:Type Color}" x:Key="ConfettiColors">
+      <conv:InverseBoolConverter x:Key="InverseBool" />
+      <x:Array x:Key="ConfettiColors" Type="{x:Type Color}">
         <Color>#a864fd</Color>
         <Color>#29cdff</Color>
         <Color>#78ff44</Color>
@@ -20,138 +21,152 @@
         <Color>#ffcbf2</Color>
       </x:Array>
     </ResourceDictionary>
-   
+
   </ContentPage.Resources>
   <ContentPage.Content>
     <Grid RowDefinitions="auto,auto,auto">
-      <Image Source="background" Grid.RowSpan="4" 
-                  Aspect="AspectFill"/>
+      <Image
+                Grid.RowSpan="4"
+                Aspect="AspectFill"
+                Source="background" />
       <Label
-             Grid.Row="0" x:Name="winText"
-             HorizontalOptions="Center"
-             VerticalOptions="Center"
-             TextColor="White"
-             FontSize="30"
-             VerticalTextAlignment="Center"
-             HorizontalTextAlignment="Center"
-             Margin="40,140,40,0"
-             WidthRequest="313"
-             FontFamily="PatrickFont"
-        Text="{Binding WinText}"/>
+                x:Name="winText"
+                Grid.Row="0"
+                Margin="40,140,40,0"
+                FontFamily="PatrickFont"
+                FontSize="30"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="{Binding WinText}"
+                TextColor="White"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Center"
+                WidthRequest="313" />
 
-      <pancake:PancakeView Grid.Row="1" x:Name="winParachut"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center">
+      <pancake:PancakeView
+                x:Name="winParachut"
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
         <forms:AnimationView
-          Animation="Resources.parachut.json"
-          AnimationSource="EmbeddedResource"
-          AutoPlay="{Binding IsWinning}"
-          HeightRequest="257"
-          WidthRequest="257"
-          RepeatMode="Infinite"/>
+                    x:Name="parachutAnimation"
+                    Animation="Resources.parachut.json"
+                    AnimationSource="EmbeddedResource"
+                    AutoPlay="{Binding IsWinning}"
+                    HeightRequest="257"
+                    RepeatMode="Infinite"
+                    WidthRequest="257" />
       </pancake:PancakeView>
-      <Label Text="CONGRATULATIONS " x:Name="congratulationsText"
-              Grid.Row="0"
-              Margin="0,100,0,0"
-             TextColor="{StaticResource orange}"
-             FontSize="40"
-             VerticalTextAlignment="Center"
-             HorizontalTextAlignment="Center"
-             FontFamily="PatrickFont"/>
-      <StackLayout  Grid.Row="0" x:Name="WinTextStack"
-              Margin="40,250,40,0"
-             HorizontalOptions="Center"
-             VerticalOptions="Center">
+      <Label
+                x:Name="congratulationsText"
+                Grid.Row="0"
+                Margin="0,100,0,0"
+                FontFamily="PatrickFont"
+                FontSize="40"
+                HorizontalTextAlignment="Center"
+                Text="CONGRATULATIONS "
+                TextColor="{StaticResource orange}"
+                VerticalTextAlignment="Center" />
+      <StackLayout
+                x:Name="WinTextStack"
+                Grid.Row="0"
+                Margin="40,250,40,0"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
 
-        <Label Text="{Binding ShowText}"
-             TextColor="White"
-             FontSize="30"
-             VerticalTextAlignment="Center"
-             HorizontalTextAlignment="Center"
-             FontFamily="PatrickFont"/>
-        <Label Margin="0,-10,0,0"
-             TextColor="White"
-             FontSize="30"
-             Text="{Binding ShowAverageTime}"
-             VerticalTextAlignment="Center"
-             HorizontalTextAlignment="Center"
-             FontFamily="PatrickFont"/>
+        <Label
+                    FontFamily="PatrickFont"
+                    FontSize="30"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding ShowText}"
+                    TextColor="White"
+                    VerticalTextAlignment="Center" />
+        <Label
+                    Margin="0,-10,0,0"
+                    FontFamily="PatrickFont"
+                    FontSize="30"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding ShowAverageTime}"
+                    TextColor="White"
+                    VerticalTextAlignment="Center" />
 
 
       </StackLayout>
-     
-      <!--dots for levels-->
-      <StackLayout Orientation="Horizontal"
-            VerticalOptions="Center" 
-            x:Name="dots" 
-              Grid.Row="2"
-            HorizontalOptions="Center"
-            BindableLayout.ItemsSource="{Binding DotsList}">
+
+      <!--  dots for levels  -->
+      <StackLayout
+                x:Name="dots"
+                Grid.Row="2"
+                BindableLayout.ItemsSource="{Binding DotsList}"
+                HorizontalOptions="Center"
+                Orientation="Horizontal"
+                VerticalOptions="Center">
         <BindableLayout.ItemTemplate>
           <DataTemplate>
-            <pancake:PancakeView  
-                     CornerRadius="7"
-                      WidthRequest="15"
-                      HeightRequest="15"
-                      BackgroundColor="{Binding BackgroundColor}"
-                      HorizontalOptions="Start">
+            <pancake:PancakeView
+                            BackgroundColor="{Binding BackgroundColor}"
+                            CornerRadius="7"
+                            HeightRequest="15"
+                            HorizontalOptions="Start"
+                            WidthRequest="15">
               <pancake:PancakeView.Border>
-                <pancake:Border Color="White" Thickness="3"/>
+                <pancake:Border Thickness="3" Color="White" />
               </pancake:PancakeView.Border>
             </pancake:PancakeView>
           </DataTemplate>
         </BindableLayout.ItemTemplate>
       </StackLayout>
-      <form:ParticleView   x:Name="MyParticleCanvas"
-                            IsActive="True"
-                            IsRunning="True" 
-                            HasFallingParticles="True"
-                            FallingParticlesPerSecond="20"
-                            Margin="0,20" 
-                            Grid.RowSpan="4"
-                            VerticalOptions="FillAndExpand"
-                            HorizontalOptions="FillAndExpand"
-                            ParticleColors="{StaticResource ConfettiColors}" />
-      <StackLayout  Margin="40,70,40,0" 
-                    x:Name="winButtonsStack"
-                    Grid.Row="1">
-        <Button 
-              WidthRequest="300"
-               Text="Try Again"
-              TextColor="White"
-              BorderColor="{StaticResource bordercolor}"
-              BorderWidth="2" 
-              HeightRequest="60"
-              CornerRadius="30"
-              BackgroundColor="{StaticResource orange}"
-             FontFamily="PatrickFont"
-             FontSize="20"
-           Command="{Binding TryAginCommand}"
-     
-              />
-        <Button 
-              WidthRequest="300"
-              Text="Main Menu"
-              Margin="0,10,0,0"
-              TextColor="White"
-              BorderColor="{StaticResource bordercolor}"
-              BorderWidth="2" 
-              HeightRequest="60"
-              CornerRadius="30"
-              FontSize="20"
-              FontFamily="PatrickFont"
-              BackgroundColor="{StaticResource orange}"
-               Command="{Binding MainCommand}"
-              />
+      <form:ParticleView
+                x:Name="MyParticleCanvas"
+                Grid.RowSpan="4"
+                Margin="0,20"
+                FallingParticlesPerSecond="20"
+                HasFallingParticles="True"
+                HorizontalOptions="FillAndExpand"
+                IsActive="True"
+                IsRunning="True"
+                ParticleColors="{StaticResource ConfettiColors}"
+                VerticalOptions="FillAndExpand" />
+      <StackLayout
+                x:Name="winButtonsStack"
+                Grid.Row="1"
+                Margin="40,70,40,0">
+        <Button
+                    BackgroundColor="{StaticResource orange}"
+                    BorderColor="{StaticResource bordercolor}"
+                    BorderWidth="2"
+                    Command="{Binding TryAginCommand}"
+                    CornerRadius="30"
+                    FontFamily="PatrickFont"
+                    FontSize="20"
+                    HeightRequest="60"
+                    Text="Try Again"
+                    TextColor="White"
+                    WidthRequest="300" />
+        <Button
+                    Margin="0,10,0,0"
+                    BackgroundColor="{StaticResource orange}"
+                    BorderColor="{StaticResource bordercolor}"
+                    BorderWidth="2"
+                    Command="{Binding MainCommand}"
+                    CornerRadius="30"
+                    FontFamily="PatrickFont"
+                    FontSize="20"
+                    HeightRequest="60"
+                    Text="Main Menu"
+                    TextColor="White"
+                    WidthRequest="300" />
       </StackLayout>
 
-      <StackLayout Grid.RowSpan="3" IsVisible="{Binding IsBusy}"
-             Margin="0,300,0,0" >
-        <ActivityIndicator Color="{StaticResource orange}"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                           IsRunning="{Binding IsBusy}"
-                           />
+      <StackLayout
+                Grid.RowSpan="3"
+                Margin="0,20,0,0"
+                IsVisible="{Binding IsBusy}">
+        <ActivityIndicator
+                    HorizontalOptions="Center"
+                    IsRunning="{Binding IsBusy}"
+                    VerticalOptions="Center"
+                    Color="{StaticResource orange}" />
       </StackLayout>
 
     </Grid>

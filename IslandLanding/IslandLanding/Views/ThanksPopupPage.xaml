@@ -1,28 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pages:PopupPage
-            xmlns:pages="http://rotorgames.com" 
-            xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="IslandLanding.Views.ThanksPopupPage"
-           BackgroundColor="Transparent">
+    x:Class="IslandLanding.Views.ThanksPopupPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:pages="http://rotorgames.com"
+    ios:Page.UseSafeArea="true"
+    BackgroundColor="Transparent">
   <pages:PopupPage.Animation>
     <pages:ScaleAnimation
-      PositionIn="Top"
-      PositionOut="Center"
-      ScaleIn="1"
-      ScaleOut="0.7"
-      DurationIn="100"
-      EasingIn="BounceOut"/>
+            DurationIn="100"
+            EasingIn="BounceOut"
+            PositionIn="Top"
+            PositionOut="Center"
+            ScaleIn="1"
+            ScaleOut="0.7" />
   </pages:PopupPage.Animation>
-  <Grid VerticalOptions="Start" Margin="0,-20,0,0">
-    <BoxView HeightRequest="69" HorizontalOptions="FillAndExpand"
-               BackgroundColor="{StaticResource orange}"/>
-    <Label 
-             HorizontalOptions="Center"
-             VerticalOptions="Center"
-             TextColor="White"
-             FontSize="24"
-             Text="{Binding FeedbackAdded}"
-             FontFamily="PatrickFont"/>
+  <Grid Margin="0,0,0,0" VerticalOptions="Start">
+    <BoxView
+            BackgroundColor="{StaticResource orange}"
+            HeightRequest="69"
+            HorizontalOptions="FillAndExpand" />
+    <Label
+            FontFamily="PatrickFont"
+            FontSize="24"
+            HorizontalOptions="Center"
+            Text="{Binding FeedbackAdded}"
+            TextColor="White"
+            VerticalOptions="Center"
+            VerticalTextAlignment="Center" />
   </Grid>
 </pages:PopupPage>
